@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ahhf_app/login1.dart';
-import 'package:ahhf_app/home_files/home.dart';
+import 'package:ahhf_app/screens/home.dart';
 import 'package:ahhf_app/register.dart';
 
 class Mylogin1 extends StatefulWidget {
@@ -21,7 +21,7 @@ class _Mylogin1State extends State<Mylogin1> {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-            image: AssetImage('images/logo.png'), fit: BoxFit.cover),
+            image: AssetImage('assets/images/logo.png'), fit: BoxFit.cover),
       ),
       child: SafeArea(
         child: Scaffold(

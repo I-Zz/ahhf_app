@@ -1,10 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'images.dart';
 import 'package:navigation_drawer_menu/navigation_drawer_menu.dart';
 import 'package:control_style/control_style.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
-import 'navbar.dart';
+
+import '../data-models/images.dart';
+import './navbar.dart';
 
 const double kTexttitlesize = 25;
 const double kBorderradius = 10;
