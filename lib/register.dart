@@ -15,7 +15,8 @@ class _MyregisterState extends State<Myregister> {
     return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('images/help2.jpeg'), fit: BoxFit.cover)),
+              image: AssetImage('assets/images/help2.jpeg'),
+              fit: BoxFit.cover)),
       child: SafeArea(
         child: Scaffold(
           backgroundColor: Colors.transparent,

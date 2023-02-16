@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ahhf_app/login1.dart';
-import 'package:ahhf_app/register.dart';
-import 'home_files/home.dart';
+import './login1.dart';
+import './register.dart';
+import './screens/home.dart';
 
 void main() {
   runApp(MaterialApp(
