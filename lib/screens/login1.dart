@@ -2,9 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ahhf_app/login1.dart';
+import 'package:ahhf_app/screens/login1.dart';
 import 'package:ahhf_app/screens/home.dart';
-import 'package:ahhf_app/register.dart';
+import 'package:ahhf_app/screens/register.dart';
 
 class Mylogin1 extends StatefulWidget {
   static const String id = 'Mylogin1';

@@ -1,0 +1,2 @@
+This file is added because github doesn't include empty folders in commits.
+You can remove this file if you have added any widget in the widget folder.
