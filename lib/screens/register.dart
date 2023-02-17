@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import './onboarding_screen.dart';
+import 'onboarding_screen.dart';
 
 class Myregister extends StatefulWidget {
   static const String id = 'Myregister';
