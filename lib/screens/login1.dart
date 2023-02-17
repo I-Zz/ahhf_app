@@ -1,161 +1,147 @@
-import 'dart:math';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ahhf_app/screens/login1.dart';
-import 'package:ahhf_app/screens/home.dart';
-import 'package:ahhf_app/screens/register.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/src/widgets/placeholder.dart';
+//import 'package:my_login/register.dart';
 
-class Mylogin1 extends StatefulWidget {
-  static const String id = 'Mylogin1';
-
-  const Mylogin1({Key? key}) : super(key: key);
+class Mylogin extends StatefulWidget {
+  const Mylogin({Key? key}) : super(key: key);
 
   @override
-  State<Mylogin1> createState() => _Mylogin1State();
+  State<Mylogin> createState() => _MyloginState();
 }
 
-class _Mylogin1State extends State<Mylogin1> {
+class _MyloginState extends State<Mylogin> {
+  String istapped = '';
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-            image: AssetImage('assets/images/logo.png'), fit: BoxFit.cover),
-      ),
-      child: SafeArea(
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: Stack(
-            children: [
-              Container(
-                  padding: EdgeInsets.only(top: 10, left: 30),
-                  child: Text(
-                    "WELCOME TO\nAPPROACH HELPING HANDS!",
-                    style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700),
-                  )),
-              SingleChildScrollView(
-                child: Container(
-                  padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height * 0.5,
-                      left: 35,
-                      right: 35),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      TextField(
-                        decoration: InputDecoration(
-                          prefixIcon: Padding(
-                            padding: const EdgeInsets.all(15),
-                            child: Icon(Icons.email_rounded),
-                          ),
-                          fillColor: Colors.grey.shade200,
-                          filled: true,
-                          hintText: 'Email ID',
-                          hintStyle: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 18,
-                      ),
-                      TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          prefixIcon: Padding(
-                            padding: const EdgeInsets.all(15),
-                            child: Icon(Icons.lock_rounded),
-                          ),
-                          suffixIcon: Padding(
-                            padding: const EdgeInsets.all(15),
-                            child: Icon(Icons.remove_red_eye),
-                          ),
-                          fillColor: Colors.grey.shade200,
-                          filled: true,
-                          hintText: 'Password',
-                          hintStyle: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Sign in',
-                            style: TextStyle(
-                                fontSize: 30,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.black),
-                          ),
-                          CircleAvatar(
-                            backgroundColor: Colors.black,
-                            child: IconButton(
-                              color: Colors.white,
-                              onPressed: () {
-                                Navigator.pushNamed(context, HomePage.id);
-                              },
-                              icon: Icon(
-                                Icons.arrow_forward,
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.white),
-                              onPressed: () {
-                                Navigator.pushNamed(context, Myregister.id);
-                              },
-                              child: Text(
-                                'SIGN UP ',
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    decoration: TextDecoration.none,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w700),
-                              )),
-                          TextButton(
-                              onPressed: () {},
-                              child: Text(
-                                'FORGOT PASSOWRD ?',
-                                style: TextStyle(
-                                    fontSize: 13,
-                                    decoration: TextDecoration.underline,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w700),
-                              ))
-                        ],
-                      )
-                    ],
+    ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Stack(
+        children: [
+          Positioned(
+            //top: 20,
+            bottom: 530,
+            left: 91,
+            child: Container(
+              child: Image.asset("assets/images/full_logo.png"),
+            ),
+          ),
+          Positioned(
+            left: 48,
+            bottom: 550,
+            child: Container(
+              padding: EdgeInsets.only(left: 135, top: 130),
+              child: Text(
+                'APPROACH\nHELPING HANDS\nFOUNDATION',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
+          Positioned(
+            left: 48,
+            bottom: 530,
+            child: Container(
+              padding: EdgeInsets.only(left: 135, top: 205),
+              child: Text(
+                'Together We Can!',
+                style: TextStyle(color: Colors.black, fontSize: 14),
+              ),
+            ),
+          ),
+          Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                const SizedBox(height: 150),
+                SizedBox(
+                  height: 53,
+                  width: 296,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        primary: Color.fromRGBO(59, 89, 152, 1),
+                        side: BorderSide()),
+                    onPressed: () {},
+                    child: const Text(
+                      'Connect with Facebook',
+                      style: TextStyle(fontSize: 18),
+                    ),
                   ),
                 ),
-              )
-            ],
+                const SizedBox(height: 12),
+                SizedBox(
+                  height: 53,
+                  width: 296,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        primary: Color.fromRGBO(66, 133, 244, 1)),
+                    onPressed: () {},
+                    child: const Text(
+                      'Connect with Google',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                SizedBox(
+                  height: 53,
+                  width: 296,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        primary: Color.fromRGBO(51, 51, 51, 1)),
+                    onPressed: () {},
+                    child: const Text(
+                      'Login with email',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                SizedBox(
+                  height: 53,
+                  width: 296,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        primary: Color.fromRGBO(51, 51, 51, 1)),
+                    onPressed: () {},
+                    child: const Text(
+                      'Login with phone',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 30),
+                Positioned(
+                  bottom: 10,
+                  child: SizedBox(
+                    height: 18,
+                    width: 214,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          primary: Color.fromRGBO(255, 255, 255, 1)),
+                      onPressed: () {},
+                      child: const Text(
+                        'I\'ll do this later',
+                        style: TextStyle(fontSize: 18, color: Colors.black),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 30),
+                Positioned(
+                  child: Text(
+                    'By signing up you agree to our terms of service',
+                    style: TextStyle(fontSize: 10),
+                    textAlign: TextAlign.end,
+                  ),
+                )
+              ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
