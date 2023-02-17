@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import './onboarding_screen.dart';
+
 class Myregister extends StatefulWidget {
   static const String id = 'Myregister';
   const Myregister({Key? key}) : super(key: key);
@@ -114,7 +116,14 @@ class _MyregisterState extends State<Myregister> {
                             backgroundColor: Colors.grey.shade800,
                             child: IconButton(
                               color: Colors.white,
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => OnboardingScreen(),
+                                  ),
+                                );
+                              },
                               icon: Icon(
                                 Icons.arrow_forward,
                               ),
