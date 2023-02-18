@@ -4,7 +4,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 //import 'package:my_login/register.dart';
 
 class Mylogin extends StatefulWidget {
-  const Mylogin({Key? key}) : super(key: key);
+  static const String id = '/login_screen';
 
   @override
   State<Mylogin> createState() => _MyloginState();
