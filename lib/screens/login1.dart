@@ -65,9 +65,21 @@ class _MyloginState extends State<Mylogin> {
                         primary: Color.fromRGBO(59, 89, 152, 1),
                         side: BorderSide()),
                     onPressed: () {},
-                    child: const Text(
-                      'Connect with Facebook',
-                      style: TextStyle(fontSize: 18),
+                    child: Row(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 8, bottom: 8, left: 10, right: 15),
+                          child: Icon(
+                            Icons.facebook,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Text(
+                          'Connect with Facebook',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -79,9 +91,21 @@ class _MyloginState extends State<Mylogin> {
                     style: ElevatedButton.styleFrom(
                         primary: Color.fromRGBO(66, 133, 244, 1)),
                     onPressed: () {},
-                    child: const Text(
-                      'Connect with Google',
-                      style: TextStyle(fontSize: 18),
+                    child: Row(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 8, bottom: 8, left: 10, right: 15),
+                          child: Icon(
+                            Icons.chrome_reader_mode,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Text(
+                          'Connect with Google',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -93,9 +117,21 @@ class _MyloginState extends State<Mylogin> {
                     style: ElevatedButton.styleFrom(
                         primary: Color.fromRGBO(51, 51, 51, 1)),
                     onPressed: () {},
-                    child: const Text(
-                      'Login with email',
-                      style: TextStyle(fontSize: 18),
+                    child: Row(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 8, bottom: 8, left: 10, right: 15),
+                          child: Icon(
+                            Icons.email_outlined,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Text(
+                          'Login with email',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -107,9 +143,21 @@ class _MyloginState extends State<Mylogin> {
                     style: ElevatedButton.styleFrom(
                         primary: Color.fromRGBO(51, 51, 51, 1)),
                     onPressed: () {},
-                    child: const Text(
-                      'Login with phone',
-                      style: TextStyle(fontSize: 18),
+                    child: Row(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 8, bottom: 8, left: 10, right: 15),
+                          child: Icon(
+                            Icons.phone,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Text(
+                          'Login with phone',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ],
                     ),
                   ),
                 ),
