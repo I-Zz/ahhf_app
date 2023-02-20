@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+
+import './tabs_screen.dart';
 //import 'package:my_login/register.dart';
 
 class Mylogin extends StatefulWidget {
@@ -26,7 +28,7 @@ class _MyloginState extends State<Mylogin> {
             child: Container(
               child: Image.asset("assets/images/full_logo_black.png"),
             ),
-          ),  
+          ),
           Center(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -138,13 +140,13 @@ class _MyloginState extends State<Mylogin> {
                 ),
                 const SizedBox(height: 30),
                 Positioned(
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Text('I\'ll do this later'),
-                        
-                      ),
-                      
-                    ),
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, TabsScreen.id);
+                    },
+                    child: Text('I\'ll do this later'),
+                  ),
+                ),
                 const SizedBox(height: 30),
                 Positioned(
                   child: Text(

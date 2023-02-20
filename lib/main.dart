@@ -3,6 +3,7 @@ import './screens/login1.dart';
 import './screens/register.dart';
 import './screens/home.dart';
 import './screens/onboarding_screen.dart';
+import './screens/tabs_screen.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -14,6 +15,7 @@ void main() {
       Mylogin.id: (context) => Mylogin(),
       Myregister.id: (context) => Myregister(),
       HomePage.id: (context) => HomePage(),
+      TabsScreen.id:(context) => TabsScreen(),
     },
     // home: Splash(),
     initialRoute: Splash.id,

@@ -1,0 +1,123 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/src/widgets/placeholder.dart';
+
+class AppBarCommon extends StatelessWidget implements PreferredSizeWidget {
+  String name;
+  AppBarCommon(this.name);
+
+  @override
+  Size get preferredSize => Size.fromHeight(80);
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 18),
+        color: Color.fromRGBO(255, 255, 255, 1),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Spacer(),
+                const Text(
+                  'Hello,',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontFamily: 'Montserrat',
+                  ),
+                ),
+                Text(
+                  name,
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const Spacer(),
+              ],
+            ),
+            // There might be issues with Donate now as i have manually added the height and width
+            ElevatedButton(
+              child: Container(
+                // height: 30,
+                width: 100,
+                padding: EdgeInsets.symmetric(
+                  vertical: 4,
+                  horizontal: 10,
+                ),
+                // alignment: Alignment.bottomCenter,
+                child: Text(
+                  'DONATE NOW',
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color.fromRGBO(241, 200, 76, 1),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+              ),
+              onPressed: () {},
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// class AppBarCommon extends AppBar {
+//   // @override
+//   // Widget build(BuildContext context) {
+//   AppBarCommon()
+//       : super(
+        
+//           actions: <Widget>[
+//             Expanded(
+//               child: Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                 // crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: <Widget>[
+//                   Column(
+//                     children: [
+//                       Text('Hello,'),
+//                       Text('Anand'),
+//                     ],
+//                   ),
+//                   ElevatedButton(
+//                     onPressed: null,
+//                     child: Text('DONATE NOW'),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           ],
+//         );
+
+  // return AppBar(
+  //   actions: [
+  //     Row(
+  //       children: <Widget>[
+  //         Column(
+  //           children: <Widget>[
+  //             Text('Hello,'),
+  //             Text('Anand'),
+  //           ],
+  //         ),
+  //         ElevatedButton(
+  //           onPressed: null,
+  //           child: Text('DONATE NOW'),
+  //         ),
+  //       ],
+  //     ),
+  //   ],
+  // );
+
