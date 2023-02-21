@@ -18,7 +18,11 @@ class _MyloginState extends State<Mylogin> {
   Widget build(BuildContext context) {
     ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
     return Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
+      backgroundColor: Color.fromRGBO(245, 246, 255, 1),
+      // RGB(245, 246, 255)
+      // backgroundColor: Color(0xffA6A6A6),
+
       body: SafeArea(
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 32),
