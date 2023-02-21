@@ -1,8 +1,11 @@
+import 'package:ahhf_app/screens/home.dart';
+import 'package:ahhf_app/screens/login1.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
 class OnboardingScreen extends StatefulWidget {
+  static const String id = '/onboarding_screen';
   @override
   State<OnboardingScreen> createState() => _OnboardingScreenState();
 }
@@ -82,10 +85,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                     ),
                     onPressed: () {
-                      _pageController.nextPage(
-                        duration: Duration(milliseconds: 300),
-                        curve: Curves.ease,
-                      );
+                      _pageIndex.toInt() == onboard_data.length - 1
+                          ? Navigator.pushReplacementNamed(context, Mylogin.id)
+                          : _pageController.nextPage(
+                              duration: Duration(milliseconds: 300),
+                              curve: Curves.ease,
+                            );
                     },
                   ),
                   const SizedBox(

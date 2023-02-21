@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+
+import './tabs_screen.dart';
 //import 'package:my_login/register.dart';
 
 class Mylogin extends StatefulWidget {
-  const Mylogin({Key? key}) : super(key: key);
+  static const String id = '/login_screen';
 
   @override
   State<Mylogin> createState() => _MyloginState();
@@ -24,42 +26,17 @@ class _MyloginState extends State<Mylogin> {
             bottom: 530,
             left: 91,
             child: Container(
-              child: Image.asset("assets/images/full_logo.png"),
-            ),
-          ),
-          Positioned(
-            left: 48,
-            bottom: 550,
-            child: Container(
-              padding: EdgeInsets.only(left: 135, top: 130),
-              child: Text(
-                'APPROACH\nHELPING HANDS\nFOUNDATION',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
-          Positioned(
-            left: 48,
-            bottom: 530,
-            child: Container(
-              padding: EdgeInsets.only(left: 135, top: 205),
-              child: Text(
-                'Together We Can!',
-                style: TextStyle(color: Colors.black, fontSize: 14),
-              ),
+              child: Image.asset("assets/images/full_logo_black.png"),
             ),
           ),
           Center(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                const SizedBox(height: 150),
+                const SizedBox(height: 300),
                 SizedBox(
-                  height: 53,
-                  width: 296,
+                  height: 40,
+                  width: 270,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         primary: Color.fromRGBO(59, 89, 152, 1),
@@ -71,7 +48,7 @@ class _MyloginState extends State<Mylogin> {
                           padding: const EdgeInsets.only(
                               top: 8, bottom: 8, left: 10, right: 15),
                           child: Icon(
-                            Icons.facebook,
+                            Icons.facebook_outlined,
                             color: Colors.white,
                           ),
                         ),
@@ -85,8 +62,8 @@ class _MyloginState extends State<Mylogin> {
                 ),
                 const SizedBox(height: 12),
                 SizedBox(
-                  height: 53,
-                  width: 296,
+                  height: 40,
+                  width: 270,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         primary: Color.fromRGBO(66, 133, 244, 1)),
@@ -97,7 +74,7 @@ class _MyloginState extends State<Mylogin> {
                           padding: const EdgeInsets.only(
                               top: 8, bottom: 8, left: 10, right: 15),
                           child: Icon(
-                            Icons.chrome_reader_mode,
+                            Icons.search,
                             color: Colors.white,
                           ),
                         ),
@@ -111,8 +88,8 @@ class _MyloginState extends State<Mylogin> {
                 ),
                 const SizedBox(height: 12),
                 SizedBox(
-                  height: 53,
-                  width: 296,
+                  height: 40,
+                  width: 270,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         primary: Color.fromRGBO(51, 51, 51, 1)),
@@ -123,7 +100,7 @@ class _MyloginState extends State<Mylogin> {
                           padding: const EdgeInsets.only(
                               top: 8, bottom: 8, left: 10, right: 15),
                           child: Icon(
-                            Icons.email_outlined,
+                            Icons.email_sharp,
                             color: Colors.white,
                           ),
                         ),
@@ -137,8 +114,8 @@ class _MyloginState extends State<Mylogin> {
                 ),
                 const SizedBox(height: 12),
                 SizedBox(
-                  height: 53,
-                  width: 296,
+                  height: 40,
+                  width: 270,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         primary: Color.fromRGBO(51, 51, 51, 1)),
@@ -149,7 +126,7 @@ class _MyloginState extends State<Mylogin> {
                           padding: const EdgeInsets.only(
                               top: 8, bottom: 8, left: 10, right: 15),
                           child: Icon(
-                            Icons.phone,
+                            Icons.phone_android,
                             color: Colors.white,
                           ),
                         ),
@@ -163,19 +140,11 @@ class _MyloginState extends State<Mylogin> {
                 ),
                 const SizedBox(height: 30),
                 Positioned(
-                  bottom: 10,
-                  child: SizedBox(
-                    height: 18,
-                    width: 214,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          primary: Color.fromRGBO(255, 255, 255, 1)),
-                      onPressed: () {},
-                      child: const Text(
-                        'I\'ll do this later',
-                        style: TextStyle(fontSize: 18, color: Colors.black),
-                      ),
-                    ),
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, TabsScreen.id);
+                    },
+                    child: Text('I\'ll do this later'),
                   ),
                 ),
                 const SizedBox(height: 30),
