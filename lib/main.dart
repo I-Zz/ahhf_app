@@ -1,3 +1,5 @@
+import 'package:ahhf_app/screens/projects_detail_screen_overview.dart';
+import 'package:ahhf_app/screens/projects_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import './screens/login1.dart';
@@ -22,6 +24,11 @@ void main() {
       Myregister.id: (context) => Myregister(),
       HomePage.id: (context) => HomePage(),
       TabsScreen.id: (context) => TabsScreen(),
+
+      ProjectScreen.id: (context) => ProjectScreen(),
+      ProjectsDetailScreenoverview.id: (context) =>
+          ProjectsDetailScreenoverview(),
+
     },
     // home: Splash(),
     initialRoute: Splash.id,
