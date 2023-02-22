@@ -1,6 +1,7 @@
 import 'package:ahhf_app/screens/projects_detail_screen_overview.dart';
 import 'package:ahhf_app/screens/projects_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import './screens/login1.dart';
 import './screens/register.dart';
 import './screens/home.dart';
@@ -8,6 +9,11 @@ import './screens/onboarding_screen.dart';
 import './screens/tabs_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     // initialRoute: Mylogin1.id,
@@ -18,9 +24,11 @@ void main() {
       Myregister.id: (context) => Myregister(),
       HomePage.id: (context) => HomePage(),
       TabsScreen.id: (context) => TabsScreen(),
+
       ProjectScreen.id: (context) => ProjectScreen(),
       ProjectsDetailScreenoverview.id: (context) =>
           ProjectsDetailScreenoverview(),
+
     },
     // home: Splash(),
     initialRoute: Splash.id,

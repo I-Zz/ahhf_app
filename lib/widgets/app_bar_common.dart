@@ -7,14 +7,24 @@ class AppBarCommon extends StatelessWidget implements PreferredSizeWidget {
   AppBarCommon(this.name);
 
   @override
-  Size get preferredSize => Size.fromHeight(80);
+  Size get preferredSize => Size.fromHeight(82);
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 18),
-        color: Color.fromRGBO(255, 255, 255, 1),
+        decoration: const BoxDecoration(
+          color: Color.fromRGBO(255, 255, 255, 1),
+          boxShadow: [
+            BoxShadow(
+              color: Color.fromRGBO(0, 0, 0, 0.06),
+              blurRadius: 7,
+              spreadRadius: 6,
+              offset: Offset(0, 0),
+            ),
+          ],
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 18),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -31,7 +41,7 @@ class AppBarCommon extends StatelessWidget implements PreferredSizeWidget {
                 ),
                 Text(
                   name,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20,
                     fontFamily: 'Montserrat',
                     fontWeight: FontWeight.w600,
@@ -41,31 +51,32 @@ class AppBarCommon extends StatelessWidget implements PreferredSizeWidget {
               ],
             ),
             // There might be issues with Donate now as i have manually added the height and width
-            ElevatedButton(
-              child: Container(
-                // height: 30,
-                width: 100,
-                padding: EdgeInsets.symmetric(
-                  vertical: 4,
-                  horizontal: 10,
+            SizedBox(
+              width: 150,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color.fromRGBO(241, 200, 76, 1),
+                  // elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                 ),
-                // alignment: Alignment.bottomCenter,
-                child: Text(
-                  'DONATE NOW',
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w600,
+                onPressed: () {},
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 4,
+                  ),
+                  child: Text(
+                    'DONATE NOW',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.black,
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromRGBO(241, 200, 76, 1),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-              ),
-              onPressed: () {},
             ),
           ],
         ),
