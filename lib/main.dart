@@ -26,8 +26,8 @@ void main() {
       TabsScreen.id: (context) => TabsScreen(),
 
       ProjectScreen.id: (context) => ProjectScreen(),
-      ProjectsDetailScreenoverview.id: (context) =>
-          ProjectsDetailScreenoverview(),
+      ProjectsDetailScreen.id: (context) =>
+          ProjectsDetailScreen(),
 
     },
     // home: Splash(),

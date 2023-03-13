@@ -13,7 +13,7 @@ class ProjectScreenCards extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (() {
-        Navigator.pushNamed(context, ProjectsDetailScreenoverview.id);
+        Navigator.pushNamed(context, ProjectsDetailScreen.id);
       }),
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
