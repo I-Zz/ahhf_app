@@ -19,16 +19,7 @@ class ProjectScreen extends StatelessWidget {
         appBar: AppBarCommon(
           'Anand',
         ),
-        // body: Column(
-        //   children: <Widget>[
-        //     Container(
-        //       height: dou,
-        //       width: double.infinity,
-        //       padding: EdgeInsets.only(top: 15, left: 15, right: 15),
-        //       child: ProjectScreenList(),
-        //     ),
-        //   ],
-        // ),
+
         body: ProjectScreenList(),
       ),
     );
