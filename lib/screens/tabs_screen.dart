@@ -1,6 +1,8 @@
 import 'package:ahhf_app/screens/home.dart';
 import 'package:ahhf_app/screens/profile_screen.dart';
+import 'package:ahhf_app/screens/projects_detail_screen_overview.dart';
 import 'package:ahhf_app/screens/projects_screen.dart';
+import 'package:ahhf_app/widgets/project_screen_cards.dart';
 import 'package:flutter/material.dart';
 
 class TabsScreen extends StatefulWidget {
@@ -23,7 +25,7 @@ class _TabsScreenState extends State<TabsScreen> {
   void initState() {
     _pages = [
       HomePage(),
-      ProjectsScreen(),
+      ProjectScreen(),
       ProfileScreen(),
     ];
     super.initState();
@@ -39,6 +41,7 @@ class _TabsScreenState extends State<TabsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _pages[_selectedPageIndex],
+
       bottomNavigationBar: Container(
         padding: const EdgeInsets.symmetric(
           horizontal: 21,

@@ -1,15 +1,36 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:ahhf_app/provider/project_screen_provider.dart';
+import 'package:ahhf_app/widgets/project_screen_list.dart';
+import 'package:provider/provider.dart';
 
+import 'projects_detail_screen_overview.dart';
+import 'package:flutter/material.dart';
+import '../widgets/project_screen_cards.dart';
 import '../widgets/app_bar_common.dart';
 
-class ProjectsScreen extends StatelessWidget {
+class ProjectScreen extends StatelessWidget {
+  static const String id = 'Projectspage';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBarCommon('Anand'),
-      body: Center(child: Text('Projects Screen')),
+    return ChangeNotifierProvider(
+      create: (ctx) => Project_screen_provider(),
+      child: Scaffold(
+        backgroundColor: Color.fromRGBO(166, 166, 166, 0.05),
+        //backgroundColor: Colors.black,
+        appBar: AppBarCommon(
+          'Anand',
+        ),
+        // body: Column(
+        //   children: <Widget>[
+        //     Container(
+        //       height: dou,
+        //       width: double.infinity,
+        //       padding: EdgeInsets.only(top: 15, left: 15, right: 15),
+        //       child: ProjectScreenList(),
+        //     ),
+        //   ],
+        // ),
+        body: ProjectScreenList(),
+      ),
     );
   }
 }
