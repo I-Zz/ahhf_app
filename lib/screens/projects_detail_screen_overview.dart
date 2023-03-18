@@ -1,11 +1,13 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:ahhf_app/provider/ProjectDetailsEvent_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:ahhf_app/widgets/projectDetailsOverviewTab.dart';
 import 'package:ahhf_app/widgets/projectDetailsEventTab.dart';
 import 'package:ahhf_app/widgets/projectDetailsFeedTab.dart';
 import 'package:ahhf_app/widgets/projectDetailsMembersTab.dart';
+import 'package:provider/provider.dart';
 
 //put the cards in the gesturedetector
 
@@ -23,83 +25,89 @@ class _ProjectsDetailScreenState extends State<ProjectsDetailScreen>
   @override
   Widget build(BuildContext context) {
     TabController _tabcontroller = TabController(length: 4, vsync: this);
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.arrow_back_ios_new,
-            color: Colors.black,
-          ),
-        ),
-        centerTitle: true,
-        title: Text(
-          'Project Details',
-          style: TextStyle(
-              fontSize: 26,
-              fontWeight: FontWeight.w600,
-              fontFamily: 'Montserrat',
-              color: Colors.black),
-        ),
-      ),
-      body: Column(
-        children: [
-          Container(
-            width: double.infinity,
-            child: Image(
-              image: AssetImage('assets/images/project_details_image.png'),
-              fit: BoxFit.cover,
+    return SafeArea(
+      child: Scaffold(
+
+        appBar: AppBar(
+          backgroundColor: Color(0xFFFFFFFF),
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.arrow_back_ios_new,
+              color: Colors.black,
             ),
           ),
-          Container(
-            child: TabBar(
-              controller: _tabcontroller,
-              isScrollable: true,
-              labelColor: Color(0xFF428FD4),
-              unselectedLabelColor: Color.fromRGBO(130, 130, 130, 50),
-              unselectedLabelStyle: TextStyle(
-                fontFamily: 'Montserrat',
-                fontWeight: FontWeight.w400,
-                fontSize: 15,
-              ),
-              labelStyle: TextStyle(
-                fontFamily: 'Montserrat',
+          centerTitle: true,
+          title: Text(
+            'Project Details',
+            style: TextStyle(
+                fontSize: 26,
                 fontWeight: FontWeight.w600,
-                fontSize: 15,
-              ),
-              labelPadding: const EdgeInsets.symmetric(horizontal: 25),
-              tabs: [
-                Tab(
-                  child: Text('OVERVIEW'),
-                ),
-                Tab(
-                  child: Text('FEED'),
-                ),
-                Tab(
-                  child: Text('MEMBERS'),
-                ),
-                Tab(
-                  child: Text(
-                    'EVENTS',
-                  ),
-                )
-              ],
-            ),
+                fontFamily: 'Montserrat',
+                color: Colors.black),
           ),
-          Expanded(
-              child: TabBarView(
-            controller: _tabcontroller,
+        ),
+        body: ChangeNotifierProvider.value(
+          value: ProjectDetailsEventTabProvider(),
+          child: Column(
             children: [
-              projectDetailsOverviewTab(),
-              projectDetailsFeedTab(),
-              projectDetailsMembersTab(),
-              projectDetailsEventsTab(),
+              Container(
+                width: double.infinity,
+                child: Image(
+                  image: AssetImage('assets/images/project_details_image.png'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Container(
+                child: TabBar(
+                  controller: _tabcontroller,
+                  isScrollable: true,
+                  labelColor: Color(0xFF428FD4),
+                  unselectedLabelColor: Color.fromRGBO(130, 130, 130, 50),
+                  unselectedLabelStyle: TextStyle(
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 15,
+                  ),
+                  labelStyle: TextStyle(
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w600,
+                    fontSize: 15,
+                  ),
+                  labelPadding: const EdgeInsets.symmetric(horizontal: 25),
+                  tabs: [
+                    Tab(
+                      child: Text('OVERVIEW'),
+                    ),
+                    Tab(
+                      child: Text('FEED'),
+                    ),
+                    Tab(
+                      child: Text('MEMBERS'),
+                    ),
+                    Tab(
+                      child: Text(
+                        'EVENTS',
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Expanded(
+                  child: TabBarView(
+                controller: _tabcontroller,
+                children: [
+                  projectDetailsOverviewTab(),
+                  projectDetailsFeedTab(),
+                  projectDetailsMembersTab(),
+                  projectDetailsEventsTab(),
+                ],
+              ))
             ],
-          ))
-        ],
+          ),
+        ),
       ),
     );
   }
