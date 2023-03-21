@@ -42,6 +42,7 @@ dependencies:
   control_style: ^0.0.3
   scaffold_gradient_background: ^1.0.3+1
   provider: ^6.0.5
+  charts_flutter: ^0.8.1
 
 dev_dependencies:
   flutter_test:
