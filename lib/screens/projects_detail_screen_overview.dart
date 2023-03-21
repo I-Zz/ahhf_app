@@ -33,13 +33,14 @@ class _ProjectsDetailScreenState extends State<ProjectsDetailScreen>
           icon: Icon(
             Icons.arrow_back_ios_new,
             color: Colors.black,
+            size: 15,
           ),
         ),
         centerTitle: true,
         title: Text(
           'Project Details',
           style: TextStyle(
-              fontSize: 26,
+              fontSize: 20,
               fontWeight: FontWeight.w600,
               fontFamily: 'Montserrat',
               color: Colors.black),
