@@ -25,18 +25,36 @@ class _ProjectsDetailScreenState extends State<ProjectsDetailScreen>
   @override
   Widget build(BuildContext context) {
     TabController _tabcontroller = TabController(length: 4, vsync: this);
-    return SafeArea(
-      child: Scaffold(
-
-        appBar: AppBar(
-          backgroundColor: Color(0xFFFFFFFF),
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              Icons.arrow_back_ios_new,
-              color: Colors.black,
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back_ios_new,
+            color: Colors.black,
+            size: 15,
+          ),
+        ),
+        centerTitle: true,
+        title: Text(
+          'Project Details',
+          style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
+              fontFamily: 'Montserrat',
+              color: Colors.black),
+        ),
+      ),
+      body: Column(
+        children: [
+          Container(
+            width: double.infinity,
+            child: Image(
+              image: AssetImage('assets/images/project_details_image.png'),
+              fit: BoxFit.cover,
             ),
           ),
           centerTitle: true,
