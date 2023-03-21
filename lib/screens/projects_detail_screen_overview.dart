@@ -48,25 +48,7 @@ class _ProjectsDetailScreenState extends State<ProjectsDetailScreen>
               color: Colors.black),
         ),
       ),
-      body: Column(
-        children: [
-          Container(
-            width: double.infinity,
-            child: Image(
-              image: AssetImage('assets/images/project_details_image.png'),
-              fit: BoxFit.cover,
-            ),
-          ),
-          centerTitle: true,
-          title: Text(
-            'Project Details',
-            style: TextStyle(
-                fontSize: 26,
-                fontWeight: FontWeight.w600,
-                fontFamily: 'Montserrat',
-                color: Colors.black),
-          ),
-        ),
+
         body: ChangeNotifierProvider.value(
           value: ProjectDetailsEventTabProvider(),
           child: Column(
@@ -126,7 +108,6 @@ class _ProjectsDetailScreenState extends State<ProjectsDetailScreen>
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 }

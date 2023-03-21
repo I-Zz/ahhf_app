@@ -12,13 +12,16 @@ class projectDetailsEventsTab extends StatelessWidget {
     final EventTabItems=Provider.of<ProjectDetailsEventTabProvider>(context);
 
     return Scaffold(
-      body: ListView.builder(
-        itemCount: EventTabItems.items.length,
-        itemBuilder:(ctx,i)=> ChangeNotifierProvider.value(   // provider is added to so that to listen changes in each single  EventItem in case of data changes
-          value: EventTabItems.items[i],
-          child: ProjectDetailsEventTabCards(),
-        ),
-    )
+      body: Padding(
+        padding: const EdgeInsets.only(top: 20.0,bottom: 5),
+        child: ListView.builder(
+          itemCount: EventTabItems.items.length,
+          itemBuilder:(ctx,i)=> ChangeNotifierProvider.value(   // provider is added to so that to listen changes in each single  EventItem in case of data changes
+            value: EventTabItems.items[i],
+            child: ProjectDetailsEventTabCards(),
+          ),
+    ),
+      )
     );
   }
 }

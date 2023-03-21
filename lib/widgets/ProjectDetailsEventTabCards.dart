@@ -1,5 +1,4 @@
 
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../provider/ProjectDetailsEvent_provider.dart';
@@ -14,12 +13,13 @@ class ProjectDetailsEventTabCards extends StatelessWidget {
   Widget build(BuildContext context) {
     final EventItem = Provider.of<ProjectDetailsEventTabItems>(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      padding: const EdgeInsets.only(top: 5.0,bottom: 5),
       child: Stack(
+        alignment: AlignmentDirectional.bottomEnd,
         children: [
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 18, vertical: 18),
-            height: 287,
+            margin: EdgeInsets.symmetric(horizontal: 18,vertical: 5),
+            height: 260,
             width: double.infinity,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
@@ -38,12 +38,12 @@ class ProjectDetailsEventTabCards extends StatelessWidget {
                     fit: BoxFit.cover)),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 150.0),
+            padding: const EdgeInsets.only(top: 140.0),
             child: Container(
-              height: 137,
+              height: 117,
               width: double.infinity,
-              margin: EdgeInsets.all(18),
-              padding: EdgeInsets.all(10),
+              margin: EdgeInsets.symmetric(horizontal: 18),
+              //padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
                 boxShadow: [
@@ -57,8 +57,9 @@ class ProjectDetailsEventTabCards extends StatelessWidget {
                 color: Color(0xFFFFFFFF),
               ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+                  SizedBox(height: 15,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -74,6 +75,7 @@ class ProjectDetailsEventTabCards extends StatelessWidget {
                       ),
                     ],
                   ),
+                  SizedBox(height: 10,),
                   Row(
                     children: [
                       SizedBox(
@@ -99,6 +101,7 @@ class ProjectDetailsEventTabCards extends StatelessWidget {
                       ),
                     ],
                   ),
+                  SizedBox(height: 10,),
                   Row(
                     children: [
                       SizedBox(
@@ -121,7 +124,8 @@ class ProjectDetailsEventTabCards extends StatelessWidget {
                             fontWeight: FontWeight.w400),
                       ),
                     ],
-                  )
+                  ),
+
                 ],
               ),
             ),
