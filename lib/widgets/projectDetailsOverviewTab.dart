@@ -8,6 +8,8 @@ class projectDetailsOverviewTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(245, 245, 245, 1),
+
       //padding: const EdgeInsets.all(20),
 
       body: Column(
@@ -34,7 +36,7 @@ class projectDetailsOverviewTab extends StatelessWidget {
               //),
               SizedBox(
                 width: 20,
-                height: 20,
+                height: 15,
               ),
               Container(
                 child: Text(
@@ -51,7 +53,7 @@ class projectDetailsOverviewTab extends StatelessWidget {
           ),
           SizedBox(
             width: 20,
-            height: 30,
+            height: 15,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -155,9 +157,140 @@ class projectDetailsOverviewTab extends StatelessWidget {
               //decoration: BoxDecoration(color: Colors.blueAccent,
             ],
           ),
+          SizedBox(
+            height: 70,
+          ),
+          const Divider(),
+          Padding(
+            padding: EdgeInsets.only(left: 15),
+            child: Row(
+              children: <Widget>[
+                Text(
+                  'Donation Status',
+                  style: TextStyle(
+                    color: Color.fromRGBO(0, 0, 0, 1),
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Montserrat',
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15),
+            child: Row(
+              children: <Widget>[
+                Flexible(
+                  child: Container(
+                    width: 60,
+                    height: 5,
+                    padding: EdgeInsets.only(left: 12),
+
+                    //symmetric(
+                    //  horizontal: 1,
+                    //  vertical: 2,
+                    //),
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+                Container(
+                  width: 180,
+                  height: 5,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 2,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Color.fromRGBO(232, 233, 245, 1),
+                  ),
+                  //child: Row(children: [
+                  //  SizedBox(width: 2),
+                  //]),
+                ),
+                const Spacer(),
+                // SizedBox(
+                //   width: 15,
+                // ),
+                new Positioned(
+                  left: MediaQuery.of(context).size.width / 2 + 100,
+                  top: MediaQuery.of(context).size.height / 2,
+                  child: new Container(
+                    width: 101.0,
+                    height: 26,
+                    //decoration: new BoxDecoration(color: Colors.red),
+                    child: SizedBox(
+                      width: 101,
+                      height: 26,
+                      child: ElevatedButton(
+                        child: Text(
+                          'DONATE NOW',
+                          style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.w600,
+                            fontSize: 9,
+                            color: Color.fromRGBO(0, 0, 0, 1),
+                          ),
+                        ),
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color.fromRGBO(241, 200, 76, 1),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.29),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                // Padding(
+                //   padding: EdgeInsets.only(left: 10, right: 20),
+                //   child:
+                // ),
+              ],
+            ),
+          ),
+          Padding(
+              padding: EdgeInsets.only(left: 15),
+              child: Row(
+                children: <Widget>[
+                  Text(
+                    '34L',
+                    style: TextStyle(
+                      color: Color.fromRGBO(130, 130, 130, 1),
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: 'Montserrat',
+                    ),
+                  ),
+                  SizedBox(
+                    width: 200,
+                    height: 1,
+                  ),
+                  Text(
+                    '30%',
+                    textAlign: TextAlign.right,
+                    style: TextStyle(
+                      color: Color.fromRGBO(130, 130, 130, 1),
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: 'Montserrat',
+                    ),
+                  ),
+                ],
+              )),
         ],
       ),
-
+    );
+  }
+}
+// TextButton(
+//                   onPressed: () {},
+//                   child: Text(
+//                     'DONATE',
+//                   ))
       // bottomNavigationBar: BottomAppBar(
       //   color: Color.fromRGBO(255, 255, 255, 1),
       //   child: Row(
@@ -176,10 +309,22 @@ class projectDetailsOverviewTab extends StatelessWidget {
       //     ],
       //   ),
       // ),
-    );
-  }
-}
+    
 /*
+@override
+Widget build(BuildContext context) {
+  return Card(
+    margin: EdgeInsets.all(8),
+    child: Row(children: []),
+  );
+}
+
+
+
+
+
+
+
 
 bottomNavigationBar: BottomNavigationBar(
         
