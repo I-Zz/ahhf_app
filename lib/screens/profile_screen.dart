@@ -6,37 +6,67 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(245, 245, 245, 1),
       body: SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 60),
+          //padding: const EdgeInsets.symmetric(vertical: 60),
           child: Column(children: <Widget>[
-            CircleAvatar(
-              radius: 82,
-              backgroundImage: AssetImage('assets/images/Profile.png'),
+            Stack(
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.only(bottom: 20.0),
+                  alignment: Alignment.topCenter,
+                  height: 150.0,
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                          color: Color.fromRGBO(0, 0, 0, 0.06),
+                          blurRadius: 5,
+                          offset: const Offset(0, 10))
+                    ],
+                    color: Color.fromRGBO(255, 255, 255, 1),
+                  ),
+                  //child: Image.asset("assets/bgImage.jpg"),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 60, left: 120),
+                  //padding: EdgeInsets.only(left: 120),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      CircleAvatar(
+                        radius: 82,
+                        backgroundImage:
+                            AssetImage('assets/images/Profile.png'),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Anand B',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      Text(
+                        'anand@gmail.com',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: Color.fromRGBO(130, 130, 130, 1),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text(
-              'Anand B',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: 'Montserrat',
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            Text(
-              'anand@gmail.com',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: 'Montserrat',
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-                color: Color.fromRGBO(130, 130, 130, 1),
-              ),
-            ),
-            const Divider(),
+            //const Divider(),
             ProfileMenuWidget(
               title: "My Profile",
               icon: Icons.account_circle_outlined,
