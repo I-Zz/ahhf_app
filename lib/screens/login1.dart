@@ -1,6 +1,9 @@
+import 'package:ahhf_app/provider/google_sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 import './tabs_screen.dart';
 //import 'package:my_login/register.dart';
@@ -73,17 +76,26 @@ class _MyloginState extends State<Mylogin> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  final googleProvider = Provider.of<GoogleSignInProvider>(
+                      context,
+                      listen: false);
+                  googleProvider.googleLogin();
+                },
                 child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 8.0, horizontal: 12),
                   child: Row(
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.only(
                             top: 8, bottom: 8, left: 10, right: 15),
-                        child: Icon(
-                          Icons.search,
+                        // child: Icon(
+                        //   Icons.search,
+                        //   color: Colors.white,
+                        // ),
+                        child: FaIcon(
+                          FontAwesomeIcons.google,
                           color: Colors.white,
                         ),
                       ),
@@ -105,8 +117,8 @@ class _MyloginState extends State<Mylogin> {
                 ),
                 onPressed: () {},
                 child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 8.0, horizontal: 12),
                   child: Row(
                     children: <Widget>[
                       Padding(
@@ -135,8 +147,8 @@ class _MyloginState extends State<Mylogin> {
                 ),
                 onPressed: () {},
                 child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 8.0, horizontal: 12),
                   child: Row(
                     children: <Widget>[
                       Padding(

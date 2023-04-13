@@ -1,38 +1,50 @@
-import 'package:ahhf_app/screens/projects_detail_screen_overview.dart';
-import 'package:ahhf_app/screens/projects_screen.dart';
+import 'package:ahhf_app/provider/google_sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
+
+import './screens/projects_detail_screen_overview.dart';
+import './screens/projects_screen.dart';
 import './screens/login1.dart';
 import './screens/register.dart';
 import './screens/home.dart';
 import './screens/onboarding_screen.dart';
 import './screens/tabs_screen.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    // initialRoute: Mylogin1.id,
-    routes: {
-      Splash.id: (context) => Splash(),
-      OnboardingScreen.id: (context) => OnboardingScreen(),
-      Mylogin.id: (context) => Mylogin(),
-      Myregister.id: (context) => Myregister(),
-      HomePage.id: (context) => HomePage(),
-      TabsScreen.id: (context) => TabsScreen(),
 
-      ProjectScreen.id: (context) => ProjectScreen(),
-      ProjectsDetailScreen.id: (context) =>
-          ProjectsDetailScreen(),
+  await Firebase.initializeApp();
 
-    },
-    // home: Splash(),
-    initialRoute: Splash.id,
-  ));
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) => ChangeNotifierProvider(
+        create: (context) => GoogleSignInProvider(),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          // initialRoute: Mylogin1.id,
+          routes: {
+            Splash.id: (context) => Splash(),
+            OnboardingScreen.id: (context) => OnboardingScreen(),
+            Mylogin.id: (context) => Mylogin(),
+            Myregister.id: (context) => Myregister(),
+            HomePage.id: (context) => HomePage(),
+            TabsScreen.id: (context) => TabsScreen(),
+            ProjectScreen.id: (context) => ProjectScreen(),
+            ProjectsDetailScreen.id: (context) => ProjectsDetailScreen(),
+          },
+          // home: Splash(),
+          initialRoute: Splash.id,
+        ),
+      );
 }
 
 class Splash extends StatefulWidget {
