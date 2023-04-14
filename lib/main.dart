@@ -1,4 +1,3 @@
-import 'package:ahhf_app/provider/google_sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -6,11 +5,13 @@ import 'package:provider/provider.dart';
 
 import './screens/projects_detail_screen_overview.dart';
 import './screens/projects_screen.dart';
-import './screens/login1.dart';
+import './screens/loginSignupScreen.dart';
 import './screens/register.dart';
 import './screens/home.dart';
 import './screens/onboarding_screen.dart';
 import './screens/tabs_screen.dart';
+import './authProvider/google_sign_in.dart';
+import './screens/junctionScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
           // initialRoute: Mylogin1.id,
           routes: {
             Splash.id: (context) => Splash(),
+            JunctionScreen.id: (context) => JunctionScreen(),
             OnboardingScreen.id: (context) => OnboardingScreen(),
             Mylogin.id: (context) => Mylogin(),
             Myregister.id: (context) => Myregister(),
@@ -70,7 +72,10 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
     Future.delayed(Duration(seconds: 3), () {
       // Navigator.pushReplacement(
       //     context, MaterialPageRoute(builder: (context) => Mylogin()));
-      Navigator.pushReplacementNamed(context, OnboardingScreen.id);
+
+      // Navigator.pushReplacementNamed(context, OnboardingScreen.id);
+
+      Navigator.pushReplacementNamed(context, JunctionScreen.id);
     });
   }
 

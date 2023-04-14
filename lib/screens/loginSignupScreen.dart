@@ -1,4 +1,4 @@
-import 'package:ahhf_app/provider/google_sign_in.dart';
+import 'package:ahhf_app/authProvider/google_sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';

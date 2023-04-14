@@ -1,5 +1,5 @@
-import 'package:ahhf_app/screens/home.dart';
-import 'package:ahhf_app/screens/login1.dart';
+import '../screens/home.dart';
+import '../screens/loginSignupScreen.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';

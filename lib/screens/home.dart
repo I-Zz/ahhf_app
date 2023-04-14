@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../widgets/app_bar_common.dart';
+
+import '../authProvider/google_sign_in.dart';
 
 class HomePage extends StatefulWidget {
   static const String id = 'HomePage';
@@ -9,8 +12,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final user = FirebaseAuth.instance.currentUser;
+  // final currentUser = GoogleSignInProvider().user;
+
   @override
   Widget build(BuildContext context) {
+    print(user);
+    // print(currentUser);
+
+    // print(user!.photoURL);
+    // print(user!.displayName);
+    // print(user!.email);
     return Scaffold(
       appBar: AppBarCommon('Anand'),
       body: Center(

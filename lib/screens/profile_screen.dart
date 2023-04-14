@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ProfileScreen extends StatelessWidget {
+  final user = FirebaseAuth.instance.currentUser;
+  late final bool userNull;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,6 +45,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       Text(
                         'Anand B',
+                        // '${user.displayName}',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: 'Montserrat',
