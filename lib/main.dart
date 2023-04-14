@@ -1,4 +1,5 @@
 import 'package:ahhf_app/provider/google_sign_in.dart';
+import 'package:ahhf_app/screens/login_with_email_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
             TabsScreen.id: (context) => TabsScreen(),
             ProjectScreen.id: (context) => ProjectScreen(),
             ProjectsDetailScreen.id: (context) => ProjectsDetailScreen(),
+            LoginWithEmail.id: (context)=>LoginWithEmail(),
           },
           // home: Splash(),
           initialRoute: Splash.id,
