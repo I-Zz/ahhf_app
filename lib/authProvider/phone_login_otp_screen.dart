@@ -1,5 +1,4 @@
-
-import 'package:ahhf_app/screens/login1.dart';
+import 'package:ahhf_app/screens/loginSignupScreen.dart';
 import 'package:ahhf_app/screens/tabs_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +14,6 @@ class OTPVerificationscreen extends StatefulWidget {
 }
 
 class _OTPVerificationscreenState extends State<OTPVerificationscreen> {
-
-
   final auth = FirebaseAuth.instance;
   bool isLoading = false;
 
@@ -46,9 +43,7 @@ class _OTPVerificationscreenState extends State<OTPVerificationscreen> {
       ),
     );
 
-    String otpcode='';
-
-
+    String otpcode = '';
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -103,13 +98,9 @@ class _OTPVerificationscreenState extends State<OTPVerificationscreen> {
                 focusedPinTheme: focusedPinTheme,
                 submittedPinTheme: submittedPinTheme,
                 onChanged: (value) {
-
-                    otpcode = value;
-
-
+                  otpcode = value;
                 },
                 showCursor: true,
-
               ),
               SizedBox(
                 height: 20,
@@ -152,36 +143,33 @@ class _OTPVerificationscreenState extends State<OTPVerificationscreen> {
                               MaterialPageRoute(
                                   builder: (context) => TabsScreen()));
                         }
-                      }on FirebaseAuthException catch (e) {
-
-
+                      } on FirebaseAuthException catch (e) {
                         String errorMessage = 'Something went wrong.';
 
                         if (e.code == 'invalid-verification-code') {
                           errorMessage = 'Invalid verification code.';
                         } else if (e.code == 'session-expired') {
-                          errorMessage = 'Verification session expired. Please try again.';
+                          errorMessage =
+                              'Verification session expired. Please try again.';
                         }
                         setState(() {
                           isLoading = false;
                         });
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                                content: Text(errorMessage),
-                                backgroundColor: Colors.red.withOpacity(0.9),
-                                elevation: 2,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)
-                                ),
-                                behavior: SnackBarBehavior.floating,
-                                duration: Duration(seconds: 2)
-                            )
-                        );
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(errorMessage),
+                            backgroundColor: Colors.red.withOpacity(0.9),
+                            elevation: 2,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            behavior: SnackBarBehavior.floating,
+                            duration: Duration(seconds: 2)));
                       }
                     },
-                    child: isLoading == true ? const CircularProgressIndicator(
+                    child: isLoading == true
+                        ? const CircularProgressIndicator(
                             color: Colors.white,
-                          ) : const Text("Verify Phone Number")),
+                          )
+                        : const Text("Verify Phone Number")),
               ),
             ],
           ),
