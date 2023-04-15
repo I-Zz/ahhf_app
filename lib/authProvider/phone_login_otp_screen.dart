@@ -1,7 +1,4 @@
 
-
-import 'package:ahhf_app/authProvider/login_with_phone.dart';
-import 'package:ahhf_app/screens/home.dart';
 import 'package:ahhf_app/screens/login1.dart';
 import 'package:ahhf_app/screens/tabs_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -28,7 +25,7 @@ class _OTPVerificationscreenState extends State<OTPVerificationscreen> {
     final defaultPinTheme = PinTheme(
       width: 56,
       height: 56,
-      textStyle: TextStyle(
+      textStyle: const TextStyle(
           fontSize: 20,
           color: Color.fromRGBO(30, 60, 87, 1),
           fontWeight: FontWeight.w600),
