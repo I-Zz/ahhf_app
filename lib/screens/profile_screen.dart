@@ -1,4 +1,5 @@
 import 'package:ahhf_app/provider/userAuth.dart';
+import 'package:ahhf_app/screens/loginSignupScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -113,7 +114,17 @@ class ProfileScreen extends StatelessWidget {
               title: "Settings ",
               icon: Icons.settings_outlined,
               onPress: () {},
-            )
+            ),
+            // ProfileMenuWidget(
+            //   title: "logout ",
+            //   icon: Icons.settings_outlined,
+            //   onPress: () {
+            //     FirebaseAuth.instance.signOut();
+            //
+            //
+            //
+            //   },
+            // )
           ]),
         ),
       ),

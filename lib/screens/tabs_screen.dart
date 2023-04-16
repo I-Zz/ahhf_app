@@ -27,8 +27,11 @@ class _TabsScreenState extends State<TabsScreen> {
   @override
   void initState() {
     final user = FirebaseAuth.instance.currentUser;
-            Provider.of<CurrentUser>(context, listen: false)
-                .setInitialUserData(user);
+    Future.delayed(Duration.zero).then((_)  {
+       Provider.of<CurrentUser>(context, listen: false)
+          .setInitialUserData(user);
+    });
+
     _pages = [
       HomePage(),
       ProjectScreen(),

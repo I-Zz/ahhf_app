@@ -10,30 +10,27 @@ class JunctionScreen extends StatelessWidget {
   static const String id = '/junction-screen';
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (ctx) => CurrentUser(),
-      child: StreamBuilder(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          print(snapshot);
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (snapshot.hasData) {
-            
-            // } else if (snapshot.connectionState == ConnectionState.active) {
+    return StreamBuilder(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        print(snapshot);
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (snapshot.hasData) {
 
-            return TabsScreen();
-          } else if (snapshot.hasError) {
-            return Center(
-              child: Text('Something Went Wrong'),
-            );
-          } else {
-            return Mylogin();
-          }
-        },
-      ),
+          // } else if (snapshot.connectionState == ConnectionState.active) {
+
+          return TabsScreen();
+        } else if (snapshot.hasError) {
+          return Center(
+            child: Text('Something Went Wrong'),
+          );
+        } else {
+          return Mylogin();
+        }
+      },
     );
   }
 }
