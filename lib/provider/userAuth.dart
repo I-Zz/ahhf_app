@@ -29,7 +29,7 @@ class CurrentUser with ChangeNotifier {
     // and find if this user's data is in the database
     // if it exists then fetch the other data like address, dob etc.
     // if it doesn't exist then put the data in the database
-    return;
+
   }
 
   Map<String, String?> get getProfileScreenUserData {

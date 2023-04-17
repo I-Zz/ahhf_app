@@ -129,12 +129,7 @@ class _OTPVerificationscreenState extends State<OTPVerificationscreen> {
                         UserCredential userCredential =
                             await auth.signInWithCredential(credential);
                         if (userCredential != null) {
-                          Navigator.popUntil(context, (route) {
-                            if (route.settings.name == Mylogin.id) {
-                              return true;
-                            }
-                            return false;
-                          });
+
                           setState(() {
                             isLoading = false;
                           });

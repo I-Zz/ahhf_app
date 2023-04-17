@@ -1,5 +1,6 @@
 import 'package:ahhf_app/authProvider/login_with_email_screen.dart';
 import 'package:ahhf_app/authProvider/login_with_phone.dart';
+import 'package:ahhf_app/provider/userAuth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -29,8 +30,12 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) => ChangeNotifierProvider(
-        create: (context) => GoogleSignInProvider(),
+  Widget build(BuildContext context) => MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context) => GoogleSignInProvider()),
+      ChangeNotifierProvider(create: (context) => CurrentUser()),
+    ],
+
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           // initialRoute: Mylogin1.id,

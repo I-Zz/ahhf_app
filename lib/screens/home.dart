@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    print(user);
+
     // print(currentUser);
 
     // print(user!.photoURL);
