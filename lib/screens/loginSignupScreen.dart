@@ -1,7 +1,7 @@
 import 'package:ahhf_app/authProvider/google_sign_in.dart';
+import 'package:ahhf_app/authProvider/login_with_email_screen.dart';
+import 'package:ahhf_app/authProvider/login_with_phone.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
@@ -115,7 +115,9 @@ class _MyloginState extends State<Mylogin> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, LoginWithEmail.id);
+                },
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                       vertical: 8.0, horizontal: 12),
@@ -145,7 +147,9 @@ class _MyloginState extends State<Mylogin> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, PhoneAuthentication.id);
+                },
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                       vertical: 8.0, horizontal: 12),

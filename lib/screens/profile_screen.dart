@@ -1,11 +1,15 @@
+import 'package:ahhf_app/provider/userAuth.dart';
+import 'package:ahhf_app/screens/loginSignupScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class ProfileScreen extends StatelessWidget {
-  final user = FirebaseAuth.instance.currentUser;
-  late final bool userNull;
+  // final user = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
+    final userData = Provider.of<CurrentUser>(context, listen: false)
+        .getProfileScreenUserData;
     return Scaffold(
       backgroundColor: Color.fromRGBO(245, 245, 245, 1),
       body: SingleChildScrollView(
@@ -35,17 +39,28 @@ class ProfileScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      CircleAvatar(
-                        radius: 82,
-                        backgroundImage:
-                            AssetImage('assets/images/Profile.png'),
-                      ),
+                      (userData['imageUrl'] == null)
+                          ? CircleAvatar(
+                              radius: 82,
+                              // backgroundImage:
+                              //     AssetImage('assets/images/Profile.png'),
+                              backgroundImage:
+                                  AssetImage('assets/images/Profile.png'),
+                            )
+                          : CircleAvatar(
+                              radius: 82,
+                              backgroundColor: Colors.grey,
+                              // backgroundImage:
+                              //     AssetImage('assets/images/Profile.png'),
+                              backgroundImage:
+                                  NetworkImage(userData['imageUrl'] as String),
+                            ),
                       const SizedBox(
                         height: 10,
                       ),
                       Text(
-                        'Anand B',
-                        // '${user.displayName}',
+                        // 'Anand B',
+                        '${userData['name']}',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: 'Montserrat',
@@ -54,7 +69,8 @@ class ProfileScreen extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'anand@gmail.com',
+                        // 'anand@gmail.com',
+                        '${userData['email']}',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: 'Montserrat',
@@ -98,7 +114,17 @@ class ProfileScreen extends StatelessWidget {
               title: "Settings ",
               icon: Icons.settings_outlined,
               onPress: () {},
-            )
+            ),
+            // ProfileMenuWidget(
+            //   title: "logout ",
+            //   icon: Icons.settings_outlined,
+            //   onPress: () {
+            //     FirebaseAuth.instance.signOut();
+            //
+            //
+            //
+            //   },
+            // )
           ]),
         ),
       ),
