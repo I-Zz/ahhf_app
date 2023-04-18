@@ -35,53 +35,58 @@ class ProfileScreen extends StatelessWidget {
                   //child: Image.asset("assets/bgImage.jpg"),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 60, left: 120),
-                  //padding: EdgeInsets.only(left: 120),
-                  child: Column(
+                  padding: const EdgeInsets.only(top: 60),
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      (userData['imageUrl'] == null)
-                          ? CircleAvatar(
-                              radius: 82,
-                              // backgroundImage:
-                              //     AssetImage('assets/images/Profile.png'),
-                              backgroundImage:
-                                  AssetImage('assets/images/Profile.png'),
-                            )
-                          : CircleAvatar(
-                              radius: 82,
-                              backgroundColor: Colors.grey,
-                              // backgroundImage:
-                              //     AssetImage('assets/images/Profile.png'),
-                              backgroundImage:
-                                  NetworkImage(userData['imageUrl'] as String),
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          (userData['imageUrl'] == null)
+                              ? CircleAvatar(
+                                  radius: 82,
+                                  // backgroundImage:
+                                  //     AssetImage('assets/images/Profile.png'),
+                                  backgroundImage:
+                                      AssetImage('assets/images/Profile.png'),
+                                )
+                              : CircleAvatar(
+                                  radius: 82,
+                                  backgroundColor: Colors.grey,
+                                  // backgroundImage:
+                                  //     AssetImage('assets/images/Profile.png'),
+                                  backgroundImage: NetworkImage(
+                                      userData['imageUrl'] as String),
+                                ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            // 'Anand B',
+                            '${userData['name']}',
+                            // textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
                             ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        // 'Anand B',
-                        '${userData['name']}',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        // 'anand@gmail.com',
-                        '${userData['email']}',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: Color.fromRGBO(130, 130, 130, 1),
-                        ),
+                            overflow: TextOverflow.fade,
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            // 'anand@gmail.com',
+                            '${userData['email']}',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                              color: Color.fromRGBO(130, 130, 130, 1),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),

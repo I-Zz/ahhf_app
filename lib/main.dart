@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 
+import './screens/providerUmbrellaScreen.dart';
 import './screens/projects_detail_screen_overview.dart';
 import './screens/projects_screen.dart';
 import './screens/loginSignupScreen.dart';
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
           // initialRoute: Mylogin1.id,
           routes: {
             Splash.id: (context) => Splash(),
+            ProviderUmbrellaScreen.id: (context) => ProviderUmbrellaScreen(),
             JunctionScreen.id: (context) => JunctionScreen(),
             OnboardingScreen.id: (context) => OnboardingScreen(),
             Mylogin.id: (context) => Mylogin(),
@@ -87,7 +89,7 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
 
       // Navigator.pushReplacementNamed(context, OnboardingScreen.id);
 
-      Navigator.pushReplacementNamed(context, JunctionScreen.id);
+      Navigator.pushReplacementNamed(context, ProviderUmbrellaScreen.id);
     });
   }
 

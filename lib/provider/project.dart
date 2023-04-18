@@ -38,13 +38,12 @@ class AllProjects with ChangeNotifier {
   }
 
   Future<void> fetchAndSetupProjects() async {
-    List<Project> loadedProjects = [];
-
     await FirebaseFirestore.instance
         .collection('projects')
         .snapshots()
         .listen((allProjects) {
       print('This is what you wanted to print:');
+      List<Project> loadedProjects = [];
       // print(allProjects);
       allProjects.docs.forEach((eachProject) {
         print(eachProject['title']);
@@ -93,15 +92,9 @@ class AllProjects with ChangeNotifier {
 
         print(eachProject['progressData']);
       });
+      print(loadedProjects.length);
+      _projects = loadedProjects;
+      print(_projects.length);
     });
-    print(loadedProjects.length);
-    _projects = loadedProjects;
-    print(_projects.length);
-
-    // Timer(Duration(seconds: 2), () {
-    // });
-
-    // print('below are all the projects:');
-    // print(_projects);
   }
 }
