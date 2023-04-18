@@ -14,8 +14,6 @@ import 'package:ahhf_app/widgets/projectDetailsMembersTab.dart';
 class ProjectsDetailScreen extends StatefulWidget {
   static const String id = 'ProjectsDetailScreen';
 
-  const ProjectsDetailScreen({Key? key}) : super(key: key);
-
   @override
   State<ProjectsDetailScreen> createState() => _ProjectsDetailScreenState();
 }
