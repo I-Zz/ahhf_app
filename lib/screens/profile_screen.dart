@@ -1,3 +1,4 @@
+import 'package:ahhf_app/screens/personal_details.dart';
 import 'package:ahhf_app/provider/userAuth.dart';
 import 'package:ahhf_app/screens/loginSignupScreen.dart';
 import 'package:flutter/material.dart';
@@ -68,6 +69,9 @@ class ProfileScreen extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
+                      const SizedBox(
+                        height: 5,
+                      ),
                       Text(
                         // 'anand@gmail.com',
                         '${userData['email']}',
@@ -84,25 +88,43 @@ class ProfileScreen extends StatelessWidget {
                 )
               ],
             ),
-            //const Divider(),
-            ProfileMenuWidget(
-              title: "My Profile",
-              icon: Icons.account_circle_outlined,
-              onPress: () {},
+            const SizedBox(
+              height: 8,
+            ),
+            new SizedBox(
+              width: 110,
+              height: 30,
+              child: TextButton(
+                onPressed: () {},
+                child: Text('EDIT PROFILE',
+                    style: TextStyle(
+                        color: Colors.blue,
+                        fontSize: 12,
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.w600)),
+                style: TextButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                        color: Colors.blue, width: 1, style: BorderStyle.solid),
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
+              ),
             ),
             ProfileMenuWidget(
-              title: "Blood group",
-              icon: Icons.water_drop_outlined,
-              onPress: () {},
+              title: "Personal Details",
+              icon: Icons.account_circle_outlined,
+              onPress: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PersonalDetails(),
+                    ));
+              },
             ),
             ProfileMenuWidget(
               title: "Donation",
               icon: Icons.account_balance_wallet_outlined,
-              onPress: () {},
-            ),
-            ProfileMenuWidget(
-              title: "Address",
-              icon: Icons.pin_drop_outlined,
               onPress: () {},
             ),
             ProfileMenuWidget(
@@ -160,6 +182,7 @@ class ProfileMenuWidget extends StatelessWidget {
         ),
         child: Icon(
           icon,
+          size: 30,
           color: Color.fromRGBO(130, 130, 130, 1),
         ),
       ),
@@ -187,3 +210,12 @@ class ProfileMenuWidget extends StatelessWidget {
     );
   }
 }
+
+/*
+ButtonStyle(
+                shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                )),
+              ),
+
+*/
