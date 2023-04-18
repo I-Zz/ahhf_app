@@ -30,7 +30,6 @@ class JunctionScreen extends StatelessWidget {
             );
           } else if (snapshot.hasData) {
             // } else if (snapshot.connectionState == ConnectionState.active) {
-
             return TabsScreen();
           } else if (snapshot.hasError) {
             return Center(
