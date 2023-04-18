@@ -15,6 +15,7 @@ import './screens/onboarding_screen.dart';
 import './screens/tabs_screen.dart';
 import './authProvider/google_sign_in.dart';
 import './screens/junctionScreen.dart';
+import './templates/animation_template.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,11 +32,10 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MultiProvider(
-    providers: [
-      ChangeNotifierProvider(create: (context) => GoogleSignInProvider()),
-      ChangeNotifierProvider(create: (context) => CurrentUser()),
-    ],
-
+        providers: [
+          ChangeNotifierProvider(create: (context) => GoogleSignInProvider()),
+          ChangeNotifierProvider(create: (context) => CurrentUser()),
+        ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           // initialRoute: Mylogin1.id,
@@ -49,12 +49,13 @@ class MyApp extends StatelessWidget {
             TabsScreen.id: (context) => TabsScreen(),
             ProjectScreen.id: (context) => ProjectScreen(),
             ProjectsDetailScreen.id: (context) => ProjectsDetailScreen(),
-            LoginWithEmail.id: (context)=>LoginWithEmail(),
-            PhoneAuthentication.id: (context)=> PhoneAuthentication(),
-
+            LoginWithEmail.id: (context) => LoginWithEmail(),
+            PhoneAuthentication.id: (context) => PhoneAuthentication(),
+            LogoAnimationScreen.id: (context) => LogoAnimationScreen(),
           },
           // home: Splash(),
           initialRoute: Splash.id,
+          //initialRoute: LogoAnimationScreen.id,
         ),
       );
 }
