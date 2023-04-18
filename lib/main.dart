@@ -1,38 +1,62 @@
-import 'package:ahhf_app/screens/projects_detail_screen_overview.dart';
-import 'package:ahhf_app/screens/projects_screen.dart';
+import 'package:ahhf_app/authProvider/login_with_email_screen.dart';
+import 'package:ahhf_app/authProvider/login_with_phone.dart';
+import 'package:ahhf_app/provider/userAuth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import './screens/login1.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
+
+import './screens/projects_detail_screen_overview.dart';
+import './screens/projects_screen.dart';
+import './screens/loginSignupScreen.dart';
 import './screens/register.dart';
 import './screens/home.dart';
 import './screens/onboarding_screen.dart';
 import './screens/tabs_screen.dart';
+import './authProvider/google_sign_in.dart';
+import './screens/junctionScreen.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    // initialRoute: Mylogin1.id,
-    routes: {
-      Splash.id: (context) => Splash(),
-      OnboardingScreen.id: (context) => OnboardingScreen(),
-      Mylogin.id: (context) => Mylogin(),
-      Myregister.id: (context) => Myregister(),
-      HomePage.id: (context) => HomePage(),
-      TabsScreen.id: (context) => TabsScreen(),
 
-      ProjectScreen.id: (context) => ProjectScreen(),
-      ProjectsDetailScreen.id: (context) =>
-          ProjectsDetailScreen(),
+  await Firebase.initializeApp();
 
-    },
-    // home: Splash(),
-    initialRoute: Splash.id,
-  ));
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) => MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context) => GoogleSignInProvider()),
+      ChangeNotifierProvider(create: (context) => CurrentUser()),
+    ],
+
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          // initialRoute: Mylogin1.id,
+          routes: {
+            Splash.id: (context) => Splash(),
+            JunctionScreen.id: (context) => JunctionScreen(),
+            OnboardingScreen.id: (context) => OnboardingScreen(),
+            Mylogin.id: (context) => Mylogin(),
+            Myregister.id: (context) => Myregister(),
+            HomePage.id: (context) => HomePage(),
+            TabsScreen.id: (context) => TabsScreen(),
+            ProjectScreen.id: (context) => ProjectScreen(),
+            ProjectsDetailScreen.id: (context) => ProjectsDetailScreen(),
+            LoginWithEmail.id: (context)=>LoginWithEmail(),
+            PhoneAuthentication.id: (context)=> PhoneAuthentication(),
+
+          },
+          // home: Splash(),
+          initialRoute: Splash.id,
+        ),
+      );
 }
 
 class Splash extends StatefulWidget {
@@ -58,7 +82,10 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
     Future.delayed(Duration(seconds: 3), () {
       // Navigator.pushReplacement(
       //     context, MaterialPageRoute(builder: (context) => Mylogin()));
-      Navigator.pushReplacementNamed(context, OnboardingScreen.id);
+
+      // Navigator.pushReplacementNamed(context, OnboardingScreen.id);
+
+      Navigator.pushReplacementNamed(context, JunctionScreen.id);
     });
   }
 

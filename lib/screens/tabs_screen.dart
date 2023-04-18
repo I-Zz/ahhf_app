@@ -1,9 +1,12 @@
+import 'package:ahhf_app/provider/userAuth.dart';
 import 'package:ahhf_app/screens/home.dart';
 import 'package:ahhf_app/screens/profile_screen.dart';
 import 'package:ahhf_app/screens/projects_detail_screen_overview.dart';
 import 'package:ahhf_app/screens/projects_screen.dart';
 import 'package:ahhf_app/widgets/project_screen_cards.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class TabsScreen extends StatefulWidget {
   static const String id = 'TabsPage';
@@ -23,6 +26,12 @@ class _TabsScreenState extends State<TabsScreen> {
 
   @override
   void initState() {
+    final user = FirebaseAuth.instance.currentUser;
+    Future.delayed(Duration.zero).then((_)  {
+       Provider.of<CurrentUser>(context, listen: false)
+          .setInitialUserData(user);
+    });
+
     _pages = [
       HomePage(),
       ProjectScreen(),
@@ -41,7 +50,6 @@ class _TabsScreenState extends State<TabsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _pages[_selectedPageIndex],
-
       bottomNavigationBar: Container(
         padding: const EdgeInsets.symmetric(
           horizontal: 21,

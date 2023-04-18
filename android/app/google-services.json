@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "145274375497",
+    "project_id": "ahhf-app",
+    "storage_bucket": "ahhf-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:145274375497:android:24312aee5a171e2e485e98",
+        "android_client_info": {
+          "package_name": "com.example.ahhf_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "145274375497-t4lb1i5kgq6qi7akft905vbsl8u8sq3m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ahhf_app",
+            "certificate_hash": "dfd6625a0067697091c1a8f37d8ea561c1158b68"
+          }
+        },
+        {
+          "client_id": "145274375497-mp09dmaq9fh2n76mmn3hokorldee0s2i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHYtrqAHmEBNSCR1igcqLDHmCx-0PzWA8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "145274375497-mp09dmaq9fh2n76mmn3hokorldee0s2i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
