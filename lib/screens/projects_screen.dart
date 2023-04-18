@@ -13,6 +13,7 @@ class ProjectScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (ctx) => Project_screen_provider(),
+      // create: (ctx) => (),
       child: Scaffold(
         backgroundColor: Color.fromRGBO(166, 166, 166, 0.05),
         //backgroundColor: Colors.black,
