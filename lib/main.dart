@@ -17,6 +17,7 @@ import './screens/tabs_screen.dart';
 import './authProvider/google_sign_in.dart';
 import './screens/junctionScreen.dart';
 import './templates/animation_template.dart';
+import './screens/editProfileScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,6 +56,7 @@ class MyApp extends StatelessWidget {
             LoginWithEmail.id: (context) => LoginWithEmail(),
             PhoneAuthentication.id: (context) => PhoneAuthentication(),
             LogoAnimationScreen.id: (context) => LogoAnimationScreen(),
+            EditProfileScreen.id: (context) => EditProfileScreen(),
           },
           // home: Splash(),
           initialRoute: Splash.id,

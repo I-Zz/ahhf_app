@@ -4,10 +4,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CurrentUser with ChangeNotifier {
   String? _userId;
-  String? _userName;
+  String? _userName = 'Anand B';
   // String? _userFirstName;
   // String? _userLastName;
-  String? _userEmail;
+  String? _userEmail = 'anand@gmail.com';
   // Uri? _userImageUrl;
   String? _userImageUrl;
   DateTime? _dateOfBirth;
@@ -21,18 +21,23 @@ class CurrentUser with ChangeNotifier {
     var fetchedUsersData = querySnapshot.docs;
 
     bool flag = false;
-    fetchedUsersData.forEach((fetchedUser) {
+    for (var fetchedUser in fetchedUsersData) {
+      print('loop running...');
       if (fetchedUser.id == user!.uid) {
         flag = true;
-        return;
+        print('flag is true now');
+        continue;
       }
-    });
+    }
+    print('returning flag');
 
     return flag;
   }
 
-  void setInitialUserData(User? user) async {
+  Future<void> setInitialUserData(User? user) async {
+    print('fetching user data ...');
     if (user!.uid == null) return;
+    // if(user.displayName == null) return;
 
     var querySnapshot =
         await FirebaseFirestore.instance.collection('users').get();
@@ -40,7 +45,8 @@ class CurrentUser with ChangeNotifier {
     var fetchedUsersData = querySnapshot.docs;
 
     var flag = true;
-    fetchedUsersData.forEach((fetchedUser) {
+    for (var fetchedUser in fetchedUsersData) {
+      print('searching for already existing user ... ');
       if (fetchedUser.id == user.uid) {
         _userId = fetchedUser.id;
         _userName = fetchedUser['name'];
@@ -49,33 +55,37 @@ class CurrentUser with ChangeNotifier {
         _bloodGroup = fetchedUser['bloodGroup'];
         _address = fetchedUser['address'];
         flag = false;
+        print('found the existing user ... ');
       }
-    });
+    }
     if (flag) {
       Map<String, dynamic> userData = {
-        'name': 'John Doe',
-        'email': 'abc@abc.com',
-        'imageUrl':
-            'https://icon-library.com/images/person-image-icon/person-image-icon-25.jpg',
+        'name': user.displayName,
+        'email': user.email,
+        'imageUrl': user.photoURL,
         'bloodGroup': 'O+',
         'address': 'Pune, Maharashtra, India',
       };
+      print('sending user data to firebase firestore ... ');
       await FirebaseFirestore.instance
           .collection('users')
           .doc(user.uid)
           .set(userData);
+
+      _userId = user.uid;
+      _userName = user.displayName;
+      _userEmail = user.email;
+      _userImageUrl = user.photoURL;
+      _bloodGroup = 'O+';
+      _address = 'Pune, Maharashtra, India';
+      print('setted user data, done.');
     }
 
-    if (user == null) {
-      _userName = 'Anand B';
-      _userEmail = 'anand@gmail.com';
-      return;
-    }
     // _userId = user.uid;
     // _userName = user.displayName;
     // _userEmail = user.email;
     // _userImageUrl = Uri.parse(user.photoURL as String);
-    _userImageUrl = user.photoURL;
+    // _userImageUrl = user.photoURL;
 
     print(user.uid);
     print(_userEmail);

@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import './editProfileScreen.dart';
+
 class ProfileScreen extends StatelessWidget {
   // final user = FirebaseAuth.instance.currentUser;
   @override
@@ -100,7 +102,9 @@ class ProfileScreen extends StatelessWidget {
               width: 110,
               height: 30,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed(EditProfileScreen.id);
+                },
                 child: Text('EDIT PROFILE',
                     style: TextStyle(
                         color: Colors.blue,
