@@ -98,19 +98,23 @@ class ProfileScreen extends StatelessWidget {
             const SizedBox(
               height: 8,
             ),
-            new SizedBox(
+            SizedBox(
               width: 110,
               height: 30,
               child: TextButton(
                 onPressed: () {
-                  Navigator.of(context).pushNamed(EditProfileScreen.id);
+                  // Navigator.of(context).pushNamed(EditProfileScreen.id);
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => EditProfileScreen(
+                        userData['id'],
+                        userData['name'],
+                        userData['email'],
+                        userData['imageUrl'],
+                      ),
+                    ),
+                  );
                 },
-                child: Text('EDIT PROFILE',
-                    style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 12,
-                        fontFamily: 'Montserrat',
-                        fontWeight: FontWeight.w600)),
                 style: TextButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     side: BorderSide(
@@ -118,6 +122,12 @@ class ProfileScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(30),
                   ),
                 ),
+                child: Text('EDIT PROFILE',
+                    style: TextStyle(
+                        color: Colors.blue,
+                        fontSize: 12,
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.w600)),
               ),
             ),
             ProfileMenuWidget(

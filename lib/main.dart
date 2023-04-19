@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
             LoginWithEmail.id: (context) => LoginWithEmail(),
             PhoneAuthentication.id: (context) => PhoneAuthentication(),
             LogoAnimationScreen.id: (context) => LogoAnimationScreen(),
-            EditProfileScreen.id: (context) => EditProfileScreen(),
+            // EditProfileScreen.id: (context) => EditProfileScreen(),
           },
           // home: Splash(),
           initialRoute: Splash.id,
