@@ -1,3 +1,4 @@
+import 'package:ahhf_app/provider/feedProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,10 +19,11 @@ class ProviderUmbrellaScreen extends StatelessWidget {
         ChangeNotifierProvider(
           create: (ctx) => AllProjects(),
         ),
+        // ChangeNotifierProvider(
+        //   create: (ctx) => FeedTabProvider(),
+        // ),
       ],
       child: JunctionScreen(),
     );
   }
 }
-
-

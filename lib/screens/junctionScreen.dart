@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:ahhf_app/provider/feedProvider.dart';
 import 'package:ahhf_app/screens/createProfileScreen.dart';
 import 'package:ahhf_app/screens/tabs_screen.dart';
 import 'package:flutter/material.dart';
@@ -41,6 +42,7 @@ class _JunctionScreenState extends State<JunctionScreen> {
 
   Future<bool> userExistenceFunction() async {
     final user = FirebaseAuth.instance.currentUser;
+
     return Provider.of<CurrentUser>(context, listen: false).userExists(user);
   }
 
@@ -61,6 +63,7 @@ class _JunctionScreenState extends State<JunctionScreen> {
             child: CircularProgressIndicator(),
           );
         } else if (snapshot.hasData) {
+
           return CreateOrTabScreen();
           // } else if (snapshot.connectionState == ConnectionState.active) {
           // return FutureBuilder(
@@ -92,6 +95,7 @@ class _JunctionScreenState extends State<JunctionScreen> {
             child: Text('Something Went Wrong'),
           );
         } else {
+
           return Mylogin();
         }
       },
@@ -112,8 +116,12 @@ class _CreateOrTabScreenState extends State<CreateOrTabScreen> {
     Future.wait([
       Provider.of<CurrentUser>(context, listen: false)
           .setInitialUserData(FirebaseAuth.instance.currentUser),
+
       Provider.of<AllProjects>(context, listen: false)
           .fetchAndSetupProjects(),
+      //Provider.of<FeedTabProvider>(context,listen: false).fetchAndSetupFeeds(),
+
+
     ]).then((_) {
       // Both asynchronous operations have completed, so it's safe to render the TabsScreen.
       if (mounted) {
