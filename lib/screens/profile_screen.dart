@@ -63,16 +63,19 @@ class ProfileScreen extends StatelessWidget {
                           const SizedBox(
                             height: 10,
                           ),
-                          Text(
-                            // 'Anand B',
-                            '${userData['name']}',
-                            // textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontFamily: 'Montserrat',
-                              fontSize: 20,
-                              fontWeight: FontWeight.w600,
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            child: Text(
+                              // 'Anand B',
+                              '${userData['name']}',
+                               textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'Montserrat',
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              overflow: TextOverflow.fade,
                             ),
-                            overflow: TextOverflow.fade,
                           ),
                           const SizedBox(
                             height: 5,

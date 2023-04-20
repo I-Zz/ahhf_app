@@ -105,22 +105,23 @@ class CreateOrTabScreen extends StatefulWidget {
 }
 
 class _CreateOrTabScreenState extends State<CreateOrTabScreen> {
+
   @override
   void initState() {
-    Future.delayed(Duration.zero, () async {
-      final user = FirebaseAuth.instance.currentUser;
-      print('a');
-      await Provider.of<CurrentUser>(context, listen: false)
-          .setInitialUserData(user);
-      print('b');
-      await Provider.of<AllProjects>(context, listen: false)
-          .fetchAndSetupProjects();
-      print('c');
-      // userExistence =
-      //     Provider.of<CurrentUser>(context, listen: false).userExists(user);
-    });
     super.initState();
+    Future.wait([
+      Provider.of<CurrentUser>(context, listen: false)
+          .setInitialUserData(FirebaseAuth.instance.currentUser),
+      Provider.of<AllProjects>(context, listen: false)
+          .fetchAndSetupProjects(),
+    ]).then((_) {
+      // Both asynchronous operations have completed, so it's safe to render the TabsScreen.
+      if (mounted) {
+        setState(() {});
+      }
+    });
   }
+
 
   @override
   Widget build(BuildContext context) {
