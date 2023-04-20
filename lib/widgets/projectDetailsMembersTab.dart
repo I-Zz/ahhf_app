@@ -12,12 +12,12 @@ class projectDetailsMembersTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<dynamic> membersIDs = allProjects.getProject(projectID).members;
-    print(membersIDs);
 
     return Scaffold(
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
-            .collection('members') // Replace with your collection name
+            .collection('members')
+            .where('id',whereIn: membersIDs)                        // Replace with your collection name
             .snapshots(),
 
         builder: (ctx, membersnapshot) {
@@ -37,33 +37,18 @@ class projectDetailsMembersTab extends StatelessWidget {
                   name: memberdata['name'],
                   imageUrl: memberdata['memberImageUrl']))
               .toList();
-            print('${membersList!.length} this check');
-            for(var  mm in membersList)
-              {
-                print(mm.id);
-              }
 
-          final filteredMembersList = membersList.where((member) => membersIDs.contains(member.id)).toList();
-          print('${filteredMembersList.length} this ch');
 
           return ListView.builder(
-            itemCount:filteredMembersList.length,
+            itemCount:membersList?.length,
             itemBuilder: (context, i) => ProfileMenuWidget(
-              title:  filteredMembersList[i].name ,
-              imageUrl: filteredMembersList[i].imageUrl ,
+              title:  membersList![i].name ,
+              imageUrl:membersList[i].imageUrl ,
               onPress: () {},
             ),
           );
         },
 
-        //   ListView.builder(
-        //   itemCount: 3,
-        //   itemBuilder: (context, i) => ProfileMenuWidget(
-        //     title: "Kartik Jagtap",
-        //     subtitle: 'Team Leader',
-        //     onPress: () {},
-        //   ),
-        // ),
       ),
     );
   }
@@ -99,6 +84,7 @@ class ProfileMenuWidget extends StatelessWidget {
           ),
           child: CircleAvatar(
             radius: 9,
+            backgroundColor: Colors.grey.shade100,
             backgroundImage:
                 NetworkImage(imageUrl),
           )),

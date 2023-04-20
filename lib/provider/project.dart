@@ -98,7 +98,6 @@ class AllProjects with ChangeNotifier {
           // members: eachProject['members'],
           members: membersList,
         ));
-
         print(eachProject['progressData']);
 
       });
