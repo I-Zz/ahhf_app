@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:ahhf_app/screens/createProfileScreen.dart';
 import 'package:ahhf_app/screens/tabs_screen.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +19,7 @@ class JunctionScreen extends StatefulWidget {
 
 class _JunctionScreenState extends State<JunctionScreen> {
   // late Future<bool> userExistence;
-  
+
   // @override
   // void initState() {
   //   print('init State');
@@ -98,9 +100,6 @@ class _JunctionScreenState extends State<JunctionScreen> {
 }
 
 class CreateOrTabScreen extends StatefulWidget {
-
-
-
   @override
   State<CreateOrTabScreen> createState() => _CreateOrTabScreenState();
 }
@@ -122,23 +121,6 @@ class _CreateOrTabScreenState extends State<CreateOrTabScreen> {
       }
     });
   }
-
-  // void initState() {
-  //   super.initState();
-  //   Future.delayed(Duration.zero, () async {
-  //     final user = FirebaseAuth.instance.currentUser;
-  //     print('a');
-  //     await Provider.of<CurrentUser>(context, listen: false)
-  //         .setInitialUserData(user);
-  //     print('b');
-  //     await Provider.of<AllProjects>(context, listen: false)
-  //         .fetchAndSetupProjects();
-  //     print('c');
-  //     // userExistence =
-  //     //     Provider.of<CurrentUser>(context, listen: false).userExists(user);
-  //   });
-  //
-  // }
 
 
   @override

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../provider/ProjectDetailsEvent_provider.dart';
@@ -13,13 +12,13 @@ class ProjectDetailsEventTabCards extends StatelessWidget {
   Widget build(BuildContext context) {
     final EventItem = Provider.of<ProjectDetailsEventTabItems>(context);
     return Padding(
-      padding: const EdgeInsets.only(top: 5.0,bottom: 5),
+      padding: const EdgeInsets.only(top: 5.0, bottom: 5),
       child: Stack(
         alignment: AlignmentDirectional.bottomEnd,
         children: [
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 18,vertical: 5),
-            height: 260,
+            margin: EdgeInsets.symmetric(horizontal: 18, vertical: 1),
+            height: 350,
             width: double.infinity,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
@@ -40,7 +39,7 @@ class ProjectDetailsEventTabCards extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 140.0),
             child: Container(
-              height: 117,
+              height: 147,
               width: double.infinity,
               margin: EdgeInsets.symmetric(horizontal: 18),
               //padding: EdgeInsets.all(10),
@@ -59,7 +58,9 @@ class ProjectDetailsEventTabCards extends StatelessWidget {
               child: Column(
                 //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  SizedBox(height: 15,),
+                  SizedBox(
+                    height: 15,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -75,7 +76,9 @@ class ProjectDetailsEventTabCards extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Row(
                     children: [
                       SizedBox(
@@ -90,7 +93,7 @@ class ProjectDetailsEventTabCards extends StatelessWidget {
                         width: 9,
                       ),
 
-  //  ${DateFormat('hh:mm a').format(DateTime(2022, 1, 1, EventItem.EventTime.hour, EventItem.EventTime.minute))
+                      //  ${DateFormat('hh:mm a').format(DateTime(2022, 1, 1, EventItem.EventTime.hour, EventItem.EventTime.minute))
                       Text(
                         '${DateFormat('dd MMM yyyy').format(EventItem.EventDate)} | ${EventItem.EventTime.format(context)}',
                         style: TextStyle(
@@ -101,7 +104,9 @@ class ProjectDetailsEventTabCards extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Row(
                     children: [
                       SizedBox(
@@ -125,7 +130,63 @@ class ProjectDetailsEventTabCards extends StatelessWidget {
                       ),
                     ],
                   ),
-
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      SizedBox(
+                        height: 34,
+                        width: 138,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: Text(
+                            'INTERESTED',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.w600,
+                              fontSize: 12,
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.black,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16.0))),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 34,
+                        width: 138,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              Text('SHARE',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 12,
+                                  )),
+                              Icon(
+                                Icons.share,
+                                color: Colors.black,
+                                size: 15,
+                              )
+                            ],
+                          ),
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18.0),
+                                  side: BorderSide(color: Colors.black))),
+                        ),
+                      )
+                    ],
+                  )
                 ],
               ),
             ),

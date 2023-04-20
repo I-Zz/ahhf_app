@@ -99,8 +99,17 @@ class CurrentUser with ChangeNotifier {
     // if it doesn't exist then put the data in the database
   }
 
+  void editUserData(Map<String, dynamic> userData, String? userId) async {
+    print(userData['address']);
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userId)
+        .set(userData);
+  }
+
   Map<String, String?> get getProfileScreenUserData {
     return {
+      'id': _userId,
       'name': _userName,
       'email': _userEmail,
       'imageUrl': _userImageUrl,

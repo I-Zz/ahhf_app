@@ -11,7 +11,7 @@ import './screens/projects_detail_screen_overview.dart';
 import './screens/projects_screen.dart';
 import './screens/loginSignupScreen.dart';
 import './screens/register.dart';
-import './screens/home.dart';
+import './screens/homepagetabs.dart';
 import './screens/onboarding_screen.dart';
 import './screens/tabs_screen.dart';
 import './authProvider/google_sign_in.dart';
@@ -49,14 +49,14 @@ class MyApp extends StatelessWidget {
             OnboardingScreen.id: (context) => OnboardingScreen(),
             Mylogin.id: (context) => Mylogin(),
             Myregister.id: (context) => Myregister(),
-            HomePage.id: (context) => HomePage(),
+            HomePageTabsScreen.id: (context) => HomePageTabsScreen(),
             TabsScreen.id: (context) => TabsScreen(),
             ProjectScreen.id: (context) => ProjectScreen(),
            // ProjectsDetailScreen.id: (context) => ProjectsDetailScreen(),
             LoginWithEmail.id: (context) => LoginWithEmail(),
             PhoneAuthentication.id: (context) => PhoneAuthentication(),
             LogoAnimationScreen.id: (context) => LogoAnimationScreen(),
-            EditProfileScreen.id: (context) => EditProfileScreen(),
+            // EditProfileScreen.id: (context) => EditProfileScreen(),
           },
           // home: Splash(),
           initialRoute: Splash.id,
