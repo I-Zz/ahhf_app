@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../provider/userAuth.dart';
-import '../screens/home.dart';
+import '../screens/homepagetabs.dart';
 import '../screens/profile_screen.dart';
 import '../screens/projects_detail_screen_overview.dart';
 import '../screens/projects_screen.dart';
@@ -37,7 +37,7 @@ class _TabsScreenState extends State<TabsScreen> {
     });
 
     _pages = [
-      HomePage(),
+      HomePageTabsScreen(),
       ProjectScreen(),
       ProfileScreen(),
     ];

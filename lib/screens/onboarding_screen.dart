@@ -1,4 +1,4 @@
-import '../screens/home.dart';
+import '../screens/homepagetabs.dart';
 import '../screens/loginSignupScreen.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
