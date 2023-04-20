@@ -10,6 +10,7 @@ class Project with ChangeNotifier {
   String shortDescription;
   String longDescription1;
   String longDescription2;
+  String imageUrl;
   Map<String, dynamic> progressData;
   // dynamic totalDonation;
   // dynamic currentDonation;
@@ -20,6 +21,7 @@ class Project with ChangeNotifier {
   Project({
     required this.id,
     required this.title,
+    required this.imageUrl,
     required this.shortDescription,
     required this.longDescription1,
     required this.longDescription2,
@@ -36,6 +38,12 @@ class AllProjects with ChangeNotifier {
   List<Project> get projects {
     return _projects;
   }
+
+
+    Project getProject(String projectID){
+    final project=projects.firstWhere((pro) => pro.id == projectID);
+    return project;
+    }
 
   Future<void> fetchAndSetupProjects() async {
     await FirebaseFirestore.instance
@@ -78,6 +86,7 @@ class AllProjects with ChangeNotifier {
         loadedProjects.add(Project(
           id: eachProject.id,
           title: eachProject['title'],
+          imageUrl: eachProject['imageUrl'],
           shortDescription: eachProject['shortDescription'],
           longDescription1: eachProject['longDescription1'],
           longDescription2: eachProject['longDescription2'],
@@ -91,10 +100,13 @@ class AllProjects with ChangeNotifier {
         ));
 
         print(eachProject['progressData']);
+
       });
       print(loadedProjects.length);
       _projects = loadedProjects;
       print(_projects.length);
+
+
     });
   }
 }

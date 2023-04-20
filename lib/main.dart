@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
             HomePage.id: (context) => HomePage(),
             TabsScreen.id: (context) => TabsScreen(),
             ProjectScreen.id: (context) => ProjectScreen(),
-            ProjectsDetailScreen.id: (context) => ProjectsDetailScreen(),
+           // ProjectsDetailScreen.id: (context) => ProjectsDetailScreen(),
             LoginWithEmail.id: (context) => LoginWithEmail(),
             PhoneAuthentication.id: (context) => PhoneAuthentication(),
             LogoAnimationScreen.id: (context) => LogoAnimationScreen(),
