@@ -15,14 +15,6 @@ class AppBarCommon extends StatelessWidget implements PreferredSizeWidget {
       child: Container(
         decoration: const BoxDecoration(
           color: Color.fromRGBO(255, 255, 255, 1),
-          boxShadow: [
-            BoxShadow(
-              color: Color.fromRGBO(0, 0, 0, 0.06),
-              blurRadius: 7,
-              spreadRadius: 6,
-              offset: Offset(0, 0),
-            ),
-          ],
         ),
         padding: const EdgeInsets.symmetric(horizontal: 18),
         child: Row(
