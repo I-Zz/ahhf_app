@@ -1,6 +1,7 @@
 import 'package:ahhf_app/authProvider/login_with_email_screen.dart';
 import 'package:ahhf_app/authProvider/login_with_phone.dart';
 import 'package:ahhf_app/provider/userAuth.dart';
+import 'package:ahhf_app/screens/donation_history.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -16,6 +17,7 @@ import './screens/tabs_screen.dart';
 import './authProvider/google_sign_in.dart';
 import './screens/junctionScreen.dart';
 import './templates/animation_template.dart';
+import './screens/donation_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -52,6 +54,8 @@ class MyApp extends StatelessWidget {
             LoginWithEmail.id: (context) => LoginWithEmail(),
             PhoneAuthentication.id: (context) => PhoneAuthentication(),
             LogoAnimationScreen.id: (context) => LogoAnimationScreen(),
+            DonationScreen.id: (context) => DonationScreen(),
+            DonationHistoryScreen.id: (context) => DonationHistoryScreen(),
           },
           // home: Splash(),
           initialRoute: Splash.id,

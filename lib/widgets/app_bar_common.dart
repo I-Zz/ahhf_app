@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import '../screens/donation_screen.dart';
 
 class AppBarCommon extends StatelessWidget implements PreferredSizeWidget {
   String name;
@@ -61,7 +62,9 @@ class AppBarCommon extends StatelessWidget implements PreferredSizeWidget {
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, DonationScreen.id);
+                },
                 child: const Padding(
                   padding: EdgeInsets.symmetric(
                     vertical: 4,

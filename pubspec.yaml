@@ -32,6 +32,7 @@ dependencies:
   flutter:
     sdk: flutter
   dots_indicator: ^2.1.0
+  hexcolor: ^3.0.1
   #syncfusion_flutter_charts: ^xx.x.xx
 
 
