@@ -1,4 +1,5 @@
 import 'package:ahhf_app/provider/feedProvider.dart';
+import 'package:ahhf_app/provider/userAuth.dart';
 import 'package:ahhf_app/widgets/FeedTab.dart';
 import 'package:flutter/material.dart';
 import 'package:ahhf_app/widgets/app_bar_common.dart';
@@ -18,9 +19,10 @@ class _HomePageTabsScreenState extends State<HomePageTabsScreen>
     with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
+    var userName = Provider.of<CurrentUser>(context).getUserName();
     TabController _tabcontroller = TabController(length: 2, vsync: this);
     return Scaffold(
-      appBar: AppBarCommon('Anand', true),
+      appBar: AppBarCommon(userName, true),
       body: MultiProvider(
         providers: [
           ChangeNotifierProvider.value(value: ProjectDetailsEventTabProvider()),
@@ -28,7 +30,18 @@ class _HomePageTabsScreenState extends State<HomePageTabsScreen>
         child: Column(
           children: [
             Container(
-              color: Color.fromRGBO(255, 255, 255, 1),
+              // height: 40,
+              decoration: BoxDecoration(
+                color: Color.fromRGBO(255, 255, 255, 1),
+                boxShadow: [
+                  BoxShadow(
+                    color: Color.fromRGBO(0, 0, 0, 0.06),
+                    blurRadius: 20,
+                    spreadRadius: 20,
+                    offset: Offset(10, 10),
+                  ),
+                ],
+              ),
               child: TabBar(
                 controller: _tabcontroller,
                 isScrollable: false,
@@ -58,13 +71,14 @@ class _HomePageTabsScreenState extends State<HomePageTabsScreen>
               ),
             ),
             Expanded(
-                child: TabBarView(
-              controller: _tabcontroller,
-              children: [
-                feedTab(),
-                HomePageEventScreen(),
-              ],
-            ))
+              child: TabBarView(
+                controller: _tabcontroller,
+                children: [
+                  feedTab(),
+                  HomePageEventScreen(),
+                ],
+              ),
+            )
           ],
         ),
       ),

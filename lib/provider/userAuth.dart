@@ -107,6 +107,10 @@ class CurrentUser with ChangeNotifier {
         .set(userData);
   }
 
+  String? getUserName() {
+    return _userName;
+  }
+
   Map<String, String?> get getProfileScreenUserData {
     return {
       'id': _userId,

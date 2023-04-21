@@ -16,7 +16,7 @@ class feedTab extends StatelessWidget {
 
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.only(bottom: 5),
+        padding: const EdgeInsets.only(bottom: 5, top: 10),
         child: StreamBuilder(
           stream: FirebaseFirestore.instance.collection('feeds').snapshots(),
           builder: (ctx, snapshot) {

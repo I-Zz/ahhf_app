@@ -12,7 +12,7 @@ class ProjectDetailsEventTabCards extends StatelessWidget {
   Widget build(BuildContext context) {
     final EventItem = Provider.of<ProjectDetailsEventTabItems>(context);
     return Padding(
-      padding: const EdgeInsets.only(top: 5.0, bottom: 5),
+      padding: const EdgeInsets.only(top: 15.0, bottom: 5),
       child: Stack(
         alignment: AlignmentDirectional.bottomEnd,
         children: [
