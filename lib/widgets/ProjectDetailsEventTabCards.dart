@@ -4,13 +4,21 @@ import '../provider/ProjectDetailsEvent_provider.dart';
 import 'package:intl/intl.dart';
 
 class ProjectDetailsEventTabCards extends StatelessWidget {
-  const ProjectDetailsEventTabCards({
-    super.key,
-  });
+  final String imageUrl;
+  final String title;
+  final String dateTime;
+  final String eventAddress;
+  final String projectID;
+  ProjectDetailsEventTabCards(
+      {required this.projectID,
+      required this.dateTime,
+      required this.imageUrl,
+      required this.title,
+      required this.eventAddress});
 
   @override
   Widget build(BuildContext context) {
-    final EventItem = Provider.of<ProjectDetailsEventTabItems>(context);
+    //final EventItem = Provider.of<ProjectDetailsEventTabItems>(context);
     return Padding(
       padding: const EdgeInsets.only(top: 5.0, bottom: 5),
       child: Stack(
@@ -31,10 +39,7 @@ class ProjectDetailsEventTabCards extends StatelessWidget {
                   ),
                 ],
                 image: DecorationImage(
-                    image: AssetImage(
-                      EventItem.image,
-                    ),
-                    fit: BoxFit.cover)),
+                    image: NetworkImage(imageUrl), fit: BoxFit.cover)),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 140.0),
@@ -68,7 +73,7 @@ class ProjectDetailsEventTabCards extends StatelessWidget {
                         width: 20,
                       ),
                       Text(
-                        EventItem.title,
+                        title,
                         style: TextStyle(
                             fontFamily: 'Montserrat',
                             fontSize: 15,
@@ -95,7 +100,7 @@ class ProjectDetailsEventTabCards extends StatelessWidget {
 
                       //  ${DateFormat('hh:mm a').format(DateTime(2022, 1, 1, EventItem.EventTime.hour, EventItem.EventTime.minute))
                       Text(
-                        '${DateFormat('dd MMM yyyy').format(EventItem.EventDate)} | ${EventItem.EventTime.format(context)}',
+                        dateTime,
                         style: TextStyle(
                             fontFamily: 'Montserrat',
                             fontSize: 12,
@@ -121,7 +126,7 @@ class ProjectDetailsEventTabCards extends StatelessWidget {
                         width: 9,
                       ),
                       Text(
-                        EventItem.EventAddress,
+                        eventAddress,
                         style: TextStyle(
                             fontFamily: 'Montserrat',
                             fontSize: 12,
