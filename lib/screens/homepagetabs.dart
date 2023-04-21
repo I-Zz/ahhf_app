@@ -20,7 +20,7 @@ class _HomePageTabsScreenState extends State<HomePageTabsScreen>
   Widget build(BuildContext context) {
     TabController _tabcontroller = TabController(length: 2, vsync: this);
     return Scaffold(
-      appBar: AppBarCommon('Anand'),
+      appBar: AppBarCommon('Anand', true),
       body: MultiProvider(
         providers: [
           ChangeNotifierProvider.value(value: ProjectDetailsEventTabProvider()),

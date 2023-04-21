@@ -4,7 +4,8 @@ import 'package:flutter/src/widgets/placeholder.dart';
 
 class AppBarCommon extends StatelessWidget implements PreferredSizeWidget {
   String name;
-  AppBarCommon(this.name);
+  bool isHome;
+  AppBarCommon(this.name, this.isHome);
 
   @override
   Size get preferredSize => Size.fromHeight(82);
@@ -13,8 +14,17 @@ class AppBarCommon extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           color: Color.fromRGBO(255, 255, 255, 1),
+          boxShadow: [
+            isHome ? const BoxShadow() :
+            BoxShadow(
+              color: Color.fromRGBO(0, 0, 0, 0.06),
+              blurRadius: 7,
+              spreadRadius: 6,
+              offset: Offset(0, 0),
+            ),
+          ],
         ),
         padding: const EdgeInsets.symmetric(horizontal: 18),
         child: Row(

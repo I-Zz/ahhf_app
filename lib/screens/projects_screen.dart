@@ -17,9 +17,7 @@ class ProjectScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Color.fromRGBO(166, 166, 166, 0.05),
         //backgroundColor: Colors.black,
-        appBar: AppBarCommon(
-          'Anand',
-        ),
+        appBar: AppBarCommon('Anand', false),
 
         body: ProjectScreenList(),
       ),
