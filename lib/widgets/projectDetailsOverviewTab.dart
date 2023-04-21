@@ -1,15 +1,16 @@
-import 'dart:math';
-
 import 'package:ahhf_app/provider/project.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class projectDetailsOverviewTab extends StatelessWidget {
   final String projectID;
   final AllProjects allprojects;
   projectDetailsOverviewTab(
       {required this.projectID, required this.allprojects});
+
+  final String donationPageUrl = 'https://pages.razorpay.com/ahhf-donation';
 
   @override
   Widget build(BuildContext context) {
@@ -238,8 +239,7 @@ class projectDetailsOverviewTab extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {
-                          print(totalDonation);
-                          print(currentDonation);
+                          launch(donationPageUrl);
                         },
                         style: ElevatedButton.styleFrom(
                           padding:
