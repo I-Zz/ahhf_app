@@ -2,7 +2,7 @@ import 'package:ahhf_app/provider/project.dart';
 import 'package:flutter/material.dart';
 import 'project_screen_cards.dart';
 import '../data-models/project_screen_items.dart';
-import '../provider/project_screen_provider.dart';
+
 import 'package:provider/provider.dart';
 
 class ProjectScreenList extends StatelessWidget {

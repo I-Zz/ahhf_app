@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 import 'package:ahhf_app/provider/project.dart';
-import 'package:ahhf_app/provider/ProjectDetailsEvent_provider.dart';
 import 'package:ahhf_app/widgets/projectDetailsOverviewTab.dart';
 import 'package:ahhf_app/widgets/projectDetailsEventTab.dart';
 import 'package:ahhf_app/widgets/FeedTabCard.dart';
@@ -54,71 +53,64 @@ class _ProjectsDetailScreenState extends State<ProjectsDetailScreen>
               color: Colors.black),
         ),
       ),
-      body: MultiProvider(
-        providers: [
-          ChangeNotifierProvider.value(value: ProjectDetailsEventTabProvider()),
-          ChangeNotifierProvider.value(value: FeedTabProvider()),
-        ],
-
-        child: Column(
-          children: [
-            Container(
-              width: double.infinity,
-              child: Image(
-                image: AssetImage('assets/images/project_details_image.png'),
-                fit: BoxFit.cover,
-              ),
+      body: Column(
+        children: [
+          Container(
+            width: double.infinity,
+            child: Image(
+              image: AssetImage('assets/images/project_details_image.png'),
+              fit: BoxFit.cover,
             ),
-            Container(
-              child: TabBar(
-                controller: _tabcontroller,
-                isScrollable: true,
-                labelColor: Color(0xFF428FD4),
-                unselectedLabelColor: Color.fromRGBO(130, 130, 130, 50),
-                unselectedLabelStyle: TextStyle(
-                  fontFamily: 'Montserrat',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 15,
-                ),
-                labelStyle: TextStyle(
-                  fontFamily: 'Montserrat',
-                  fontWeight: FontWeight.w600,
-                  fontSize: 15,
-                ),
-                labelPadding: const EdgeInsets.symmetric(horizontal: 25),
-                tabs: [
-                  Tab(
-                    child: Text('OVERVIEW'),
-                  ),
-                  Tab(
-                    child: Text('FEED'),
-                  ),
-                  Tab(
-                    child: Text('MEMBERS'),
-                  ),
-                  Tab(
-                    child: Text(
-                      'EVENTS',
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Expanded(
-                child: TabBarView(
+          ),
+          Container(
+            child: TabBar(
               controller: _tabcontroller,
-              children: [
-                projectDetailsOverviewTab(
-                  projectID: widget.projectID,
-                  allprojects: widget.allProjects,
+              isScrollable: true,
+              labelColor: Color(0xFF428FD4),
+              unselectedLabelColor: Color.fromRGBO(130, 130, 130, 50),
+              unselectedLabelStyle: TextStyle(
+                fontFamily: 'Montserrat',
+                fontWeight: FontWeight.w400,
+                fontSize: 15,
+              ),
+              labelStyle: TextStyle(
+                fontFamily: 'Montserrat',
+                fontWeight: FontWeight.w600,
+                fontSize: 15,
+              ),
+              labelPadding: const EdgeInsets.symmetric(horizontal: 25),
+              tabs: [
+                Tab(
+                  child: Text('OVERVIEW'),
                 ),
-                projectDetailsFeedTab(projectID: widget.projectID),
-                projectDetailsMembersTab(projectID: widget.projectID,allProjects: widget.allProjects,),
-                projectDetailsEventsTab(),
+                Tab(
+                  child: Text('FEED'),
+                ),
+                Tab(
+                  child: Text('MEMBERS'),
+                ),
+                Tab(
+                  child: Text(
+                    'EVENTS',
+                  ),
+                )
               ],
-            ))
-          ],
-        ),
+            ),
+          ),
+          Expanded(
+              child: TabBarView(
+            controller: _tabcontroller,
+            children: [
+              projectDetailsOverviewTab(
+                projectID: widget.projectID,
+                allprojects: widget.allProjects,
+              ),
+              projectDetailsFeedTab(projectID: widget.projectID),
+              projectDetailsMembersTab(projectID: widget.projectID,allProjects: widget.allProjects,),
+              projectDetailsEventsTab(projectID: widget.projectID,),
+            ],
+          ))
+        ],
       ),
     );
   }
