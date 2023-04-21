@@ -19,7 +19,7 @@ class ProjectsDetailScreen extends StatefulWidget {
   static const String id = 'ProjectsDetailScreen';
   final String projectID;
   final AllProjects allProjects;
-  ProjectsDetailScreen({required this.projectID,required this.allProjects});
+  ProjectsDetailScreen({required this.projectID, required this.allProjects});
 
   @override
   State<ProjectsDetailScreen> createState() => _ProjectsDetailScreenState();
@@ -29,7 +29,6 @@ class _ProjectsDetailScreenState extends State<ProjectsDetailScreen>
     with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-
     TabController _tabcontroller = TabController(length: 4, vsync: this);
     return Scaffold(
       appBar: AppBar(
@@ -59,7 +58,6 @@ class _ProjectsDetailScreenState extends State<ProjectsDetailScreen>
           ChangeNotifierProvider.value(value: ProjectDetailsEventTabProvider()),
           ChangeNotifierProvider.value(value: FeedTabProvider()),
         ],
-
         child: Column(
           children: [
             Container(
@@ -70,6 +68,7 @@ class _ProjectsDetailScreenState extends State<ProjectsDetailScreen>
               ),
             ),
             Container(
+              color: Colors.white,
               child: TabBar(
                 controller: _tabcontroller,
                 isScrollable: true,
@@ -113,7 +112,10 @@ class _ProjectsDetailScreenState extends State<ProjectsDetailScreen>
                   allprojects: widget.allProjects,
                 ),
                 projectDetailsFeedTab(projectID: widget.projectID),
-                projectDetailsMembersTab(projectID: widget.projectID,allProjects: widget.allProjects,),
+                projectDetailsMembersTab(
+                  projectID: widget.projectID,
+                  allProjects: widget.allProjects,
+                ),
                 projectDetailsEventsTab(),
               ],
             ))
