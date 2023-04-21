@@ -1,64 +1,64 @@
+import 'package:ahhf_app/provider/member.dart';
+import 'package:ahhf_app/provider/project.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class projectDetailsMembersTab extends StatelessWidget {
-  const projectDetailsMembersTab({Key? key}) : super(key: key);
+  final String projectID;
+  final AllProjects allProjects;
+  projectDetailsMembersTab(
+      {required this.allProjects, required this.projectID});
 
   @override
   Widget build(BuildContext context) {
+    final List<dynamic> membersIDs = allProjects.getProject(projectID).members;
+
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 20),
-          child: Column(children: <Widget>[
-            //const Divider(),
-            ProfileMenuWidget(
-              title: "Kartik Jagtap",
-              subtitle: 'Team Leader',
+      body: StreamBuilder(
+        stream: FirebaseFirestore.instance
+            .collection('members')
+            .where('id',whereIn: membersIDs)                        // Replace with your collection name
+            .snapshots(),
+
+        builder: (ctx, membersnapshot) {
+          if (membersnapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (membersnapshot.hasError) {
+            return Center(
+              child: Text('Something went wrong'),
+            );
+          }
+
+          final membersMapList = membersnapshot.data?.docs;
+          print(membersMapList);
+          final membersList = membersMapList
+              ?.map((memberdata) => Member(
+                  id: memberdata['id'].toString(),
+                  name: memberdata['name'],
+                  imageUrl: memberdata['memberImageUrl']))
+              .toList();
+
+
+          return ListView.builder(
+            itemCount:membersList?.length,
+            itemBuilder: (context, i) => ProfileMenuWidget(
+              title:  membersList![i].name ,
+              imageUrl:membersList[i].imageUrl ,
               onPress: () {},
             ),
-            ProfileMenuWidget(
-              title: "Sourish Joshi",
-              subtitle: 'Team Leader',
-              // icon: Icons.water_drop_outlined,
-              onPress: () {},
-            ),
-            ProfileMenuWidget(
-              title: "Imroz Khan",
-              subtitle: 'Team Leader',
-              // icon: Icons.account_balance_wallet_outlined,
-              onPress: () {},
-            ),
-            ProfileMenuWidget(
-              title: "Nupur Sangwai",
-              subtitle: 'Team Leader',
-              // icon: Icons.pin_drop_outlined,
-              onPress: () {},
-            ),
-            ProfileMenuWidget(
-              title: "Tanmay Mahajan",
-              subtitle: 'Team Leader',
-              //  icon: Icons.notifications_active_outlined,
-              onPress: () {},
-            ),
-            ProfileMenuWidget(
-              title: "Kartik Jagtap",
-              subtitle: 'Team Leader',
-              // icon: Icons.settings_outlined,
-              onPress: () {},
-            )
-          ]),
-        ),
+          );
+        },
+
       ),
     );
   }
 }
 
 class ProfileMenuWidget extends StatelessWidget {
-  const ProfileMenuWidget({
-    super.key,
+  ProfileMenuWidget({
     required this.title,
-    required this.subtitle,
-    //required this.icon,
+    this.subtitle = '',
+    required this.imageUrl,
     required this.onPress,
     this.endIcon = true,
     this.textColor,
@@ -66,6 +66,7 @@ class ProfileMenuWidget extends StatelessWidget {
 
   final String title;
   final String subtitle;
+  final String imageUrl;
   //final IconData icon;
   final VoidCallback onPress;
   final bool endIcon;
@@ -83,8 +84,9 @@ class ProfileMenuWidget extends StatelessWidget {
           ),
           child: CircleAvatar(
             radius: 9,
+            backgroundColor: Colors.grey.shade100,
             backgroundImage:
-                AssetImage('assets/images/circleavatarprojectmembertab1.png'),
+                NetworkImage(imageUrl),
           )),
       title: Text(
         title,

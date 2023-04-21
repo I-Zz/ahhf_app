@@ -1,19 +1,25 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:ahhf_app/widgets/FeedTab.dart';
+import 'package:ahhf_app/widgets/projectDetailsFeedTab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
-
+import 'package:ahhf_app/provider/project.dart';
 import 'package:ahhf_app/provider/ProjectDetailsEvent_provider.dart';
 import 'package:ahhf_app/widgets/projectDetailsOverviewTab.dart';
 import 'package:ahhf_app/widgets/projectDetailsEventTab.dart';
 import 'package:ahhf_app/widgets/FeedTabCard.dart';
 import 'package:ahhf_app/widgets/projectDetailsMembersTab.dart';
 
+import '../provider/feedProvider.dart';
+
 //put the cards in the gesturedetector
 
 class ProjectsDetailScreen extends StatefulWidget {
   static const String id = 'ProjectsDetailScreen';
+  final String projectID;
+  final AllProjects allProjects;
+  ProjectsDetailScreen({required this.projectID,required this.allProjects});
 
   @override
   State<ProjectsDetailScreen> createState() => _ProjectsDetailScreenState();
@@ -23,6 +29,7 @@ class _ProjectsDetailScreenState extends State<ProjectsDetailScreen>
     with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
+
     TabController _tabcontroller = TabController(length: 4, vsync: this);
     return Scaffold(
       appBar: AppBar(
@@ -47,8 +54,12 @@ class _ProjectsDetailScreenState extends State<ProjectsDetailScreen>
               color: Colors.black),
         ),
       ),
-      body: ChangeNotifierProvider.value(
-        value: ProjectDetailsEventTabProvider(),
+      body: MultiProvider(
+        providers: [
+          ChangeNotifierProvider.value(value: ProjectDetailsEventTabProvider()),
+          ChangeNotifierProvider.value(value: FeedTabProvider()),
+        ],
+
         child: Column(
           children: [
             Container(
@@ -97,9 +108,12 @@ class _ProjectsDetailScreenState extends State<ProjectsDetailScreen>
                 child: TabBarView(
               controller: _tabcontroller,
               children: [
-                projectDetailsOverviewTab(),
-                feedTab(),
-                projectDetailsMembersTab(),
+                projectDetailsOverviewTab(
+                  projectID: widget.projectID,
+                  allprojects: widget.allProjects,
+                ),
+                projectDetailsFeedTab(projectID: widget.projectID),
+                projectDetailsMembersTab(projectID: widget.projectID,allProjects: widget.allProjects,),
                 projectDetailsEventsTab(),
               ],
             ))

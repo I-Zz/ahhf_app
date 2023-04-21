@@ -13,24 +13,31 @@ class Member with ChangeNotifier {
   });
 }
 
-class AllMembers with ChangeNotifier {
-  List<Member> _members = [];
-
-  Future<void> fetchAndSetupProjects() async {
-    List<Member> loadedMembers = [];
-
-    await FirebaseFirestore.instance
-        .collection('members')
-        .snapshots()
-        .listen((allMembers) {
-      allMembers.docs.forEach((eachMember) {
-        loadedMembers.add(Member(
-          id: eachMember.id,
-          name: eachMember['name'],
-          imageUrl: eachMember['imageUrl'],
-        ));
-      });
-      _members = loadedMembers;
-    });
-  }
-}
+//class AllMembers with ChangeNotifier {
+  // List<Member> _members = [];
+  //
+  // List<Member> get members{
+  //   return [..._members];
+  // }
+  //
+  //
+  //
+  //
+  // Future<void> fetchAndSetupMembers() async {
+  //   List<Member> loadedMembers = [];
+  //
+  //   await FirebaseFirestore.instance
+  //       .collection('members')
+  //       .snapshots()
+  //       .listen((allMembers) {
+  //     allMembers.docs.forEach((eachMember) {
+  //       loadedMembers.add(Member(
+  //         id: eachMember.id,
+  //         name: eachMember['name'],
+  //         imageUrl: eachMember['memberImageUrl'],
+  //       ));
+  //     });
+  //     _members = loadedMembers;
+  //   });
+  // }
+//}
