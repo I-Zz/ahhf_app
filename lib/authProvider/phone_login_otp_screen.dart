@@ -20,15 +20,15 @@ class _OTPVerificationscreenState extends State<OTPVerificationscreen> {
   @override
   Widget build(BuildContext context) {
     final defaultPinTheme = PinTheme(
-      width: 56,
-      height: 56,
+      width: 59,
+      height: 53,
       textStyle: const TextStyle(
           fontSize: 20,
           color: Color.fromRGBO(30, 60, 87, 1),
           fontWeight: FontWeight.w600),
       decoration: BoxDecoration(
-        border: Border.all(color: Color.fromRGBO(234, 239, 243, 1)),
-        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: Color(0xFFBCBCC0),width: 1),
+        borderRadius: BorderRadius.circular(5),
       ),
     );
 
@@ -60,115 +60,130 @@ class _OTPVerificationscreenState extends State<OTPVerificationscreen> {
         ),
         elevation: 0,
       ),
-      body: Container(
-        margin: EdgeInsets.only(left: 25, right: 25),
-        alignment: Alignment.center,
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                'assets/images/logo.png',
-                width: 150,
-                height: 150,
-              ),
-              SizedBox(
-                height: 25,
-              ),
-              Text(
-                "Phone Verification",
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                "We need to register your phone without getting started!",
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: 120,
+          ),
+          Container(
+            height: 67,
+            width: 179,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('assets/images/full_logo_black.png'),
+                  fit: BoxFit.cover),
+            ),
+          ),
+          const Spacer(flex: 1,),
+
+          SizedBox(
+            height: 30,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 35.0, vertical: 10),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Enter OTP',
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 18,
+                  fontFamily: 'SourceSansPro',
+                  fontWeight: FontWeight.w600,
                 ),
-                textAlign: TextAlign.center,
               ),
-              SizedBox(
-                height: 30,
-              ),
-              Pinput(
-                length: 6,
-                defaultPinTheme: defaultPinTheme,
-                focusedPinTheme: focusedPinTheme,
-                submittedPinTheme: submittedPinTheme,
-                onChanged: (value) {
-                  otpcode = value;
-                },
-                showCursor: true,
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                width: double.infinity,
-                height: 45,
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green.shade600,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10))),
-                    onPressed: () async {
-                      setState(() {
-                        isLoading = true;
-                      });
-                      try {
-                        if (otpcode == null) {
-                          throw Exception('OTP code cannot be null');
-                        }
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32.0,vertical: 16),
+            child: Pinput(
+              length: 6,
+              defaultPinTheme: defaultPinTheme,
+              focusedPinTheme: focusedPinTheme,
+              submittedPinTheme: submittedPinTheme,
+              onChanged: (value) {
+                otpcode = value;
+              },
+              showCursor: true,
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32.0),
+            child: SizedBox(
+              width: double.infinity,
+              height: 55,
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green.shade600,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10))),
+                  onPressed: () async {
+                    setState(() {
+                      isLoading = true;
+                    });
+                    try {
+                      if (otpcode == null) {
+                        throw Exception('OTP code cannot be null');
+                      }
 
-                        PhoneAuthCredential credential =
-                            PhoneAuthProvider.credential(
-                                verificationId: widget.VerificationId,
-                                smsCode: otpcode);
-                        UserCredential userCredential =
-                            await auth.signInWithCredential(credential);
-                        if (userCredential != null) {
+                      PhoneAuthCredential credential =
+                          PhoneAuthProvider.credential(
+                              verificationId: widget.VerificationId,
+                              smsCode: otpcode);
+                      UserCredential userCredential =
+                          await auth.signInWithCredential(credential);
+                      if (userCredential != null) {
 
-                          setState(() {
-                            isLoading = false;
-                          });
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => TabsScreen()));
-                        }
-                      } on FirebaseAuthException catch (e) {
-                        String errorMessage = 'Something went wrong.';
-
-                        if (e.code == 'invalid-verification-code') {
-                          errorMessage = 'Invalid verification code.';
-                        } else if (e.code == 'session-expired') {
-                          errorMessage =
-                              'Verification session expired. Please try again.';
-                        }
                         setState(() {
                           isLoading = false;
                         });
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text(errorMessage),
-                            backgroundColor: Colors.red.withOpacity(0.9),
-                            elevation: 2,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            behavior: SnackBarBehavior.floating,
-                            duration: Duration(seconds: 2)));
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => TabsScreen()));
                       }
-                    },
-                    child: isLoading == true
-                        ? const CircularProgressIndicator(
-                            color: Colors.white,
-                          )
-                        : const Text("Verify Phone Number")),
-              ),
-            ],
+                    } on FirebaseAuthException catch (e) {
+                      String errorMessage = 'Something went wrong.';
+
+                      if (e.code == 'invalid-verification-code') {
+                        errorMessage = 'Invalid verification code.';
+                      } else if (e.code == 'session-expired') {
+                        errorMessage =
+                            'Verification session expired. Please try again.';
+                      }
+                      setState(() {
+                        isLoading = false;
+                      });
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text(errorMessage),
+                          backgroundColor: Colors.red.withOpacity(0.9),
+                          elevation: 2,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          behavior: SnackBarBehavior.floating,
+                          duration: Duration(seconds: 2)));
+                    }
+                  },
+                  child: isLoading == true
+                      ? const CircularProgressIndicator(
+                          color: Colors.white,
+                        )
+                      : const Text(
+                    "Next",
+                    style: TextStyle(
+                        fontFamily: 'Source Sans Pro',
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18,
+                        color: Color(0xFFFFFFFF)),
+                  )),
+
+            ),
           ),
-        ),
+          const Spacer(flex: 2,)
+        ],
       ),
     );
   }
