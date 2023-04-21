@@ -17,9 +17,9 @@ class projectDetailsMembersTab extends StatelessWidget {
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection('members')
-            .where('id',whereIn: membersIDs)                        // Replace with your collection name
+            .where('id',
+                whereIn: membersIDs) // Replace with your collection name
             .snapshots(),
-
         builder: (ctx, membersnapshot) {
           if (membersnapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
@@ -38,17 +38,16 @@ class projectDetailsMembersTab extends StatelessWidget {
                   imageUrl: memberdata['memberImageUrl']))
               .toList();
 
-
           return ListView.builder(
-            itemCount:membersList?.length,
+            itemCount: membersList?.length,
             itemBuilder: (context, i) => ProfileMenuWidget(
-              title:  membersList![i].name ,
-              imageUrl:membersList[i].imageUrl ,
+              title: membersList![i].name,
+              imageUrl: membersList[i].imageUrl,
               onPress: () {},
+              subtitle: i == 0 ? 'Team Leader' : '',
             ),
           );
         },
-
       ),
     );
   }
@@ -75,19 +74,20 @@ class ProfileMenuWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      contentPadding: EdgeInsets.symmetric(horizontal: 25),
       onTap: onPress,
       leading: Container(
-          width: 40,
-          height: 40,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.horizontal(),
-          ),
-          child: CircleAvatar(
-            radius: 9,
-            backgroundColor: Colors.grey.shade100,
-            backgroundImage:
-                NetworkImage(imageUrl),
-          )),
+        width: 40,
+        height: 40,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.horizontal(),
+        ),
+        child: CircleAvatar(
+          radius: 9,
+          backgroundColor: Colors.grey.shade100,
+          backgroundImage: NetworkImage(imageUrl),
+        ),
+      ),
       title: Text(
         title,
         style: TextStyle(
@@ -106,8 +106,8 @@ class ProfileMenuWidget extends StatelessWidget {
       ),
       trailing: endIcon
           ? Container(
-              width: 40,
-              height: 40,
+              // width: 40,
+              // height: 40,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.horizontal(),
               ),
