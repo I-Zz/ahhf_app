@@ -30,8 +30,6 @@ class _FeedTabCardState extends State<FeedTabCard> {
   CollectionReference feedcollectionref =
       FirebaseFirestore.instance.collection('feeds');
 
-
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -42,7 +40,7 @@ class _FeedTabCardState extends State<FeedTabCard> {
           Padding(
             padding: const EdgeInsets.only(top: 10.0, bottom: 15.0),
             child: Container(
-              height: 385,
+              // height: 385,
               width: double.infinity,
               margin: EdgeInsets.symmetric(horizontal: 18),
               //padding: EdgeInsets.all(10),
@@ -95,38 +93,62 @@ class _FeedTabCardState extends State<FeedTabCard> {
                   SizedBox(
                     height: 10,
                   ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Container(
-                        width: 300,
-                        height: 69,
-                        child: Text(widget.description),
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
+                  // Row(
+                  //   children: [
+                  //     SizedBox(
+                  //       width: 20,
+                  //     ),
+                  //     Container(
+                  //       width: 300,
+                  //       height: 69,
+                  //       child: Text(widget.description),
+                  //     ),
+                  //     SizedBox(
+                  //       width: 5,
+                  //     ),
 
-                      //  ${DateFormat('hh:mm a').format(DateTime(2022, 1, 1, EventItem.EventTime.hour, EventItem.EventTime.minute))
-                    ],
+                  //     //  ${DateFormat('hh:mm a').format(DateTime(2022, 1, 1, EventItem.EventTime.hour, EventItem.EventTime.minute))
+                  //   ],
+                  // ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    // width: 300,
+                    // height: 69,
+
+                    child: Text(widget.description),
+                    // child: Text(
+                    //     "The future of India lies in its villages - Mahatma Gandhi. AHHF is here with its 'Tribal and Rural Areas Education Project'. Stay Tuned! Together we can!."),
                   ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 26,
-                      ),
-                      Image(
-                        image: NetworkImage(widget.imageUrl),
-                        height: 203,
-                        width: 294,
-                      ),
-                      SizedBox(
-                        width: 9,
-                      ),
-                    ],
+                  SizedBox(height: 10),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(5),
+                    child: Image(
+                      image: NetworkImage(widget.imageUrl),
+
+                      // height: 203,
+                      // width: 100,
+                      // width: double.infinity,
+                      // width: double.maxFinite,
+                      fit: BoxFit.fitWidth,
+                    ),
                   ),
+                  // Row(
+                  //   children: [
+                  //     SizedBox(
+                  //       width: 26,
+                  //     ),
+                  //     Image(
+                  //       image: NetworkImage(widget.imageUrl),
+                  //       // height: 203,
+                  //       // width: double.infinity,
+                  //       // width: double.maxFinite,
+                  //       fit: BoxFit.fitWidth,
+                  //     ),
+                  //     SizedBox(
+                  //       width: 9,
+                  //     ),
+                  //   ],
+                  // ),
                   Row(
                     children: [
                       SizedBox(
@@ -147,13 +169,12 @@ class _FeedTabCardState extends State<FeedTabCard> {
                               widget.totalLikes++;
                             }
                           });
-                          await feedcollectionref
-                              .doc(widget.feedID)
-                              .update({'totalLikes': widget.totalLikes,
-                                        'likes': widget.likes});
+                          await feedcollectionref.doc(widget.feedID).update({
+                            'totalLikes': widget.totalLikes,
+                            'likes': widget.likes
+                          });
                         },
                       ),
-
                       Text(
                         widget.totalLikes.toString(),
                         style: TextStyle(color: Colors.grey[600], fontSize: 13),
