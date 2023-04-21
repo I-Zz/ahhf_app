@@ -1,21 +1,24 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class FeedTabItems with ChangeNotifier {
-  final String image;
-  final String title;
+class FeedModel with ChangeNotifier {
+  final String imageUrl;
+  final String id;
   final String description;
-  final DateTime time;
+  final String dateTime;
+  final String projectID;
   bool likes;
-  final String image_text;
-  final int liked_count;
-  FeedTabItems({
+
+  final int totalLikes;
+  FeedModel({
     required this.description,
-    required this.time,
-    required this.image,
-    required this.title,
+    required this.dateTime,
+    required this.id,
+    required this.projectID,
+    required this.imageUrl,
     this.likes = false,
-    required this.image_text,
-    required this.liked_count,
+
+    required this.totalLikes,
   });
 }
 
@@ -23,41 +26,38 @@ class FeedTabProvider with ChangeNotifier {
   // for I have mark ProjectDetailsEventTabProvider widget in ProjectDetailsEvent_provider file with
   // changeNotifier
 
-  List<FeedTabItems> _items = [
-    FeedTabItems(
-      description:
-          'The future of India lies in its villages. - Mahatma Gandhi.🙌🏻 AHHF is here with its ‘Tribal and Rural Areas Education Project’. 😍  Stay tuned! ✌🏻Together we can!',
-      title: 'AHHF',
-      time: DateTime(2023, 2, 15),
-      image: 'assets/images/logo.png',
-      image_text: 'assets/images/school_children.png',
-      liked_count: 29,
-    ),
-    FeedTabItems(
-      description:
-          'The future of India lies in its villages. - Mahatma Gandhi.🙌🏻 AHHF is here with its ‘Tribal and Rural Areas Education Project’. 😍  Stay tuned! ✌🏻Together we can!',
-      title: 'AHHF',
-      time: DateTime(2023, 2, 15),
-      image: 'assets/images/logo.png',
-      image_text: 'assets/images/school_children.png',
-      liked_count: 29,
-    ),
-    FeedTabItems(
-      description:
-          'The future of India lies in its villages. - Mahatma Gandhi.🙌🏻 AHHF is here with its ‘Tribal and Rural Areas Education Project’. 😍  Stay tuned! ✌🏻Together we can!',
-      title: 'AHHF',
-      time: DateTime(2023, 2, 15),
-      image: 'assets/images/logo.png',
-      image_text: 'assets/images/school_children.png',
-      liked_count: 29,
-    ),
+  List<FeedModel> _feeds = [
+
   ];
 
-  List<FeedTabItems> get items {
-    return [..._items];
+  List<FeedModel> get feeds {
+    return [..._feeds];
   }
 
-  void addEventTabItems() {
-    notifyListeners();
+  Future<void> fetchAndSetupFeeds() async {
+    await FirebaseFirestore.instance
+        .collection('feeds')
+        .snapshots()
+        .listen((feeds) {
+      List<FeedModel> loadedFeeds = [];
+
+      feeds.docs.forEach((eachfeed) {
+        print('adding feed items');
+        loadedFeeds.add(FeedModel(
+          id: eachfeed.id,
+            description: eachfeed['description'],
+            dateTime: eachfeed['dateTime'],
+            projectID: eachfeed['projectID'],
+            imageUrl: eachfeed['imageUrl'],
+            totalLikes: eachfeed['totalLikes']));
+      });
+      print('${loadedFeeds.length} thsil ');
+      _feeds=loadedFeeds;
+      print('${_feeds.length} this feed length');
+    });
+
+
   }
 }
+
+

@@ -24,7 +24,7 @@ class _HomePageTabsScreenState extends State<HomePageTabsScreen>
       body: MultiProvider(
         providers: [
           ChangeNotifierProvider.value(value: ProjectDetailsEventTabProvider()),
-          ChangeNotifierProvider.value(value: FeedTabProvider())
+
         ],
         child: Column(
           children: [

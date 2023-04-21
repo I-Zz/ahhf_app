@@ -1,25 +1,26 @@
-import 'package:ahhf_app/provider/feedProvider.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../widgets/FeedTabCard.dart';
 
-class feedTab extends StatelessWidget {
-  const feedTab({Key? key}) : super(key: key);
+import 'FeedTabCard.dart';
+
+class projectDetailsFeedTab extends StatefulWidget {
+  final String projectID;
+  projectDetailsFeedTab({required this.projectID});
 
   @override
+  State<projectDetailsFeedTab> createState() => _projectDetailsFeedTabState();
+}
+
+class _projectDetailsFeedTabState extends State<projectDetailsFeedTab> {
+  @override
   Widget build(BuildContext context) {
-    // I have added this provider listener to listen the changes in Events Items List
-
-    // final FeedTabItems = Provider.of<FeedTabProvider>(context);
-    // print('${FeedTabItems.feeds.length} THSIDF');
-
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(bottom: 5),
         child: StreamBuilder(
           stream: FirebaseFirestore.instance
-              .collection('feeds')
+              .collection('feeds').where('projectID',isEqualTo:widget.projectID )
               .snapshots(),
           builder: (ctx,snapshot){
             if(snapshot.connectionState == ConnectionState.waiting){
