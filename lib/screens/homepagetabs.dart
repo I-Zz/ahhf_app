@@ -21,53 +21,47 @@ class _HomePageTabsScreenState extends State<HomePageTabsScreen>
     TabController _tabcontroller = TabController(length: 2, vsync: this);
     return Scaffold(
       appBar: AppBarCommon('Anand'),
-      body: MultiProvider(
-        providers: [
-          ChangeNotifierProvider.value(value: ProjectDetailsEventTabProvider()),
-
-        ],
-        child: Column(
-          children: [
-            Container(
-              color: Color.fromRGBO(255, 255, 255, 1),
-              child: TabBar(
-                controller: _tabcontroller,
-                isScrollable: false,
-                labelColor: Color(0xFF428FD4),
-                unselectedLabelColor: Color.fromRGBO(130, 130, 130, 50),
-                unselectedLabelStyle: TextStyle(
-                  fontFamily: 'Montserrat',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 15,
-                ),
-                labelStyle: TextStyle(
-                  fontFamily: 'Montserrat',
-                  fontWeight: FontWeight.w600,
-                  fontSize: 15,
-                ),
-                labelPadding: const EdgeInsets.symmetric(horizontal: 25),
-                tabs: [
-                  Tab(
-                    child: Text('Feed'),
-                  ),
-                  Tab(
-                    child: Text(
-                      'Events',
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Expanded(
-                child: TabBarView(
+      body: Column(
+        children: [
+          Container(
+            color: Color.fromRGBO(255, 255, 255, 1),
+            child: TabBar(
               controller: _tabcontroller,
-              children: [
-                feedTab(),
-                HomePageEventScreen(),
+              isScrollable: false,
+              labelColor: Color(0xFF428FD4),
+              unselectedLabelColor: Color.fromRGBO(130, 130, 130, 50),
+              unselectedLabelStyle: TextStyle(
+                fontFamily: 'Montserrat',
+                fontWeight: FontWeight.w400,
+                fontSize: 15,
+              ),
+              labelStyle: TextStyle(
+                fontFamily: 'Montserrat',
+                fontWeight: FontWeight.w600,
+                fontSize: 15,
+              ),
+              labelPadding: const EdgeInsets.symmetric(horizontal: 25),
+              tabs: [
+                Tab(
+                  child: Text('Feed'),
+                ),
+                Tab(
+                  child: Text(
+                    'Events',
+                  ),
+                )
               ],
-            ))
-          ],
-        ),
+            ),
+          ),
+          Expanded(
+              child: TabBarView(
+            controller: _tabcontroller,
+            children: [
+              feedTab(),
+              HomePageEventScreen(),
+            ],
+          ))
+        ],
       ),
     );
   }

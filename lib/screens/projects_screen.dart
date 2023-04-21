@@ -11,18 +11,14 @@ class ProjectScreen extends StatelessWidget {
   static const String id = 'Projectspage';
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (ctx) => Project_screen_provider(),
-      // create: (ctx) => (),
-      child: Scaffold(
-        backgroundColor: Color.fromRGBO(166, 166, 166, 0.05),
-        //backgroundColor: Colors.black,
-        appBar: AppBarCommon(
-          'Anand',
-        ),
-
-        body: ProjectScreenList(),
+    return Scaffold(
+      backgroundColor: Color.fromRGBO(166, 166, 166, 0.05),
+      //backgroundColor: Colors.black,
+      appBar: AppBarCommon(
+        'Anand',
       ),
+
+      body: ProjectScreenList(),
     );
   }
 }
