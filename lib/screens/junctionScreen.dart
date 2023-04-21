@@ -124,6 +124,26 @@ class _CreateOrTabScreenState extends State<CreateOrTabScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // return FutureBuilder(
+    //   future: Provider.of<CurrentUser>(context, listen: false)
+    //       .userExists(FirebaseAuth.instance.currentUser),
+    //   builder: (context, snapshot) {
+    //     if (snapshot.connectionState == ConnectionState.waiting) {
+    //       return Center(
+    //         child: CircularProgressIndicator(),
+    //       );
+    //     } else if (snapshot.hasData) {
+    //       if (snapshot.data == true) {
+    //         return TabsScreen();
+    //       } else {
+    //         return CreateProfileScreen();
+    //       }
+    //     }
+    //     return Center(
+    //       child: Text('Something went wrong'),
+    //     );
+    //   },
+    // );
     return TabsScreen();
   }
 }
