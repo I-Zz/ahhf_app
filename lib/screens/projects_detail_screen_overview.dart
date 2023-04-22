@@ -18,7 +18,7 @@ class ProjectsDetailScreen extends StatefulWidget {
   static const String id = 'ProjectsDetailScreen';
   final String projectID;
   final AllProjects allProjects;
-  ProjectsDetailScreen({required this.projectID,required this.allProjects});
+  ProjectsDetailScreen({required this.projectID, required this.allProjects});
 
   @override
   State<ProjectsDetailScreen> createState() => _ProjectsDetailScreenState();
@@ -28,7 +28,6 @@ class _ProjectsDetailScreenState extends State<ProjectsDetailScreen>
     with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-
     TabController _tabcontroller = TabController(length: 4, vsync: this);
     return Scaffold(
       appBar: AppBar(

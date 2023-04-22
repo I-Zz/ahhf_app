@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class AppBarCommon extends StatelessWidget implements PreferredSizeWidget {
   String? name;
   bool isHome;
   AppBarCommon(this.name, this.isHome);
+
+  final String donationPageUrl = 'https://pages.razorpay.com/ahhf-donation';
 
   String displayUserName() {
     List<String> splittedName;
@@ -22,6 +24,16 @@ class AppBarCommon extends StatelessWidget implements PreferredSizeWidget {
       }
     }
     return userName;
+  }
+
+  _launchURL() async {
+    const url = 'https://pages.razorpay.com/ahhf-donation';
+    final uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   @override
@@ -82,7 +94,11 @@ class AppBarCommon extends StatelessWidget implements PreferredSizeWidget {
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),
-                onPressed: () {},
+                // onPressed: _launchURL,
+                onPressed: () {
+                  // launchUrlString(donationPageUrl);
+                  launch(donationPageUrl);
+                },
                 child: const Padding(
                   padding: EdgeInsets.symmetric(
                     vertical: 4,
