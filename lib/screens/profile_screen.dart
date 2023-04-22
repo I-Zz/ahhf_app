@@ -140,7 +140,7 @@ class ProfileScreen extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => PersonalDetails(),
+                      builder: (context) => PersonalDetails(userData),
                     ));
               },
             ),
