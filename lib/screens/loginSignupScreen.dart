@@ -112,38 +112,38 @@ class _MyloginState extends State<Mylogin> {
                 ),
               ),
               const SizedBox(height: 15),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: Color.fromRGBO(51, 51, 51, 1),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                onPressed: () {
-                  Navigator.pushNamed(context, LoginWithEmail.id);
-                },
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
-                  child: Row(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            top: 8, bottom: 8, left: 10, right: 15),
-                        child: Icon(
-                          Icons.email_sharp,
-                          color: Colors.white,
-                        ),
-                      ),
-                      Text(
-                        'Login with email',
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 15),
+              // ElevatedButton(
+              //   style: ElevatedButton.styleFrom(
+              //     primary: Color.fromRGBO(51, 51, 51, 1),
+              //     shape: RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.circular(10),
+              //     ),
+              //   ),
+              //   onPressed: () {
+              //     Navigator.pushNamed(context, LoginWithEmail.id);
+              //   },
+              //   child: Padding(
+              //     padding:
+              //         const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
+              //     child: Row(
+              //       children: <Widget>[
+              //         Padding(
+              //           padding: const EdgeInsets.only(
+              //               top: 8, bottom: 8, left: 10, right: 15),
+              //           child: Icon(
+              //             Icons.email_sharp,
+              //             color: Colors.white,
+              //           ),
+              //         ),
+              //         Text(
+              //           'Login with email',
+              //           style: TextStyle(fontSize: 18),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
+              // const SizedBox(height: 15),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary: Color.fromRGBO(51, 51, 51, 1),

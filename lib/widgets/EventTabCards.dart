@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class EventTabCards extends StatelessWidget {
   final String imageUrl;
@@ -137,7 +138,7 @@ class EventTabCards extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   Row(
@@ -147,8 +148,26 @@ class EventTabCards extends StatelessWidget {
                         height: 34,
                         width: 138,
                         child: ElevatedButton(
-                          onPressed: () {},
-                          child: Text(
+                          onPressed: () {
+                            showModalBottomSheet<dynamic>(
+                              context: context,
+                              builder: (context) => BottomSheetWidget(),
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(20),
+                                ),
+                              ),
+                              constraints: BoxConstraints.loose(
+                                Size(MediaQuery.of(context).size.width,
+                                    MediaQuery.of(context).size.height * 0.25),
+                              ),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.black,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16.0))),
+                          child: const Text(
                             'INTERESTED',
                             style: TextStyle(
                               color: Colors.white,
@@ -157,10 +176,6 @@ class EventTabCards extends StatelessWidget {
                               fontSize: 12,
                             ),
                           ),
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.black,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(16.0))),
                         ),
                       ),
                       SizedBox(
@@ -206,6 +221,95 @@ class EventTabCards extends StatelessWidget {
               ),
             ),
           )
+        ],
+      ),
+    );
+  }
+}
+
+class BottomSheetWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: Column(
+        // crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 100,
+            height: 5,
+            decoration: BoxDecoration(
+              color: Colors.grey,
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+            ),
+          ),
+          const Divider(),
+          Text(
+            'Contact Details:',
+            style: TextStyle(
+              fontFamily: 'Montserrat',
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const Divider(),
+          Row(
+            children: [
+              Icon(Icons.call),
+              const SizedBox(width: 15),
+              Text(
+                'Contact Number: ',
+                style: TextStyle(
+                  fontFamily: 'Montserrat',
+                  fontSize: 15,
+                  // fontWeight: FontWeight.bold,
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  const number = '+919423917738';
+                  launch('tel://$number');
+                },
+                child: Text(
+                  '+91 94239 17738',
+                  style: TextStyle(
+                    fontFamily: 'Montserrat',
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const Divider(),
+          Row(
+            children: [
+              Icon(Icons.email),
+              const SizedBox(width: 15),
+              Text(
+                'Email: ',
+                style: TextStyle(
+                  fontFamily: 'Montserrat',
+                  fontSize: 15,
+                  // fontWeight: FontWeight.bold,
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  const email = 'hi@approach.org.in';
+                  launch('mailto:$email');
+                },
+                child: Text(
+                  'hi@approach.org.in',
+                  style: TextStyle(
+                    fontFamily: 'Montserrat',
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
