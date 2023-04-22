@@ -229,15 +229,6 @@ class projectDetailsOverviewTab extends StatelessWidget {
                     const SizedBox(width: 15),
                     Expanded(
                       child: ElevatedButton(
-                        child: Text(
-                          'DONATE NOW',
-                          style: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.w600,
-                            fontSize: 9,
-                            color: Color.fromRGBO(0, 0, 0, 1),
-                          ),
-                        ),
                         onPressed: () {
                           launch(donationPageUrl);
                         },
@@ -247,6 +238,15 @@ class projectDetailsOverviewTab extends StatelessWidget {
                           backgroundColor: Color.fromRGBO(241, 200, 76, 1),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                        child: const Text(
+                          'DONATE NOW',
+                          style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.w600,
+                            fontSize: 9,
+                            color: Color.fromRGBO(0, 0, 0, 1),
                           ),
                         ),
                       ),

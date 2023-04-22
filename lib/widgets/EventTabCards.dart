@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
+import 'package:share_plus/share_plus.dart';
 
 class EventTabCards extends StatelessWidget {
   final String imageUrl;
@@ -8,13 +9,12 @@ class EventTabCards extends StatelessWidget {
   final String EventVenue;
   final String title;
 
-
-  EventTabCards(
-      {required this.dateTime,
-      required this.imageUrl,
-      required this.title,
-      required this.EventVenue,
-     });
+  EventTabCards({
+    required this.dateTime,
+    required this.imageUrl,
+    required this.title,
+    required this.EventVenue,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -167,17 +167,30 @@ class EventTabCards extends StatelessWidget {
                         height: 34,
                         width: 138,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            const donationWebLink =
+                                'https://pages.razorpay.com/ahhf-donation';
+                            final text =
+                                "AHHF is conducting a $title event. \n\nVenue: $EventVenue \nDate-Time: $dateTime \nJoin and Help us make it a Success! \n\nDonate here: $donationWebLink";
+                            await Share.share(text);
+                          },
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18.0),
+                                  side: BorderSide(color: Colors.black))),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              Text('SHARE',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 12,
-                                  )),
+                            children: const <Widget>[
+                              Text(
+                                'SHARE',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12,
+                                ),
+                              ),
                               Icon(
                                 Icons.share,
                                 color: Colors.black,
@@ -185,11 +198,6 @@ class EventTabCards extends StatelessWidget {
                               )
                             ],
                           ),
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(18.0),
-                                  side: BorderSide(color: Colors.black))),
                         ),
                       )
                     ],
