@@ -1,4 +1,4 @@
-import 'package:ahhf_app/provider/project_screen_provider.dart';
+
 import 'package:ahhf_app/widgets/project_screen_list.dart';
 import 'package:provider/provider.dart';
 
@@ -13,16 +13,12 @@ class ProjectScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var userName = Provider.of<CurrentUser>(context).getUserName();
-    return ChangeNotifierProvider(
-      create: (ctx) => Project_screen_provider(),
-      // create: (ctx) => (),
-      child: Scaffold(
-        backgroundColor: Color.fromRGBO(166, 166, 166, 0.05),
-        //backgroundColor: Colors.black,
-        appBar: AppBarCommon(userName, false),
+    return Scaffold(
+      backgroundColor: Color.fromRGBO(166, 166, 166, 0.05),
+      //backgroundColor: Colors.black,
+      appBar: AppBarCommon(userName, false),
 
-        body: ProjectScreenList(),
-      ),
+      body: ProjectScreenList(),
     );
   }
 }
