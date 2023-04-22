@@ -2,6 +2,7 @@ import 'package:ahhf_app/provider/member.dart';
 import 'package:ahhf_app/provider/project.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import '../templates/animation_template.dart';
 
 class projectDetailsMembersTab extends StatelessWidget {
   final String projectID;
@@ -22,7 +23,10 @@ class projectDetailsMembersTab extends StatelessWidget {
             .snapshots(),
         builder: (ctx, membersnapshot) {
           if (membersnapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return Center(
+              // child: CircularProgressIndicator(),
+              child: LogoAnimationScreen(),
+            );
           } else if (membersnapshot.hasError) {
             return Center(
               child: Text('Something went wrong'),

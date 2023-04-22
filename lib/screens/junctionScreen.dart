@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import './loginSignupScreen.dart';
 import '../provider/userAuth.dart';
 import '../provider/project.dart';
+import '../templates/animation_template.dart';
 
 class JunctionScreen extends StatefulWidget {
   static const String id = '/junction-screen';
@@ -60,7 +61,8 @@ class _JunctionScreenState extends State<JunctionScreen> {
         print(snapshot);
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
-            child: CircularProgressIndicator(),
+            // child: CircularProgressIndicator(),
+            child: LogoAnimationScreen(),
           );
         } else if (snapshot.hasData) {
 

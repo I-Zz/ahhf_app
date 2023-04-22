@@ -105,8 +105,13 @@ class _ProjectsDetailScreenState extends State<ProjectsDetailScreen>
                 allprojects: widget.allProjects,
               ),
               projectDetailsFeedTab(projectID: widget.projectID),
-              projectDetailsMembersTab(projectID: widget.projectID,allProjects: widget.allProjects,),
-              projectDetailsEventsTab(projectID: widget.projectID,),
+              projectDetailsMembersTab(
+                projectID: widget.projectID,
+                allProjects: widget.allProjects,
+              ),
+              projectDetailsEventsTab(
+                projectID: widget.projectID,
+              ),
             ],
           ))
         ],

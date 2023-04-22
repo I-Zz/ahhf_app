@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import './editProfileScreen.dart';
+import '../templates/animation_template.dart';
 
 class ProfileScreen extends StatelessWidget {
   // final user = FirebaseAuth.instance.currentUser;
@@ -166,6 +167,15 @@ class ProfileScreen extends StatelessWidget {
               onPress: () {
                 Provider.of<GoogleSignInProvider>(context, listen: false)
                     .logout();
+              },
+            ),
+            ProfileMenuWidget(
+              title: "Animation ",
+              icon: Icons.replay_outlined,
+              onPress: () {
+                showDialog(
+                    context: context,
+                    builder: (context) => LogoAnimationScreen());
               },
             ),
             // ProfileMenuWidget(

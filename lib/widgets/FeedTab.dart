@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../widgets/FeedTabCard.dart';
+import '../templates/animation_template.dart';
 
 class feedTab extends StatelessWidget {
   const feedTab({Key? key}) : super(key: key);
@@ -20,11 +21,12 @@ class feedTab extends StatelessWidget {
         builder: (ctx, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
-              child: CircularProgressIndicator(),
+              // child: CircularProgressIndicator(),
+              child: LogoAnimationScreen(),
             );
           } else if (snapshot.hasError) {
             return Center(
-              child: Text('Somthing Wrong wrong'),
+              child: Text('Somthing Wrong'),
             );
           }
           final FeedDataList = snapshot.data!.docs;

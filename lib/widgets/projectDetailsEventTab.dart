@@ -1,6 +1,7 @@
 import 'package:ahhf_app/widgets/EventTabCards.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import '../templates/animation_template.dart';
 
 class projectDetailsEventsTab extends StatelessWidget {
   final String projectID;
@@ -18,7 +19,8 @@ class projectDetailsEventsTab extends StatelessWidget {
         builder: (ctx, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
-              child: CircularProgressIndicator(),
+              // child: CircularProgressIndicator(),
+              child: LogoAnimationScreen(),
             );
           } else if (snapshot.hasError) {
             return Center(

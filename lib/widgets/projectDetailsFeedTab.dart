@@ -1,8 +1,8 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'FeedTabCard.dart';
+import '../templates/animation_template.dart';
 
 class projectDetailsFeedTab extends StatefulWidget {
   final String projectID;
@@ -18,23 +18,26 @@ class _projectDetailsFeedTabState extends State<projectDetailsFeedTab> {
     return Scaffold(
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
-            .collection('feeds').where('projectID',isEqualTo:widget.projectID )
+            .collection('feeds')
+            .where('projectID', isEqualTo: widget.projectID)
             .snapshots(),
-        builder: (ctx,snapshot){
-          if(snapshot.connectionState == ConnectionState.waiting){
-            return Center(child: CircularProgressIndicator(),);
-
-          }
-          else if(snapshot.hasError){
-            return Center(child: Text('Somthing Wrong wrong'),
+        builder: (ctx, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              // child: CircularProgressIndicator(),
+              child: LogoAnimationScreen(),
+            );
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text('Somthing Wrong wrong'),
             );
           }
-          final FeedDataList= snapshot.data!.docs;
-          return  ListView.builder(
+          final FeedDataList = snapshot.data!.docs;
+          return ListView.builder(
             itemCount: FeedDataList.length,
             itemBuilder: (ctx, i) => FeedTabCard(
-              feedID:FeedDataList[i].id,
-              likes:FeedDataList[i]['likes'] ,
+              feedID: FeedDataList[i].id,
+              likes: FeedDataList[i]['likes'],
               totalLikes: FeedDataList[i]['totalLikes'],
               dateTime: FeedDataList[i]['dateTime'],
               description: FeedDataList[i]['description'],
@@ -42,8 +45,6 @@ class _projectDetailsFeedTabState extends State<projectDetailsFeedTab> {
             ),
           );
         },
-
-
       ),
     );
   }

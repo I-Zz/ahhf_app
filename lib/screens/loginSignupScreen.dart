@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import './tabs_screen.dart';
+import '../templates/animation_template.dart';
 //import 'package:my_login/register.dart';
 
 class Mylogin extends StatefulWidget {
@@ -76,15 +77,18 @@ class _MyloginState extends State<Mylogin> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                onPressed: () {
-                  final googleProvider = Provider.of<GoogleSignInProvider>(
-                      context,
-                      listen: false);
-                  googleProvider.googleLogin();
+                onPressed: () async {
+                  showDialog(
+                      context: context,
+                      builder: (context) => LogoAnimationScreen());
+                  final googleProvider =
+                      Provider.of<GoogleSignInProvider>(context, listen: false);
+                  await googleProvider.googleLogin();
+                  Navigator.of(context).pop();
                 },
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 8.0, horizontal: 12),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
                   child: Row(
                     children: <Widget>[
                       Padding(
@@ -119,8 +123,8 @@ class _MyloginState extends State<Mylogin> {
                   Navigator.pushNamed(context, LoginWithEmail.id);
                 },
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 8.0, horizontal: 12),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
                   child: Row(
                     children: <Widget>[
                       Padding(
@@ -151,8 +155,8 @@ class _MyloginState extends State<Mylogin> {
                   Navigator.pushNamed(context, PhoneAuthentication.id);
                 },
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 8.0, horizontal: 12),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
                   child: Row(
                     children: <Widget>[
                       Padding(

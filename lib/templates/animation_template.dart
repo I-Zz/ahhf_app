@@ -92,58 +92,33 @@ class _LogoAnimationScreenState extends State<LogoAnimationScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Logo Animation'),
-      ),
-      body: Center(
-        child: ShaderMask(
-          shaderCallback: (Rect bounds) {
-            return LinearGradient(
-              colors: colors,
-              // stops: List.generate(
-              //   colors.length,
-              //   (index) => (index + 1) / colors.length,
-              // ),
-              // tileMode: TileMode.mirror,
-              begin: Alignment(-_controller.value, 0),
-              end: Alignment(1 - _controller.value, 0),
-              tileMode: TileMode.mirror,
-              transform: GradientRotation(0.20 * pi),
-            ).createShader(bounds);
-          },
-          blendMode: BlendMode.srcATop,
-          child: Image.asset(
-            'assets/images/logo_final.png',
-            width: 300,
-            height: 300,
-            colorBlendMode: BlendMode.modulate,
-            filterQuality: FilterQuality.high,
-            semanticLabel: 'Flutter Logo',
-            color: _colorAnimation.value,
-          ),
+    return Container(
+      color: Colors.transparent,
+      child: ShaderMask(
+        shaderCallback: (Rect bounds) {
+          return LinearGradient(
+            colors: colors,
+            // stops: List.generate(
+            //   colors.length,
+            //   (index) => (index + 1) / colors.length,
+            // ),
+            // tileMode: TileMode.mirror,
+            begin: Alignment(-_controller.value, 0),
+            end: Alignment(1 - _controller.value, 0),
+            tileMode: TileMode.mirror,
+            transform: GradientRotation(0.20 * pi),
+          ).createShader(bounds);
+        },
+        blendMode: BlendMode.srcATop,
+        child: Image.asset(
+          'assets/images/logo_final.png',
+          width: 300,
+          height: 300,
+          colorBlendMode: BlendMode.modulate,
+          filterQuality: FilterQuality.high,
+          semanticLabel: 'Flutter Logo',
+          color: _colorAnimation.value,
         ),
-        // child: ShaderMask(
-        //   shaderCallback: (Rect bounds) {
-        //     return LinearGradient(
-        //       colors: [_colorAnimation.value!, _colorAnimation.value!],
-        //       begin: Alignment.centerLeft,
-        //       end: Alignment.centerRight,
-        //       tileMode: TileMode.mirror,
-        //     ).createShader(bounds);
-        //   },
-        //   child: Center(
-        //     child: Image.asset(
-        //       'assets/images/logo_final.png',
-        //       width: 300,
-        //       height: 300,
-        //       colorBlendMode: BlendMode.modulate,
-        //       filterQuality: FilterQuality.high,
-        //       semanticLabel: 'Flutter Logo',
-        //       color: _colorAnimation.value,
-        //     ),
-        //   ),
-        // ),
       ),
     );
   }

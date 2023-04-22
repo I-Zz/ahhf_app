@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:ahhf_app/widgets/projectDetailsEventTab.dart';
 
 import '../widgets/EventTabCards.dart';
+import '../templates/animation_template.dart';
 
 class HomePageEventScreen extends StatelessWidget {
   const HomePageEventScreen({super.key});
@@ -17,7 +18,8 @@ class HomePageEventScreen extends StatelessWidget {
         builder: (ctx, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
-              child: CircularProgressIndicator(),
+              // child: CircularProgressIndicator(),
+              child: LogoAnimationScreen(),
             );
           } else if (snapshot.hasError) {
             return Center(
