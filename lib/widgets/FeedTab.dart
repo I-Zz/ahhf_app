@@ -15,34 +15,31 @@ class feedTab extends StatelessWidget {
     // print('${FeedTabItems.feeds.length} THSIDF');
 
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(bottom: 5, top: 10),
-        child: StreamBuilder(
-          stream: FirebaseFirestore.instance.collection('feeds').snapshots(),
-          builder: (ctx, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (snapshot.hasError) {
-              return Center(
-                child: Text('Somthing Wrong wrong'),
-              );
-            }
-            final FeedDataList = snapshot.data!.docs;
-            return ListView.builder(
-              itemCount: FeedDataList.length,
-              itemBuilder: (ctx, i) => FeedTabCard(
-                feedID: FeedDataList[i].id,
-                likes: FeedDataList[i]['likes'],
-                totalLikes: FeedDataList[i]['totalLikes'],
-                dateTime: FeedDataList[i]['dateTime'],
-                description: FeedDataList[i]['description'],
-                imageUrl: FeedDataList[i]['imageUrl'].toString(),
-              ),
+      body: StreamBuilder(
+        stream: FirebaseFirestore.instance.collection('feeds').snapshots(),
+        builder: (ctx, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: CircularProgressIndicator(),
             );
-          },
-        ),
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text('Somthing Wrong wrong'),
+            );
+          }
+          final FeedDataList = snapshot.data!.docs;
+          return ListView.builder(
+            itemCount: FeedDataList.length,
+            itemBuilder: (ctx, i) => FeedTabCard(
+              feedID: FeedDataList[i].id,
+              likes: FeedDataList[i]['likes'],
+              totalLikes: FeedDataList[i]['totalLikes'],
+              dateTime: FeedDataList[i]['dateTime'],
+              description: FeedDataList[i]['description'],
+              imageUrl: FeedDataList[i]['imageUrl'].toString(),
+            ),
+          );
+        },
       ),
     );
   }

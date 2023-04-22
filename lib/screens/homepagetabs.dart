@@ -33,7 +33,7 @@ class _HomePageTabsScreenState extends State<HomePageTabsScreen>
                   color: Color.fromRGBO(0, 0, 0, 0.06),
                   blurRadius: 20,
                   spreadRadius: 20,
-                  offset: Offset(10, 10),
+                  offset: Offset(0, 0),
                 ),
               ],
             ),
