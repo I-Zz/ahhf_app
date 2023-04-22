@@ -41,34 +41,34 @@ class _MyloginState extends State<Mylogin> {
               ),
               // const SizedBox(),
               const Spacer(),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: Color.fromRGBO(59, 89, 152, 1),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                onPressed: () {},
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 8, horizontal: 12),
-                        child: Icon(
-                          Icons.facebook_outlined,
-                          color: Colors.white,
-                        ),
-                      ),
-                      Text(
-                        'Connect with Facebook',
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              // ElevatedButton(
+              //   style: ElevatedButton.styleFrom(
+              //     primary: Color.fromRGBO(59, 89, 152, 1),
+              //     shape: RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.circular(10),
+              //     ),
+              //   ),
+              //   onPressed: () {},
+              //   child: Padding(
+              //     padding: const EdgeInsets.all(8.0),
+              //     child: Row(
+              //       children: <Widget>[
+              //         Padding(
+              //           padding: const EdgeInsets.symmetric(
+              //               vertical: 8, horizontal: 12),
+              //           child: Icon(
+              //             Icons.facebook_outlined,
+              //             color: Colors.white,
+              //           ),
+              //         ),
+              //         Text(
+              //           'Connect with Facebook',
+              //           style: TextStyle(fontSize: 18),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
               const SizedBox(height: 15),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(

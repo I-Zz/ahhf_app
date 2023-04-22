@@ -8,6 +8,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import './editProfileScreen.dart';
 import '../templates/animation_template.dart';
+import './aboutUsPage.dart';
+import './contactUsPage.dart';
 
 class ProfileScreen extends StatelessWidget {
   // final user = FirebaseAuth.instance.currentUser;
@@ -149,20 +151,42 @@ class ProfileScreen extends StatelessWidget {
                       ));
                 },
               ),
+              // ProfileMenuWidget(
+              //   title: "Donation",
+              //   icon: Icons.account_balance_wallet_outlined,
+              //   onPress: () {},
+              // ),
+              // ProfileMenuWidget(
+              //   title: "Notification ",
+              //   icon: Icons.notifications_active_outlined,
+              //   onPress: () {},
+              // ),
+              // ProfileMenuWidget(
+              //   title: "Settings ",
+              //   icon: Icons.settings_outlined,
+              //   onPress: () {},
+              // ),
               ProfileMenuWidget(
-                title: "Donation",
-                icon: Icons.account_balance_wallet_outlined,
-                onPress: () {},
+                title: "Contact Us ",
+                icon: Icons.call_outlined,
+                onPress: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => ContactUsPage(),
+                    ),
+                  );
+                },
               ),
               ProfileMenuWidget(
-                title: "Notification ",
-                icon: Icons.notifications_active_outlined,
-                onPress: () {},
-              ),
-              ProfileMenuWidget(
-                title: "Settings ",
-                icon: Icons.settings_outlined,
-                onPress: () {},
+                title: "About Us ",
+                icon: Icons.people_alt_outlined,
+                onPress: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => AboutUsPage(),
+                    ),
+                  );
+                },
               ),
               ProfileMenuWidget(
                 title: "Logout ",
