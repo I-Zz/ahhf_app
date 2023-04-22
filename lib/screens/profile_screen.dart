@@ -1,3 +1,4 @@
+import 'package:ahhf_app/authProvider/google_sign_in.dart';
 import 'package:ahhf_app/screens/personal_details.dart';
 import 'package:ahhf_app/provider/userAuth.dart';
 import 'package:ahhf_app/screens/loginSignupScreen.dart';
@@ -68,7 +69,7 @@ class ProfileScreen extends StatelessWidget {
                             child: Text(
                               // 'Anand B',
                               '${userData['name']}',
-                               textAlign: TextAlign.center,
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontFamily: 'Montserrat',
                                 fontSize: 20,
@@ -158,6 +159,14 @@ class ProfileScreen extends StatelessWidget {
               title: "Settings ",
               icon: Icons.settings_outlined,
               onPress: () {},
+            ),
+            ProfileMenuWidget(
+              title: "Logout ",
+              icon: Icons.logout,
+              onPress: () {
+                Provider.of<GoogleSignInProvider>(context, listen: false)
+                    .logout();
+              },
             ),
             // ProfileMenuWidget(
             //   title: "logout ",
