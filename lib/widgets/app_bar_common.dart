@@ -1,10 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class AppBarCommon extends StatelessWidget implements PreferredSizeWidget {
-  String name;
-  AppBarCommon(this.name);
+  String? name;
+  bool isHome;
+  AppBarCommon(this.name, this.isHome);
+
+  final String donationPageUrl = 'https://pages.razorpay.com/ahhf-donation';
+
+  String displayUserName() {
+    List<String> splittedName;
+    String userName = '';
+
+    if (name == null) {
+      userName = 'Anand';
+    } else {
+      splittedName = name!.split(" ");
+      if (splittedName[0].length < 3) {
+        userName = splittedName[0] + splittedName[1];
+      } else {
+        userName = splittedName[0];
+      }
+    }
+    return userName;
+  }
+
+  _launchURL() async {
+    const url = 'https://pages.razorpay.com/ahhf-donation';
+    final uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   Size get preferredSize => Size.fromHeight(82);
@@ -13,8 +43,18 @@ class AppBarCommon extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           color: Color.fromRGBO(255, 255, 255, 1),
+          boxShadow: [
+            isHome
+                ? const BoxShadow()
+                : BoxShadow(
+                    color: Color.fromRGBO(0, 0, 0, 0.06),
+                    blurRadius: 7,
+                    spreadRadius: 6,
+                    offset: Offset(0, 0),
+                  ),
+          ],
         ),
         padding: const EdgeInsets.symmetric(horizontal: 18),
         child: Row(
@@ -32,7 +72,8 @@ class AppBarCommon extends StatelessWidget implements PreferredSizeWidget {
                   ),
                 ),
                 Text(
-                  name,
+                  // name.toString(),
+                  displayUserName(),
                   style: const TextStyle(
                     fontSize: 20,
                     fontFamily: 'Montserrat',
@@ -53,7 +94,11 @@ class AppBarCommon extends StatelessWidget implements PreferredSizeWidget {
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),
-                onPressed: () {},
+                // onPressed: _launchURL,
+                onPressed: () {
+                  // launchUrlString(donationPageUrl);
+                  launch(donationPageUrl);
+                },
                 child: const Padding(
                   padding: EdgeInsets.symmetric(
                     vertical: 4,

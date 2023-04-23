@@ -1,10 +1,15 @@
+import 'package:ahhf_app/provider/userAuth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class PersonalDetails extends StatelessWidget {
-  const PersonalDetails({super.key});
+  // String? userId;
+  Map<String, String?> userData;
+  PersonalDetails(this.userData);
 
   @override
   Widget build(BuildContext context) {
+    // final userData = Provider.of<CurrentUser>(context, listen: false).getCompleteUserData;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -32,12 +37,23 @@ class PersonalDetails extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          DetailsText(title: "First Name", subtitle: "Anand "),
-          DetailsText(title: "Last Name", subtitle: "B"),
-          DetailsText(title: "Email", subtitle: "anand@gmail.com"),
-          DetailsText(title: "Date of Birth", subtitle: "Jan-10-1994"),
-          DetailsText(title: "Blood group", subtitle: "O+"),
-          DetailsText(title: "Address", subtitle: "Pune, Maharashtra, India"),
+          // DetailsText(title: "Name", subtitle: "Anand "),
+          // // DetailsText(title: "First Name", subtitle: "Anand "),
+          // // DetailsText(title: "Last Name", subtitle: "B"),
+          // DetailsText(title: "Email", subtitle: "anand@gmail.com"),
+          // DetailsText(title: "Date of Birth", subtitle: "Jan-10-1994"),
+          // DetailsText(title: "Blood group", subtitle: "O+"),
+          // DetailsText(title: "Address", subtitle: "Pune, Maharashtra, India"),
+
+          DetailsText(title: "Name", subtitle: userData['name'].toString()),
+          DetailsText(title: "Email", subtitle: userData['email'].toString()),
+          DetailsText(
+              title: "Date of Birth", subtitle: userData['dob'].toString()),
+          DetailsText(
+              title: "Blood group",
+              subtitle: userData['bloodGroup'].toString()),
+          DetailsText(
+              title: "Address", subtitle: userData['address'].toString()),
         ],
       ),
     );

@@ -10,7 +10,8 @@ class CurrentUser with ChangeNotifier {
   String? _userEmail = 'anand@gmail.com';
   // Uri? _userImageUrl;
   String? _userImageUrl;
-  DateTime? _dateOfBirth;
+  // DateTime? _dateOfBirth;
+  String? _dateOfBirth;
   String? _bloodGroup;
   String? _address;
 
@@ -54,6 +55,7 @@ class CurrentUser with ChangeNotifier {
         _userImageUrl = fetchedUser['imageUrl'];
         _bloodGroup = fetchedUser['bloodGroup'];
         _address = fetchedUser['address'];
+        _dateOfBirth = fetchedUser['dob'];
         flag = false;
         print('found the existing user ... ');
       }
@@ -65,6 +67,7 @@ class CurrentUser with ChangeNotifier {
         'imageUrl': user.photoURL,
         'bloodGroup': 'O+',
         'address': 'Pune, Maharashtra, India',
+        'dob': '1 Jan 2003',
       };
       print('sending user data to firebase firestore ... ');
       await FirebaseFirestore.instance
@@ -78,6 +81,7 @@ class CurrentUser with ChangeNotifier {
       _userImageUrl = user.photoURL;
       _bloodGroup = 'O+';
       _address = 'Pune, Maharashtra, India';
+      _dateOfBirth = '1 Jan 2003';
       print('setted user data, done.');
     }
 
@@ -92,6 +96,7 @@ class CurrentUser with ChangeNotifier {
     print(_userImageUrl);
     print(_bloodGroup);
     print(_address);
+    print(_dateOfBirth);
 
     // After this call the firebase using the userId
     // and find if this user's data is in the database
@@ -107,12 +112,35 @@ class CurrentUser with ChangeNotifier {
         .set(userData);
   }
 
+  String? getUserName() {
+    return _userName;
+  }
+
   Map<String, String?> get getProfileScreenUserData {
     return {
       'id': _userId,
       'name': _userName,
       'email': _userEmail,
       'imageUrl': _userImageUrl,
+      'address': _address,
+      'bloodGroup': _bloodGroup,
+      'dob': _dateOfBirth,
+    };
+  }
+
+  Map<String, String?> get getCompleteUserData {
+    print('personal Details: $_userName');
+    print('personal Details: $_userEmail');
+    print('personal Details: $_dateOfBirth');
+    print('personal Details: $_address');
+    return {
+      'id': _userId,
+      'name': _userName,
+      'email': _userEmail,
+      'imageUrl': _userImageUrl,
+      'address': _address,
+      'bloodGroup': _bloodGroup,
+      'dob': _dateOfBirth,
     };
   }
 }

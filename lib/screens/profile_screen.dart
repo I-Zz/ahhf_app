@@ -1,3 +1,4 @@
+import 'package:ahhf_app/authProvider/google_sign_in.dart';
 import 'package:ahhf_app/screens/personal_details.dart';
 import 'package:ahhf_app/provider/userAuth.dart';
 import 'package:ahhf_app/screens/loginSignupScreen.dart';
@@ -6,6 +7,9 @@ import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import './editProfileScreen.dart';
+import '../templates/animation_template.dart';
+import './aboutUsPage.dart';
+import './contactUsPage.dart';
 
 class ProfileScreen extends StatelessWidget {
   // final user = FirebaseAuth.instance.currentUser;
@@ -18,155 +22,191 @@ class ProfileScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
           //padding: const EdgeInsets.symmetric(vertical: 60),
-          child: Column(children: <Widget>[
-            Stack(
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(bottom: 20.0),
-                  alignment: Alignment.topCenter,
-                  height: 150.0,
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                          color: Color.fromRGBO(0, 0, 0, 0.06),
-                          blurRadius: 5,
-                          offset: const Offset(0, 10))
-                    ],
-                    color: Color.fromRGBO(255, 255, 255, 1),
+          child: Column(
+            children: <Widget>[
+              Stack(
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.only(bottom: 20.0),
+                    alignment: Alignment.topCenter,
+                    height: 150.0,
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                            color: Color.fromRGBO(0, 0, 0, 0.06),
+                            blurRadius: 5,
+                            offset: const Offset(0, 10))
+                      ],
+                      color: Color.fromRGBO(255, 255, 255, 1),
+                    ),
+                    //child: Image.asset("assets/bgImage.jpg"),
                   ),
-                  //child: Image.asset("assets/bgImage.jpg"),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 60),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          (userData['imageUrl'] == null)
-                              ? CircleAvatar(
-                                  radius: 82,
-                                  // backgroundImage:
-                                  //     AssetImage('assets/images/Profile.png'),
-                                  backgroundImage:
-                                      AssetImage('assets/images/Profile.png'),
-                                )
-                              : CircleAvatar(
-                                  radius: 82,
-                                  backgroundColor: Colors.grey,
-                                  // backgroundImage:
-                                  //     AssetImage('assets/images/Profile.png'),
-                                  backgroundImage: NetworkImage(
-                                      userData['imageUrl'] as String),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 60),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            (userData['imageUrl'] == null)
+                                ? CircleAvatar(
+                                    radius: 82,
+                                    // backgroundImage:
+                                    //     AssetImage('assets/images/Profile.png'),
+                                    backgroundImage:
+                                        AssetImage('assets/images/Profile.png'),
+                                  )
+                                : CircleAvatar(
+                                    radius: 82,
+                                    backgroundColor: Colors.grey,
+                                    // backgroundImage:
+                                    //     AssetImage('assets/images/Profile.png'),
+                                    backgroundImage: NetworkImage(
+                                        userData['imageUrl'] as String),
+                                  ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              child: Text(
+                                // 'Anand B',
+                                '${userData['name']}',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontFamily: 'Montserrat',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
                                 ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            // 'Anand B',
-                            '${userData['name']}',
-                            // textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontFamily: 'Montserrat',
-                              fontSize: 20,
-                              fontWeight: FontWeight.w600,
+                                overflow: TextOverflow.fade,
+                              ),
                             ),
-                            overflow: TextOverflow.fade,
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                            // 'anand@gmail.com',
-                            '${userData['email']}',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontFamily: 'Montserrat',
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                              color: Color.fromRGBO(130, 130, 130, 1),
+                            const SizedBox(
+                              height: 5,
                             ),
-                          ),
-                        ],
+                            Text(
+                              // 'anand@gmail.com',
+                              '${userData['email']}',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'Montserrat',
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: Color.fromRGBO(130, 130, 130, 1),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              SizedBox(
+                width: 110,
+                height: 30,
+                child: TextButton(
+                  onPressed: () {
+                    // Navigator.of(context).pushNamed(EditProfileScreen.id);
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => EditProfileScreen(
+                          userData['id'],
+                          userData['name'],
+                          userData['email'],
+                          userData['imageUrl'],
+                        ),
                       ),
-                    ],
+                    );
+                  },
+                  style: TextButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                          color: Colors.blue,
+                          width: 1,
+                          style: BorderStyle.solid),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
                   ),
-                )
-              ],
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            SizedBox(
-              width: 110,
-              height: 30,
-              child: TextButton(
-                onPressed: () {
-                  // Navigator.of(context).pushNamed(EditProfileScreen.id);
+                  child: Text('EDIT PROFILE',
+                      style: TextStyle(
+                          color: Colors.blue,
+                          fontSize: 12,
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.w600)),
+                ),
+              ),
+              ProfileMenuWidget(
+                title: "Personal Details",
+                icon: Icons.account_circle_outlined,
+                onPress: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PersonalDetails(userData),
+                      ));
+                },
+              ),
+              // ProfileMenuWidget(
+              //   title: "Donation",
+              //   icon: Icons.account_balance_wallet_outlined,
+              //   onPress: () {},
+              // ),
+              // ProfileMenuWidget(
+              //   title: "Notification ",
+              //   icon: Icons.notifications_active_outlined,
+              //   onPress: () {},
+              // ),
+              // ProfileMenuWidget(
+              //   title: "Settings ",
+              //   icon: Icons.settings_outlined,
+              //   onPress: () {},
+              // ),
+              ProfileMenuWidget(
+                title: "Contact Us ",
+                icon: Icons.call_outlined,
+                onPress: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => EditProfileScreen(
-                        userData['id'],
-                        userData['name'],
-                        userData['email'],
-                        userData['imageUrl'],
-                      ),
+                      builder: (context) => ContactUsPage(),
                     ),
                   );
                 },
-                style: TextButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                        color: Colors.blue, width: 1, style: BorderStyle.solid),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                ),
-                child: Text('EDIT PROFILE',
-                    style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 12,
-                        fontFamily: 'Montserrat',
-                        fontWeight: FontWeight.w600)),
               ),
-            ),
-            ProfileMenuWidget(
-              title: "Personal Details",
-              icon: Icons.account_circle_outlined,
-              onPress: () {
-                Navigator.push(
-                    context,
+              ProfileMenuWidget(
+                title: "About Us ",
+                icon: Icons.people_alt_outlined,
+                onPress: () {
+                  Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => PersonalDetails(),
-                    ));
-              },
-            ),
-            ProfileMenuWidget(
-              title: "Donation",
-              icon: Icons.account_balance_wallet_outlined,
-              onPress: () {},
-            ),
-            ProfileMenuWidget(
-              title: "Notification ",
-              icon: Icons.notifications_active_outlined,
-              onPress: () {},
-            ),
-            ProfileMenuWidget(
-              title: "Settings ",
-              icon: Icons.settings_outlined,
-              onPress: () {},
-            ),
-            // ProfileMenuWidget(
-            //   title: "logout ",
-            //   icon: Icons.settings_outlined,
-            //   onPress: () {
-            //     FirebaseAuth.instance.signOut();
-            //
-            //
-            //
-            //   },
-            // )
-          ]),
+                      builder: (context) => AboutUsPage(),
+                    ),
+                  );
+                },
+              ),
+              ProfileMenuWidget(
+                title: "Logout ",
+                icon: Icons.logout,
+                onPress: () {
+                  Provider.of<GoogleSignInProvider>(context, listen: false)
+                      .logout();
+                },
+              ),
+              // ProfileMenuWidget(
+              //   title: "Animation ",
+              //   icon: Icons.replay_outlined,
+              //   onPress: () {
+              //     showDialog(
+              //         context: context,
+              //         builder: (context) => LogoAnimationScreen());
+              //   },
+              // ),
+            ],
+          ),
         ),
       ),
     );

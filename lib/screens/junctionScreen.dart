@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:ahhf_app/provider/feedProvider.dart';
 import 'package:ahhf_app/screens/createProfileScreen.dart';
 import 'package:ahhf_app/screens/tabs_screen.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import 'package:provider/provider.dart';
 import './loginSignupScreen.dart';
 import '../provider/userAuth.dart';
 import '../provider/project.dart';
+import '../templates/animation_template.dart';
 
 class JunctionScreen extends StatefulWidget {
   static const String id = '/junction-screen';
@@ -41,6 +43,7 @@ class _JunctionScreenState extends State<JunctionScreen> {
 
   Future<bool> userExistenceFunction() async {
     final user = FirebaseAuth.instance.currentUser;
+
     return Provider.of<CurrentUser>(context, listen: false).userExists(user);
   }
 
@@ -58,9 +61,11 @@ class _JunctionScreenState extends State<JunctionScreen> {
         print(snapshot);
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
-            child: CircularProgressIndicator(),
+            // child: CircularProgressIndicator(),
+            child: LogoAnimationScreen(),
           );
         } else if (snapshot.hasData) {
+
           return CreateOrTabScreen();
           // } else if (snapshot.connectionState == ConnectionState.active) {
           // return FutureBuilder(
@@ -92,6 +97,7 @@ class _JunctionScreenState extends State<JunctionScreen> {
             child: Text('Something Went Wrong'),
           );
         } else {
+
           return Mylogin();
         }
       },
@@ -105,25 +111,50 @@ class CreateOrTabScreen extends StatefulWidget {
 }
 
 class _CreateOrTabScreenState extends State<CreateOrTabScreen> {
+
   @override
   void initState() {
-    Future.delayed(Duration.zero, () async {
-      final user = FirebaseAuth.instance.currentUser;
-      print('a');
-      await Provider.of<CurrentUser>(context, listen: false)
-          .setInitialUserData(user);
-      print('b');
-      await Provider.of<AllProjects>(context, listen: false)
-          .fetchAndSetupProjects();
-      print('c');
-      // userExistence =
-      //     Provider.of<CurrentUser>(context, listen: false).userExists(user);
-    });
     super.initState();
+    Future.wait([
+      Provider.of<CurrentUser>(context, listen: false)
+          .setInitialUserData(FirebaseAuth.instance.currentUser),
+
+      Provider.of<AllProjects>(context, listen: false)
+          .fetchAndSetupProjects(),
+      //Provider.of<FeedTabProvider>(context,listen: false).fetchAndSetupFeeds(),
+
+
+    ]).then((_) {
+      // Both asynchronous operations have completed, so it's safe to render the TabsScreen.
+      if (mounted) {
+        setState(() {});
+      }
+    });
   }
+
 
   @override
   Widget build(BuildContext context) {
+    // return FutureBuilder(
+    //   future: Provider.of<CurrentUser>(context, listen: false)
+    //       .userExists(FirebaseAuth.instance.currentUser),
+    //   builder: (context, snapshot) {
+    //     if (snapshot.connectionState == ConnectionState.waiting) {
+    //       return Center(
+    //         child: CircularProgressIndicator(),
+    //       );
+    //     } else if (snapshot.hasData) {
+    //       if (snapshot.data == true) {
+    //         return TabsScreen();
+    //       } else {
+    //         return CreateProfileScreen();
+    //       }
+    //     }
+    //     return Center(
+    //       child: Text('Something went wrong'),
+    //     );
+    //   },
+    // );
     return TabsScreen();
   }
 }

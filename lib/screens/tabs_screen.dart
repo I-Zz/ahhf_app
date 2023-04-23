@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../provider/feedProvider.dart';
 import '../provider/userAuth.dart';
 import '../screens/homepagetabs.dart';
 import '../screens/profile_screen.dart';
@@ -36,13 +37,15 @@ class _TabsScreenState extends State<TabsScreen> {
     //   Provider.of<AllProjects>(context, listen: false).fetchAndSetupProjects();
     // });
 
+
     _pages = [
       HomePageTabsScreen(),
       ProjectScreen(),
       ProfileScreen(),
     ];
-
     super.initState();
+
+
   }
 
   void _selectPage(int index) {

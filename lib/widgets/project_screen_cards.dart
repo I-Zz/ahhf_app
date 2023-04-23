@@ -1,4 +1,6 @@
+import 'package:ahhf_app/provider/project.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../screens/projects_detail_screen_overview.dart';
 import 'app_bar_common.dart';
 
@@ -6,14 +8,28 @@ class ProjectScreenCards extends StatelessWidget {
   final String image;
   final String titletext;
   final String subtitletext;
+  final String projectID;
 
-  ProjectScreenCards(this.titletext, this.subtitletext, this.image);
+  ProjectScreenCards(
+      {required this.titletext,
+      required this.subtitletext,
+      required this.image,
+      required this.projectID});
 
   @override
   Widget build(BuildContext context) {
+    var allprojects=Provider.of<AllProjects>(context,listen: false);
+
     return GestureDetector(
       onTap: (() {
-        Navigator.pushNamed(context, ProjectsDetailScreen.id);
+
+        Navigator.of(context).push(
+            // context,
+            MaterialPageRoute(
+                builder: (context) => ProjectsDetailScreen(
+                      projectID: projectID,
+                    allProjects: allprojects,
+                    )));
       }),
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -27,7 +43,7 @@ class ProjectScreenCards extends StatelessWidget {
               // ignore: prefer_const_constructors
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(image),
+                  image: NetworkImage(image),
                   fit: BoxFit.cover,
                 ),
                 borderRadius:
