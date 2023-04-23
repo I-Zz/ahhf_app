@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart';
@@ -159,7 +160,7 @@ class EventTabCards extends StatelessWidget {
                               ),
                               constraints: BoxConstraints.loose(
                                 Size(MediaQuery.of(context).size.width,
-                                    MediaQuery.of(context).size.height * 0.25),
+                                    MediaQuery.of(context).size.height * 0.37),
                               ),
                             );
                           },
@@ -307,6 +308,76 @@ class BottomSheetWidget extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+              ),
+            ],
+          ),
+          const Divider(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Column(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      const link =
+                          'https://www.facebook.com/ApproachHelpingHands/';
+                      launch(link);
+                    },
+                    icon: FaIcon(FontAwesomeIcons.facebook),
+                    iconSize: 40,
+                    color: Colors.blue[800],
+                  ),
+                  Text(
+                    'Facebook',
+                    style: TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontSize: 12,
+                      color: Colors.blue[800],
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      const link = 'https://www.instagram.com/approachhhf/';
+                      launch(link);
+                    },
+                    icon: FaIcon(FontAwesomeIcons.instagram),
+                    iconSize: 40,
+                    color: Colors.pink[700],
+                  ),
+                  Text(
+                    'Instagram',
+                    style: TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontSize: 12,
+                      color: Colors.pink[700],
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      const link = 'https://twitter.com/approachhhf';
+                      launch(link);
+                    },
+                    icon: FaIcon(FontAwesomeIcons.twitter),
+                    iconSize: 40,
+                    color: Colors.blue,
+                  ),
+                  Text(
+                    'Twitter',
+                    style: TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontSize: 12,
+                      color: Colors.blue,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
