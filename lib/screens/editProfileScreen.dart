@@ -87,6 +87,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           backgroundColor: Color.fromRGBO(245, 245, 245, 1),
           appBar: AppBar(
             backgroundColor: Colors.white,
+            elevation: 0,
             leading: IconButton(
               onPressed: () {
                 Navigator.pop(context);
@@ -109,13 +110,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           ),
           body: SingleChildScrollView(
             child: Column(
+              // crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Stack(
                   children: <Widget>[
                     Container(
                       margin: EdgeInsets.only(bottom: 20.0),
                       alignment: Alignment.topCenter,
-                      height: 150.0,
+                      height: 100.0,
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
@@ -127,9 +129,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       ),
                       //child: Image.asset("assets/bgImage.jpg"),
                     ),
-
                     Padding(
-                      padding: const EdgeInsets.only(top: 60),
+                      padding: const EdgeInsets.only(top: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -159,6 +160,32 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 // backgroundImage:
                                 //     AssetImage('assets/images/Profile.png'),
                                 backgroundImage: NetworkImage(userPhotoUrl),
+                                child: Column(
+                                  children: [
+                                    const Spacer(),
+                                    Row(
+                                      children: [
+                                        const Spacer(),
+                                        Container(
+                                          height: 26,
+                                          width: 26,
+                                          decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(5)),
+                                              shape: BoxShape.rectangle,
+                                              color: Color.fromRGBO(
+                                                  66, 143, 212, 1)),
+                                          child: Icon(
+                                            Icons.edit,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 10),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 10),
+                                  ],
+                                ),
 
                                 // backgroundImage: Image.network(userImageUrl),
                               ),
@@ -170,99 +197,176 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               //   backgroundImage:
                               //       AssetImage('assets/images/Profile.png'),
                               // ),
-                              SizedBox(
-                                height: 10,
-                              ),
+                              // SizedBox(
+                              //   height: 10,
+                              // ),
                             ],
                           ),
                         ],
                       ),
                     ),
-                    Positioned(
-                        bottom: 25,
-                        right: 130,
-                        child: Container(
-                          height: 24,
-                          width: 24,
-                          decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5)),
-                              shape: BoxShape.rectangle,
-                              color: Color.fromRGBO(66, 143, 212, 1)),
-                          child: Icon(
-                            Icons.edit,
-                            color: Colors.white,
-                          ),
-                        )),
-                    //Padding(padding: EdgeInsets.all(24))
+                    // Positioned(
+                    //   bottom: 25,
+                    //   right: 130,
+                    //   child: Container(
+                    //     height: 26,
+                    //     width: 26,
+                    //     decoration: BoxDecoration(
+                    //         borderRadius: BorderRadius.all(Radius.circular(5)),
+                    //         shape: BoxShape.rectangle,
+                    //         color: Color.fromRGBO(66, 143, 212, 1)),
+                    //     child: Icon(
+                    //       Icons.edit,
+                    //       color: Colors.white,
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
-                // Container(
-                //   margin: const EdgeInsets.all(15),
-                //   padding: const EdgeInsets.all(3),
-                //   decoration:
-                //       BoxDecoration(border: Border.all(color: Colors.grey)),
-                //   child:
-                reusableTextField(
-                  "First Name",
-
-                  Icons.person_outline,
-                  false,
-                  _nameTextController,
-                  widget.userName,
-                  // null,
-                ),
-
-                reusableTextField(
-                  "Email",
-                  Icons.mail_outline,
-                  false,
-                  _emailTextController,
-                  widget.userEmail,
-                  // null,
-                ),
-                reusableTextField(
-                  "Date of Birth",
-                  Icons.calendar_month_outlined,
-                  false,
-                  _dobTextController,
-                  // null,
-                ),
-                reusableTextField(
-                  "Blood Group",
-                  Icons.water_drop_outlined,
-                  false,
-                  _bloodGroupTextController,
-                  // null,
-                ),
-                reusableTextField(
-                  "Address",
-                  Icons.pin_drop_outlined,
-                  false,
-                  _addressTextController,
-                  // null,
-                ),
-                SizedBox(
-                  height: 10,
-                ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Container(
-                    height: 50,
-                    width: 300,
-                    //children: <Widget>[
-                    //const Spacer(),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromRGBO(66, 143, 212, 1),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(42),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 40),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        'Personal',
+                        style: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontSize: 26,
                         ),
                       ),
-                      child: Text('SAVE DETAILS'),
-                      onPressed: onSubmit,
-                    ),
-                    //],
+                      // const SizedBox(height: 16),
+                      Container(
+                        margin: const EdgeInsets.only(
+                          top: 16,
+                          bottom: 5,
+                          left: 8,
+                        ),
+                        child: Text(
+                          'Name',
+                          style: TextStyle(
+                            color: Color.fromRGBO(130, 130, 130, 1),
+                          ),
+                        ),
+                      ),
+                      // const SizedBox(height: 5),
+                      reusableTextField(
+                        "John Doe",
+                        Icons.person_outline,
+                        false,
+                        _nameTextController,
+                        widget.userName,
+                        // null,
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(
+                          top: 16,
+                          bottom: 5,
+                          left: 8,
+                        ),
+                        child: Text(
+                          'Email',
+                          style: TextStyle(
+                            color: Color.fromRGBO(130, 130, 130, 1),
+                          ),
+                        ),
+                      ),
+                      reusableTextField(
+                        "john@gmail.com",
+                        Icons.mail_outline,
+                        false,
+                        _emailTextController,
+                        widget.userEmail,
+                        // null,
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(
+                          top: 16,
+                          bottom: 5,
+                          left: 8,
+                        ),
+                        child: Text(
+                          'Date of Birth',
+                          style: TextStyle(
+                            color: Color.fromRGBO(130, 130, 130, 1),
+                          ),
+                        ),
+                      ),
+                      reusableTextField(
+                        "1-Jan-1990",
+                        Icons.calendar_month_outlined,
+                        false,
+                        _dobTextController,
+                        // null,
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(
+                          top: 16,
+                          bottom: 5,
+                          left: 8,
+                        ),
+                        child: Text(
+                          'Blood Group',
+                          style: TextStyle(
+                            color: Color.fromRGBO(130, 130, 130, 1),
+                          ),
+                        ),
+                      ),
+                      reusableTextField(
+                        "O+",
+                        Icons.water_drop_outlined,
+                        false,
+                        _bloodGroupTextController,
+                        // null,
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(
+                          top: 16,
+                          bottom: 5,
+                          left: 8,
+                        ),
+                        child: Text(
+                          'Address',
+                          style: TextStyle(
+                            color: Color.fromRGBO(130, 130, 130, 1),
+                          ),
+                        ),
+                      ),
+                      reusableTextField(
+                        "Pune, Maharashtra, India",
+                        Icons.pin_drop_outlined,
+                        false,
+                        _addressTextController,
+                        // null,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 20,
+                        ),
+                        child: Container(
+                          height: 50,
+                          width: double.maxFinite,
+                          //children: <Widget>[
+                          //const Spacer(),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color.fromRGBO(66, 143, 212, 1),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(42),
+                              ),
+                            ),
+                            child: Text('SAVE DETAILS'),
+                            onPressed: onSubmit,
+                          ),
+                          //],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -282,10 +386,12 @@ TextFormField reusableTextField(String text, IconData icon, bool isPasswordType,
     initialValue: initialText,
     // controller: controller,
     decoration: InputDecoration(
+      floatingLabelBehavior: FloatingLabelBehavior.never,
       labelText: text,
+      border: OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
       prefixIcon: Icon(
         icon,
-        color: Colors.black,
+        color: Colors.grey,
         size: 25.0,
       ),
     ),
