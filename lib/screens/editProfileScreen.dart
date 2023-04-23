@@ -1,6 +1,9 @@
+import 'dart:ffi';
+
 import 'package:ahhf_app/provider/userAuth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class EditProfileScreen extends StatefulWidget {
   static const String id = '/edit_profile_screen';
@@ -96,7 +99,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             ),
             centerTitle: true,
             title: Text(
-              'Project Details',
+              'Edit Profile',
               style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
@@ -124,6 +127,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       ),
                       //child: Image.asset("assets/bgImage.jpg"),
                     ),
+
                     Padding(
                       padding: const EdgeInsets.only(top: 60),
                       child: Row(
@@ -155,6 +159,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 // backgroundImage:
                                 //     AssetImage('assets/images/Profile.png'),
                                 backgroundImage: NetworkImage(userPhotoUrl),
+
                                 // backgroundImage: Image.network(userImageUrl),
                               ),
 
@@ -172,17 +177,42 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           ),
                         ],
                       ),
-                    )
+                    ),
+                    Positioned(
+                        bottom: 25,
+                        right: 130,
+                        child: Container(
+                          height: 24,
+                          width: 24,
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5)),
+                              shape: BoxShape.rectangle,
+                              color: Color.fromRGBO(66, 143, 212, 1)),
+                          child: Icon(
+                            Icons.edit,
+                            color: Colors.white,
+                          ),
+                        )),
+                    //Padding(padding: EdgeInsets.all(24))
                   ],
                 ),
+                // Container(
+                //   margin: const EdgeInsets.all(15),
+                //   padding: const EdgeInsets.all(3),
+                //   decoration:
+                //       BoxDecoration(border: Border.all(color: Colors.grey)),
+                //   child:
                 reusableTextField(
-                  "Name",
+                  "First Name",
+
                   Icons.person_outline,
                   false,
                   _nameTextController,
                   widget.userName,
                   // null,
                 ),
+
                 reusableTextField(
                   "Email",
                   Icons.mail_outline,
@@ -212,9 +242,28 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   _addressTextController,
                   // null,
                 ),
-                ElevatedButton(
-                  child: Text('CREATE PROFILE'),
-                  onPressed: onSubmit,
+                SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Container(
+                    height: 50,
+                    width: 300,
+                    //children: <Widget>[
+                    //const Spacer(),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromRGBO(66, 143, 212, 1),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(42),
+                        ),
+                      ),
+                      child: Text('SAVE DETAILS'),
+                      onPressed: onSubmit,
+                    ),
+                    //],
+                  ),
                 ),
               ],
             ),
