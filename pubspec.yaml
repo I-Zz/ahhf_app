@@ -45,7 +45,7 @@ dependencies:
   fluttertoast: ^8.2.1
   pinput: ^2.2.31
 
-  # intl: ^0.18.0
+  intl: ^0.18.0
 
   # State Management
   provider: ^6.0.5
