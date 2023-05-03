@@ -1,12 +1,15 @@
-import 'package:ahhf_app/provider/userAuth.dart';
-import 'package:ahhf_app/screens/home.dart';
-import 'package:ahhf_app/screens/profile_screen.dart';
-import 'package:ahhf_app/screens/projects_detail_screen_overview.dart';
-import 'package:ahhf_app/screens/projects_screen.dart';
-import 'package:ahhf_app/widgets/project_screen_cards.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+import '../provider/feedProvider.dart';
+import '../provider/userAuth.dart';
+import '../screens/homepagetabs.dart';
+import '../screens/profile_screen.dart';
+import '../screens/projects_detail_screen_overview.dart';
+import '../screens/projects_screen.dart';
+import '../widgets/project_screen_cards.dart';
+import '../provider/project.dart';
 
 class TabsScreen extends StatefulWidget {
   static const String id = 'TabsPage';
@@ -26,18 +29,23 @@ class _TabsScreenState extends State<TabsScreen> {
 
   @override
   void initState() {
-    final user = FirebaseAuth.instance.currentUser;
-    Future.delayed(Duration.zero).then((_)  {
-       Provider.of<CurrentUser>(context, listen: false)
-          .setInitialUserData(user);
-    });
+    // final user = FirebaseAuth.instance.currentUser;
+
+    // print('before fetch and setup projects');
+    // Future.delayed(Duration.zero).then((_) {
+    //   Provider.of<CurrentUser>(context, listen: false).setInitialUserData(user);
+    //   Provider.of<AllProjects>(context, listen: false).fetchAndSetupProjects();
+    // });
+
 
     _pages = [
-      HomePage(),
+      HomePageTabsScreen(),
       ProjectScreen(),
       ProfileScreen(),
     ];
     super.initState();
+
+
   }
 
   void _selectPage(int index) {

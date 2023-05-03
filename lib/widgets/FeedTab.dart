@@ -1,26 +1,23 @@
+import 'package:ahhf_app/provider/feedProvider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
-import 'FeedTabCard.dart';
+import 'package:provider/provider.dart';
+import '../widgets/FeedTabCard.dart';
 import '../templates/animation_template.dart';
 
-class projectDetailsFeedTab extends StatefulWidget {
-  final String projectID;
-  projectDetailsFeedTab({required this.projectID});
+class feedTab extends StatelessWidget {
+  const feedTab({Key? key}) : super(key: key);
 
-  @override
-  State<projectDetailsFeedTab> createState() => _projectDetailsFeedTabState();
-}
-
-class _projectDetailsFeedTabState extends State<projectDetailsFeedTab> {
   @override
   Widget build(BuildContext context) {
+    // I have added this provider listener to listen the changes in Events Items List
+
+    // final FeedTabItems = Provider.of<FeedTabProvider>(context);
+    // print('${FeedTabItems.feeds.length} THSIDF');
+
     return Scaffold(
       body: StreamBuilder(
-        stream: FirebaseFirestore.instance
-            .collection('feeds')
-            .where('projectID', isEqualTo: widget.projectID)
-            .snapshots(),
+        stream: FirebaseFirestore.instance.collection('feeds').snapshots(),
         builder: (ctx, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
@@ -29,7 +26,7 @@ class _projectDetailsFeedTabState extends State<projectDetailsFeedTab> {
             );
           } else if (snapshot.hasError) {
             return Center(
-              child: Text('Somthing Wrong wrong'),
+              child: Text('Somthing Wrong'),
             );
           }
           final FeedDataList = snapshot.data!.docs;

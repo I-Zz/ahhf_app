@@ -46,7 +46,7 @@ dependencies:
   fluttertoast: ^8.2.1
   pinput: ^2.2.31
 
-  # intl: ^0.18.0
+  intl: ^0.17.0
 
   # State Management
   provider: ^6.0.5
@@ -59,6 +59,10 @@ dependencies:
   font_awesome_flutter: ^10.4.0
 
   firebase_core: ^2.9.0
+  cloud_firestore: ^4.5.1
+
+  url_launcher: ^6.0.9
+  share_plus: ^6.3.2
 
 dev_dependencies:
   flutter_test:

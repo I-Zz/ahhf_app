@@ -7,20 +7,23 @@ import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 
+import './screens/providerUmbrellaScreen.dart';
 import './screens/projects_detail_screen_overview.dart';
 import './screens/projects_screen.dart';
 import './screens/loginSignupScreen.dart';
 import './screens/register.dart';
-import './screens/home.dart';
+import './screens/homepagetabs.dart';
 import './screens/onboarding_screen.dart';
 import './screens/tabs_screen.dart';
 import './authProvider/google_sign_in.dart';
 import './screens/junctionScreen.dart';
 import './templates/animation_template.dart';
 import './screens/donation_screen.dart';
+import './screens/editProfileScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -43,19 +46,21 @@ class MyApp extends StatelessWidget {
           // initialRoute: Mylogin1.id,
           routes: {
             Splash.id: (context) => Splash(),
+            ProviderUmbrellaScreen.id: (context) => ProviderUmbrellaScreen(),
             JunctionScreen.id: (context) => JunctionScreen(),
             OnboardingScreen.id: (context) => OnboardingScreen(),
             Mylogin.id: (context) => Mylogin(),
             Myregister.id: (context) => Myregister(),
-            HomePage.id: (context) => HomePage(),
+            HomePageTabsScreen.id: (context) => HomePageTabsScreen(),
             TabsScreen.id: (context) => TabsScreen(),
             ProjectScreen.id: (context) => ProjectScreen(),
-            ProjectsDetailScreen.id: (context) => ProjectsDetailScreen(),
+           // ProjectsDetailScreen.id: (context) => ProjectsDetailScreen(),
             LoginWithEmail.id: (context) => LoginWithEmail(),
             PhoneAuthentication.id: (context) => PhoneAuthentication(),
             LogoAnimationScreen.id: (context) => LogoAnimationScreen(),
             DonationScreen.id: (context) => DonationScreen(),
             DonationHistoryScreen.id: (context) => DonationHistoryScreen(),
+            // EditProfileScreen.id: (context) => EditProfileScreen(),
           },
           // home: Splash(),
           initialRoute: Splash.id,
@@ -90,7 +95,7 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
 
       // Navigator.pushReplacementNamed(context, OnboardingScreen.id);
 
-      Navigator.pushReplacementNamed(context, JunctionScreen.id);
+      Navigator.pushReplacementNamed(context, ProviderUmbrellaScreen.id);
     });
   }
 

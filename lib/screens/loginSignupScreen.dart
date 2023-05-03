@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import './tabs_screen.dart';
+import '../templates/animation_template.dart';
 //import 'package:my_login/register.dart';
 
 class Mylogin extends StatefulWidget {
@@ -76,15 +77,18 @@ class _MyloginState extends State<Mylogin> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                onPressed: () {
-                  final googleProvider = Provider.of<GoogleSignInProvider>(
-                      context,
-                      listen: false);
-                  googleProvider.googleLogin();
+                onPressed: () async {
+                  showDialog(
+                      context: context,
+                      builder: (context) => LogoAnimationScreen());
+                  final googleProvider =
+                      Provider.of<GoogleSignInProvider>(context, listen: false);
+                  await googleProvider.googleLogin();
+                  Navigator.of(context).pop();
                 },
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 8.0, horizontal: 12),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
                   child: Row(
                     children: <Widget>[
                       Padding(
@@ -108,38 +112,38 @@ class _MyloginState extends State<Mylogin> {
                 ),
               ),
               const SizedBox(height: 15),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: Color.fromRGBO(51, 51, 51, 1),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                onPressed: () {
-                  Navigator.pushNamed(context, LoginWithEmail.id);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 8.0, horizontal: 12),
-                  child: Row(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            top: 8, bottom: 8, left: 10, right: 15),
-                        child: Icon(
-                          Icons.email_sharp,
-                          color: Colors.white,
-                        ),
-                      ),
-                      Text(
-                        'Login with email',
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 15),
+              // ElevatedButton(
+              //   style: ElevatedButton.styleFrom(
+              //     primary: Color.fromRGBO(51, 51, 51, 1),
+              //     shape: RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.circular(10),
+              //     ),
+              //   ),
+              //   onPressed: () {
+              //     Navigator.pushNamed(context, LoginWithEmail.id);
+              //   },
+              //   child: Padding(
+              //     padding:
+              //         const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
+              //     child: Row(
+              //       children: <Widget>[
+              //         Padding(
+              //           padding: const EdgeInsets.only(
+              //               top: 8, bottom: 8, left: 10, right: 15),
+              //           child: Icon(
+              //             Icons.email_sharp,
+              //             color: Colors.white,
+              //           ),
+              //         ),
+              //         Text(
+              //           'Login with email',
+              //           style: TextStyle(fontSize: 18),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
+              // const SizedBox(height: 15),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary: Color.fromRGBO(51, 51, 51, 1),
@@ -151,8 +155,8 @@ class _MyloginState extends State<Mylogin> {
                   Navigator.pushNamed(context, PhoneAuthentication.id);
                 },
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 8.0, horizontal: 12),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
                   child: Row(
                     children: <Widget>[
                       Padding(

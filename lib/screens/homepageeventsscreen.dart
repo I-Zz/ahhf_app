@@ -1,21 +1,20 @@
-import 'package:ahhf_app/widgets/EventTabCards.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:ahhf_app/widgets/projectDetailsEventTab.dart';
+
+import '../widgets/EventTabCards.dart';
 import '../templates/animation_template.dart';
 
-class projectDetailsEventsTab extends StatelessWidget {
-  final String projectID;
-  projectDetailsEventsTab({required this.projectID});
+class HomePageEventScreen extends StatelessWidget {
+  const HomePageEventScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // I have added this provider listener to listen the changes in Events Items List
     return Scaffold(
       body: StreamBuilder(
-        stream: FirebaseFirestore.instance
-            .collection('events')
-            .where('projectID', isEqualTo: projectID)
-            .snapshots(),
+        stream: FirebaseFirestore.instance.collection('events').snapshots(),
         builder: (ctx, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
@@ -39,5 +38,6 @@ class projectDetailsEventsTab extends StatelessWidget {
         },
       ),
     );
+    ;
   }
 }

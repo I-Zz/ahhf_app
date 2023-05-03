@@ -1,169 +1,204 @@
-import 'dart:math';
-
+import 'package:ahhf_app/provider/project.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class projectDetailsOverviewTab extends StatelessWidget {
-  const projectDetailsOverviewTab({Key? key}) : super(key: key);
+  final String projectID;
+  final AllProjects allprojects;
+  projectDetailsOverviewTab(
+      {required this.projectID, required this.allprojects});
+
+  final String donationPageUrl = 'https://pages.razorpay.com/ahhf-donation';
 
   @override
   Widget build(BuildContext context) {
+    String formatNumber(num number) {
+      if (number >= 10000000) {
+        return (number / 10000000).toStringAsFixed(0) + ' Cr';
+      } else if (number >= 100000) {
+        return (number / 100000).toStringAsFixed(0) + ' L';
+      } else if (number >= 1000) {
+        return (number / 1000).toStringAsFixed(0) + ' K';
+      } else {
+        return number.toString();
+      }
+    }
+
+    final currentProject = allprojects.getProject(projectID);
+    final totalDonation = currentProject.totalDonation;
+    final currentDonation = currentProject.currentDonation;
+
     return Scaffold(
       backgroundColor: Color.fromRGBO(245, 245, 245, 1),
 
       //padding: const EdgeInsets.all(20),
 
       body: Column(
-        children: <Widget>[
+        children: [
           Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            //mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.only(top: 20, right: 50),
-                child: Text(
-                  'Lorem Ipsum is simply dummy text of the\nprinting and typesetting industry. Lorem Ipsum\nhas been the industry\'s standard dummy text\never since the 1500s',
-                  //textAlign: TextAlign.left,
-                  style: TextStyle(
-                    color: Color.fromRGBO(130, 130, 130, 1),
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: 'Montserrat',
-                  ),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                      currentProject.longDescription1,
+                      style: TextStyle(
+                        color: Color.fromRGBO(130, 130, 130, 1),
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: 'Montserrat',
+                      ),
+                    ),
+                    Text(
+                      currentProject.longDescription2,
+                      style: TextStyle(
+                        color: Color.fromRGBO(130, 130, 130, 1),
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: 'Montserrat',
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              //Container(
-
-              //),
-              SizedBox(
-                width: 20,
-                height: 15,
-              ),
-              Container(
-                child: Text(
-                  'When an unknown printer took a galley of type\nand scrambled it to make a type specimen book.\nIt has survived not only five centuries',
-                  style: TextStyle(
-                    color: Color.fromRGBO(130, 130, 130, 1),
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: 'Montserrat',
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Container(
+                    child: Column(children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(top: 9),
+                        child: Text(
+                          ' ${currentProject.progressData['Digital Schools']}',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontSize: 34,
+                            color: Color.fromRGBO(51, 51, 51, 1),
+                            //height: 85,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8),
+                        child: Text(
+                          'Digital school',
+                          style: TextStyle(
+                              color: Color.fromRGBO(130, 130, 130, 1),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              fontFamily: 'Montserrat'),
+                        ),
+                      ),
+                    ]),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(5),
+                      ),
+                      color: Color.fromRGBO(234, 236, 253, 1),
+                    ),
+                    height: 82,
+                    width: 100,
                   ),
-                ),
-              )
+                  Container(
+                    child: Column(children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(top: 9),
+                        child: Text(
+                          '${currentProject.progressData['Students']}',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontSize: 34,
+                            color: Color.fromRGBO(51, 51, 51, 1),
+                            //height: 85,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8),
+                        child: Text(
+                          'Students',
+                          style: TextStyle(
+                              color: Color.fromRGBO(130, 130, 130, 1),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              fontFamily: 'Montserrat'),
+                        ),
+                      ),
+                    ]),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(5),
+                      ),
+                      color: Color.fromRGBO(234, 236, 253, 1),
+                    ),
+                    height: 82,
+                    width: 100,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(5),
+                      ),
+                      color: Color.fromRGBO(234, 236, 253, 1),
+                    ),
+                    height: 82,
+                    width: 100,
+                    child: Column(children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(top: 9),
+                        child: Text(
+                          // '${NumberFormat.compactLong().format(currentProject.currentDonation)}',
+                          '${formatNumber(currentProject.currentDonation)}',
+
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontSize: 34,
+                            color: Color.fromRGBO(51, 51, 51, 1),
+                            //height: 85,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8),
+                        child: Text(
+                          'Donation',
+                          style: TextStyle(
+                              color: Color.fromRGBO(130, 130, 130, 1),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              fontFamily: 'Montserrat'),
+                        ),
+                      ),
+                    ]),
+                  ),
+                ],
+              ),
             ],
           ),
-          SizedBox(
-            width: 20,
-            height: 15,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Container(
-                child: Column(children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(top: 9),
-                    child: Text(
-                      '01',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        fontSize: 34,
-                        color: Color.fromRGBO(51, 51, 51, 1),
-                        //height: 85,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8),
-                    child: Text(
-                      'Digital school',
-                      style: TextStyle(
-                          color: Color.fromRGBO(130, 130, 130, 1),
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: 'Montserrat'),
-                    ),
-                  ),
-                ]),
-                color: Color.fromRGBO(234, 236, 253, 1),
-                height: 82,
-                width: 100,
-              ),
-              Container(
-                child: Column(children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(top: 9),
-                    child: Text(
-                      '6500',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        fontSize: 34,
-                        color: Color.fromRGBO(51, 51, 51, 1),
-                        //height: 85,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8),
-                    child: Text(
-                      'Students',
-                      style: TextStyle(
-                          color: Color.fromRGBO(130, 130, 130, 1),
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: 'Montserrat'),
-                    ),
-                  ),
-                ]),
-                color: Color.fromRGBO(234, 236, 253, 1),
-                height: 82,
-                width: 100,
-              ),
-
-              Container(
-                child: Column(children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(top: 9),
-                    child: Text(
-                      '34L',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        fontSize: 34,
-                        color: Color.fromRGBO(51, 51, 51, 1),
-                        //height: 85,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8),
-                    child: Text(
-                      'Donation',
-                      style: TextStyle(
-                          color: Color.fromRGBO(130, 130, 130, 1),
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: 'Montserrat'),
-                    ),
-                  ),
-                ]),
-                color: Color.fromRGBO(234, 236, 253, 1),
-                height: 82,
-                width: 100,
-              ),
-              //margin: EdgeInsets.all(12),
-              //padding: EdgeInsets.all(8),
-              //decoration: BoxDecoration(color: Colors.blueAccent,
-            ],
-          ),
-          SizedBox(
-            height: 70,
-          ),
-          const Divider(),
-          Padding(
-            padding: EdgeInsets.only(left: 15),
-            child: Row(
+          const Spacer(),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              // boxShadow: [
+              //   BoxShadow(
+              //     color: Colors.black87,
+              //     spreadRadius: 1,
+              //     blurRadius: 20,
+              //     offset: Offset(0, 20),
+              //   ),
+              // ],
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
                   'Donation Status',
@@ -174,58 +209,38 @@ class projectDetailsOverviewTab extends StatelessWidget {
                     fontFamily: 'Montserrat',
                   ),
                 ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15),
-            child: Row(
-              children: <Widget>[
-                Flexible(
-                  child: Container(
-                    width: 60,
-                    height: 5,
-                    padding: EdgeInsets.only(left: 12),
-
-                    //symmetric(
-                    //  horizontal: 1,
-                    //  vertical: 2,
-                    //),
-                    decoration: BoxDecoration(
-                      color: Colors.black,
+                Row(
+                  children: <Widget>[
+                    Stack(
+                      children: <Widget>[
+                        Container(
+                          height: 7,
+                          width: 200,
+                          color: Color.fromRGBO(232, 233, 245, 1),
+                        ),
+                        Container(
+                          height: 7,
+                          // width: 50,
+                          width: (currentDonation / totalDonation) * 100,
+                          color: Colors.black,
+                        ),
+                      ],
                     ),
-                  ),
-                ),
-                Container(
-                  width: 180,
-                  height: 5,
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 2,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Color.fromRGBO(232, 233, 245, 1),
-                  ),
-                  //child: Row(children: [
-                  //  SizedBox(width: 2),
-                  //]),
-                ),
-                const Spacer(),
-                // SizedBox(
-                //   width: 15,
-                // ),
-                new Positioned(
-                  left: MediaQuery.of(context).size.width / 2 + 100,
-                  top: MediaQuery.of(context).size.height / 2,
-                  child: new Container(
-                    width: 101.0,
-                    height: 26,
-                    //decoration: new BoxDecoration(color: Colors.red),
-                    child: SizedBox(
-                      width: 101,
-                      height: 26,
+                    const SizedBox(width: 15),
+                    Expanded(
                       child: ElevatedButton(
-                        child: Text(
+                        onPressed: () {
+                          launch(donationPageUrl);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          padding:
+                              EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+                          backgroundColor: Color.fromRGBO(241, 200, 76, 1),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                        child: const Text(
                           'DONATE NOW',
                           style: TextStyle(
                             fontFamily: 'Montserrat',
@@ -234,58 +249,51 @@ class projectDetailsOverviewTab extends StatelessWidget {
                             color: Color.fromRGBO(0, 0, 0, 1),
                           ),
                         ),
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromRGBO(241, 200, 76, 1),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12.29),
-                          ),
-                        ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
-                // Padding(
-                //   padding: EdgeInsets.only(left: 10, right: 20),
-                //   child:
-                // ),
+                Row(
+                  children: <Widget>[
+                    Text(
+                      // '34L',
+                      formatNumber(currentDonation),
+                      style: TextStyle(
+                        color: Color.fromRGBO(130, 130, 130, 1),
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: 'Montserrat',
+                      ),
+                    ),
+                    Spacer(flex: 1),
+                    Text(
+                      // '30%',
+                      '${(currentDonation / totalDonation) * 100}%',
+                      textAlign: TextAlign.right,
+                      style: TextStyle(
+                        color: Color.fromRGBO(130, 130, 130, 1),
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: 'Montserrat',
+                      ),
+                    ),
+                    Spacer(flex: 1),
+                  ],
+                ),
               ],
             ),
           ),
-          Padding(
-              padding: EdgeInsets.only(left: 15),
-              child: Row(
-                children: <Widget>[
-                  Text(
-                    '34L',
-                    style: TextStyle(
-                      color: Color.fromRGBO(130, 130, 130, 1),
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: 'Montserrat',
-                    ),
-                  ),
-                  SizedBox(
-                    width: 200,
-                    height: 1,
-                  ),
-                  Text(
-                    '30%',
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                      color: Color.fromRGBO(130, 130, 130, 1),
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: 'Montserrat',
-                    ),
-                  ),
-                ],
-              )),
         ],
       ),
     );
   }
 }
+
+
+
+
+
+
 // TextButton(
 //                   onPressed: () {},
 //                   child: Text(
