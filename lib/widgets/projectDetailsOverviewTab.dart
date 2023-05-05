@@ -29,6 +29,7 @@ class projectDetailsOverviewTab extends StatelessWidget {
     final currentProject = allprojects.getProject(projectID);
     final totalDonation = currentProject.totalDonation;
     final currentDonation = currentProject.currentDonation;
+    final progressDataKeys = currentProject.progressData.keys.toList();
 
     return Scaffold(
       backgroundColor: Color.fromRGBO(245, 245, 245, 1),
@@ -72,7 +73,7 @@ class projectDetailsOverviewTab extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(top: 9),
                     child: Text(
-                      ' ${currentProject.progressData['Digital Schools']}',
+                      ' ${currentProject.progressData[progressDataKeys[1]]}',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontFamily: 'Montserrat',
@@ -83,14 +84,18 @@ class projectDetailsOverviewTab extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 8),
-                    child: Text(
-                      'Digital school',
-                      style: TextStyle(
-                          color: Color.fromRGBO(130, 130, 130, 1),
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: 'Montserrat'),
+                    padding: const EdgeInsets.only(top: 8, left: 4, right: 4),
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        // 'Digital school',
+                        progressDataKeys[1],
+                        style: TextStyle(
+                            color: Color.fromRGBO(130, 130, 130, 1),
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: 'Montserrat'),
+                      ),
                     ),
                   ),
                 ]),
@@ -108,7 +113,7 @@ class projectDetailsOverviewTab extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(top: 9),
                     child: Text(
-                      '${currentProject.progressData['Students']}',
+                      '${currentProject.progressData[progressDataKeys[0]]}',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontFamily: 'Montserrat',
@@ -119,14 +124,18 @@ class projectDetailsOverviewTab extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 8),
-                    child: Text(
-                      'Students',
-                      style: TextStyle(
-                          color: Color.fromRGBO(130, 130, 130, 1),
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: 'Montserrat'),
+                    padding: const EdgeInsets.only(top: 8, left: 4, right: 4),
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        // 'Students',
+                        progressDataKeys[0],
+                        style: TextStyle(
+                            color: Color.fromRGBO(130, 130, 130, 1),
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: 'Montserrat'),
+                      ),
                     ),
                   ),
                 ]),
