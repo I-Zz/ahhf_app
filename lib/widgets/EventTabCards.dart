@@ -151,23 +151,25 @@ class EventTabCards extends StatelessWidget {
                           height: 34,
                           width: 138,
                           child: ElevatedButton(
-                            onPressed: () {
-                              showModalBottomSheet<dynamic>(
-                                context: context,
-                                builder: (context) => BottomSheetWidget(),
-                                shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.vertical(
-                                    top: Radius.circular(20),
-                                  ),
-                                ),
-                                constraints: BoxConstraints.loose(
-                                  Size(
-                                      MediaQuery.of(context).size.width,
-                                      MediaQuery.of(context).size.height *
-                                          0.37),
-                                ),
-                              );
-                            },
+                            // onPressed: () {
+                            //   showModalBottomSheet<dynamic>(
+                            //     context: context,
+                            //     builder: (context) => BottomSheetWidget(),
+                            //     shape: const RoundedRectangleBorder(
+                            //       borderRadius: BorderRadius.vertical(
+                            //         top: Radius.circular(20),
+                            //       ),
+                            //     ),
+                            //     constraints: BoxConstraints.loose(
+                            //       Size(
+                            //           MediaQuery.of(context).size.width,
+                            //           MediaQuery.of(context).size.height *
+                            //               0.37),
+                            //     ),
+                            //   );
+                            // },
+                            onPressed: () => addEventToGoogleCalender(
+                                title, dateTime, EventVenue),
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.black,
                                 shape: RoundedRectangleBorder(
@@ -245,6 +247,67 @@ class EventTabCards extends StatelessWidget {
     // } else {
     //   throw 'Could not open the Map';
     // }
+  }
+
+  void addEventToGoogleCalender(
+      String eventTitle, String eventTime, String eventVenue) async {
+    // String url = 'https://www.google.com/calendar/event';
+    // String url = 'https://calendar.google.com/calendar/event';
+    print(title);
+    String encodedTitle = Uri.encodeQueryComponent(title);
+    print(encodedTitle);
+
+    print(eventVenue);
+    String location = Uri.encodeQueryComponent(eventVenue);
+    print(location);
+
+    String date = getUTCdate(eventTime);
+    String time = getUTCtime(eventTime);
+    String startDate = date + 'T043000Z';
+    String endDate = date + 'T153000Z';
+    print(date);
+    print(time);
+
+    String url =
+        'https://www.google.com/calendar/event?action=TEMPLATE&text=$encodedTitle&dates=$date+T000000Z/$date+T000000Z&details=AHHF+is+organizing+an+Event&location=$location';
+
+    // Template url for adding new event in google calendar
+    // https://www.google.com/calendar/event?action=TEMPLATE&text=Event+Title&dates=20230510T080000Z/20230510T100000Z&details=Event+Description&location=Event+Location
+
+    await launch(url);
+  }
+
+  String getUTCdate(String eventTime) {
+    List<String> splittedDate = eventTime.split(" ");
+    Map<String, String> months = {
+      'Jan': '01',
+      'Feb': '02',
+      'Mar': '03',
+      'Apr': '04',
+      'May': '05',
+      'Jun': '06',
+      'Jul': '07',
+      'Aug': '08',
+      'Sep': '09',
+      'Oct': '10',
+      'Nov': '11',
+      'Dec': '12',
+    };
+
+    String month = months[splittedDate[1]]!;
+    String finalDate = '';
+    print(splittedDate[2]);
+    print(month);
+    print(splittedDate[0]);
+    return splittedDate[2] + month + splittedDate[0];
+  }
+
+  String getUTCtime(String eventTime) {
+    List<String> splittedDate = eventTime.split(" ");
+    List<String> splittedTime = splittedDate[4].split(":");
+    print(splittedTime[0]);
+    print(splittedTime[1]);
+    return splittedTime[0] + splittedTime[1];
   }
 }
 

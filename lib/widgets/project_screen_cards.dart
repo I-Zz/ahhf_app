@@ -18,17 +18,16 @@ class ProjectScreenCards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var allprojects=Provider.of<AllProjects>(context,listen: false);
+    var allprojects = Provider.of<AllProjects>(context, listen: false);
 
     return GestureDetector(
       onTap: (() {
-
         Navigator.of(context).push(
             // context,
             MaterialPageRoute(
                 builder: (context) => ProjectsDetailScreen(
                       projectID: projectID,
-                    allProjects: allprojects,
+                      allProjects: allprojects,
                     )));
       }),
       child: Card(
@@ -44,7 +43,8 @@ class ProjectScreenCards extends StatelessWidget {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(image),
-                  fit: BoxFit.cover,
+                  // fit: BoxFit.cover,
+                  fit: BoxFit.fitHeight,
                 ),
                 borderRadius:
                     // ignore: prefer_const_constructors
@@ -90,7 +90,7 @@ class ProjectScreenCards extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 10),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Stack(
                       children: <Widget>[
                         Row(
@@ -125,7 +125,7 @@ class ProjectScreenCards extends StatelessWidget {
                         )
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
