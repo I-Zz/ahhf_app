@@ -249,6 +249,26 @@ class EventTabCards extends StatelessWidget {
     // }
   }
 
+
+  // To give a starting an final location and get a path direction on google maps
+  void goToGoogleMapsDirections(/*String start,*/ String end) async {
+    // print(start);
+    // String locationStart = Uri.encodeQueryComponent(start);
+    // print(locationStart);
+    print(end);
+    String locationEnd = Uri.encodeQueryComponent(end);
+    print(locationEnd);
+
+    String url = 'https://www.google.com/maps/dir/?api=1&destination=$locationEnd';
+    await launch(url);
+
+    // if (await canLaunch(url)) {
+    //   await launch(url);
+    // } else {
+    //   throw 'Could not open the Map';
+    // }
+  }
+
   void addEventToGoogleCalender(
       String eventTitle, String eventTime, String eventVenue) async {
     // String url = 'https://www.google.com/calendar/event';
