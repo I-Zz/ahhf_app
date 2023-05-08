@@ -44,6 +44,7 @@ dependencies:
   scaffold_gradient_background: ^1.0.3+1
   fluttertoast: ^8.2.1
   pinput: ^2.2.31
+  image_picker: ^0.8.7+4
 
   intl: ^0.17.0
 
@@ -54,6 +55,7 @@ dependencies:
   firebase_auth: ^4.4.1
   google_sign_in: ^6.1.0
   firebase_auth_web: ^5.3.2
+  firebase_storage: ^11.1.2
 
   # Google Icon
   font_awesome_flutter: ^10.4.0
