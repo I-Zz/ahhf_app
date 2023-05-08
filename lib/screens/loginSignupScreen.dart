@@ -1,6 +1,7 @@
 import 'package:ahhf_app/authProvider/google_sign_in.dart';
 import 'package:ahhf_app/authProvider/login_with_email_screen.dart';
 import 'package:ahhf_app/authProvider/login_with_phone.dart';
+import 'package:ahhf_app/screens/admin_login.dart';
 import 'package:ahhf_app/screens/admin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -186,10 +187,12 @@ class _MyloginState extends State<Mylogin> {
               Container(
                 child: TextButton(
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, TabsScreen.id);
+                    //Navigator.pushReplacementNamed(context, TabsScreen.id);
+                    Navigator.push(context,MaterialPageRoute(builder: (context)=> AdminLogin()));
+
                   },
                   child: Text(
-                    'I\'ll do this later',
+                    'Sigin With Admin',
                     style: TextStyle(
                       fontSize: 15,
                       color: Color.fromRGBO(67, 67, 67, 1),
@@ -221,7 +224,7 @@ class _MyloginState extends State<Mylogin> {
                     ),
                     TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, AdminPortalScreen.id);
+                        // Navigator.pushNamed(context, AdminPortalScreen.id);
                       },
                       child: Text(
                         'terms of service',

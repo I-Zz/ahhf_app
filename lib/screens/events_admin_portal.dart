@@ -1,8 +1,11 @@
-import 'dart:ffi';
+import 'dart:io';
 
 import 'package:ahhf_app/provider/userAuth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:intl/intl.dart';
 import '../provider/admin.dart';
 import 'feed_admin_portal.dart';
@@ -69,7 +72,7 @@ class _EventAdminPortalState extends State<EventAdminPortal> {
   //   // TODO: implement initState
   //   super.initState();
   // }
-
+    File? eventImage;
   @override
   Widget build(BuildContext context) {
     print(widget.title);
@@ -81,11 +84,24 @@ class _EventAdminPortalState extends State<EventAdminPortal> {
           'https://www.pngitem.com/pimgs/m/581-5813504_avatar-dummy-png-transparent-png.png';
     }
 
-    void onSubmit() {
-      //print(_addressTextController.text);
+    Future<String> uploadImage()async{
+      final uploadImageref = FirebaseStorage.instance
+          .ref()
+          .child('events')
+          .child(_titleTextController.text + '.jpg');
+
+      await uploadImageref.putFile(eventImage!);
+      final imageUrl =await uploadImageref.getDownloadURL();
+      return imageUrl;
+    }
+
+    void onSubmit() async{
+
+      final imageUrl = await uploadImage();
+
       Map<String, dynamic> eventData = {
         'dateTime': _dateTimeTextController.text,
-        'imageUrl': _eventimageUrlTextController.text,
+        'imageUrl': imageUrl,
         'projectID': _projectIDTextController.text,
         'title': _titleTextController.text,
         'venue': _venueTextController.text,
@@ -172,15 +188,16 @@ class _EventAdminPortalState extends State<EventAdminPortal> {
                               //             NetworkImage(userImageUrl as String),
                               //       ),
 
-                              CircleAvatar(
-                                radius: 82,
-                                backgroundColor: Colors.grey,
-                                // backgroundImage:
-                                //     AssetImage('assets/images/Profile.png'),
-                                backgroundImage: NetworkImage(eventPhotoUrl),
 
-                                // backgroundImage: Image.network(userImageUrl),
-                              ),
+                      ClipOval(
+                      child: Container(
+                        width: 164,
+                        height: 164,
+                        child: eventImage!=null ? Image.file(eventImage!,fit: BoxFit.cover,): Text(''),
+
+                      ),
+                    ),
+
 
                               // CircleAvatar(
                               //   radius: 82,
@@ -199,18 +216,28 @@ class _EventAdminPortalState extends State<EventAdminPortal> {
                     ),
                     Positioned(
                         bottom: 25,
-                        right: 130,
-                        child: Container(
-                          height: 24,
-                          width: 24,
-                          decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5)),
-                              shape: BoxShape.rectangle,
-                              color: Color.fromRGBO(66, 143, 212, 1)),
-                          child: Icon(
-                            Icons.edit,
-                            color: Colors.white,
+                        right: 10,
+                        child: GestureDetector(
+                          onTap: ()async{
+                            final picker= ImagePicker();
+                            final pickedImage= await picker.pickImage(source: ImageSource.gallery);
+                            setState(() {
+                              eventImage= File(pickedImage!.path);
+                            });
+
+                          },
+                          child: Container(
+                            height: 24,
+                            width: 24,
+                            decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5)),
+                                shape: BoxShape.rectangle,
+                                color: Color.fromRGBO(66, 143, 212, 1)),
+                            child: Icon(
+                              Icons.edit,
+                              color: Colors.white,
+                            ),
                           ),
                         )),
                     //Padding(padding: EdgeInsets.all(24))
@@ -231,15 +258,7 @@ class _EventAdminPortalState extends State<EventAdminPortal> {
                   widget.dateTime,
                   // null,
                 ),
-                reusableTextField(
-                  "imageUrl",
 
-                  Icons.title_rounded,
-                  false,
-                  _eventimageUrlTextController,
-                  widget.eventimageUrl,
-                  // null,
-                ),
                 reusableTextField(
                   "projectID",
 
