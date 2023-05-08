@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../screens/tempDonateScreen.dart';
+
 class projectDetailsOverviewTab extends StatelessWidget {
   final String projectID;
   final AllProjects allprojects;
@@ -241,7 +243,10 @@ class projectDetailsOverviewTab extends StatelessWidget {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
-                      launch(donationPageUrl);
+                      // launch(donationPageUrl);
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => donation()),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       padding:

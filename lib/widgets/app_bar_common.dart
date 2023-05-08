@@ -1,3 +1,4 @@
+import 'package:ahhf_app/screens/tempDonateScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -97,7 +98,10 @@ class AppBarCommon extends StatelessWidget implements PreferredSizeWidget {
                 // onPressed: _launchURL,
                 onPressed: () {
                   // launchUrlString(donationPageUrl);
-                  launch(donationPageUrl);
+                  // launch(donationPageUrl);
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => donation()),
+                  );
                 },
                 child: const Padding(
                   padding: EdgeInsets.symmetric(
