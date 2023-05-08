@@ -1,6 +1,8 @@
 import 'package:ahhf_app/authProvider/login_with_email_screen.dart';
 import 'package:ahhf_app/authProvider/login_with_phone.dart';
+import 'package:ahhf_app/provider/admin.dart';
 import 'package:ahhf_app/provider/userAuth.dart';
+import 'package:ahhf_app/screens/admin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -18,6 +20,10 @@ import './authProvider/google_sign_in.dart';
 import './screens/junctionScreen.dart';
 import './templates/animation_template.dart';
 import './screens/editProfileScreen.dart';
+import 'screens/events_admin_portal.dart';
+import './provider/admin.dart';
+import './screens/feed_admin_portal.dart';
+import './provider/feed_admin.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,6 +44,9 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(create: (context) => GoogleSignInProvider()),
           ChangeNotifierProvider(create: (context) => CurrentUser()),
+          ChangeNotifierProvider(create: (context) => AdminEvent()),
+          ChangeNotifierProvider(create: (context) => AdminFeed()),
+          //ChangeNotifierProvider(create: (context) => Project)
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -52,10 +61,11 @@ class MyApp extends StatelessWidget {
             HomePageTabsScreen.id: (context) => HomePageTabsScreen(),
             TabsScreen.id: (context) => TabsScreen(),
             ProjectScreen.id: (context) => ProjectScreen(),
-           // ProjectsDetailScreen.id: (context) => ProjectsDetailScreen(),
+            // ProjectsDetailScreen.id: (context) => ProjectsDetailScreen(),
             LoginWithEmail.id: (context) => LoginWithEmail(),
             PhoneAuthentication.id: (context) => PhoneAuthentication(),
             LogoAnimationScreen.id: (context) => LogoAnimationScreen(),
+            AdminPortalScreen.id: (context) => AdminPortalScreen(),
             // EditProfileScreen.id: (context) => EditProfileScreen(),
           },
           // home: Splash(),

@@ -1,12 +1,16 @@
 import 'package:ahhf_app/authProvider/google_sign_in.dart';
 import 'package:ahhf_app/authProvider/login_with_email_screen.dart';
 import 'package:ahhf_app/authProvider/login_with_phone.dart';
+import 'package:ahhf_app/screens/admin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import '../provider/userAuth.dart';
+import 'events_admin_portal.dart';
 
 import './tabs_screen.dart';
 import '../templates/animation_template.dart';
+
 //import 'package:my_login/register.dart';
 
 class Mylogin extends StatefulWidget {
@@ -20,6 +24,8 @@ class _MyloginState extends State<Mylogin> {
   String istapped = '';
   @override
   Widget build(BuildContext context) {
+    // final userData = Provider.of<CurrentUser>(context, listen: false)
+    //     .getProfileScreenUserData;
     ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
     return Scaffold(
       // backgroundColor: Colors.white,
@@ -214,7 +220,9 @@ class _MyloginState extends State<Mylogin> {
                       textAlign: TextAlign.end,
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, AdminPortalScreen.id);
+                      },
                       child: Text(
                         'terms of service',
                         style: TextStyle(
