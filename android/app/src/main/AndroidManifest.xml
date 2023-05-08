@@ -3,7 +3,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
    <application
-        android:label="ahhf_app"
+        android:label="Approach Helping Hands Foundation"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
